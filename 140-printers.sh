@@ -1,19 +1,5 @@
 #!/bin/bash
 #set -e
-###############################################################################
-# Author	:	Erik Dubois
-# Website	:	https://www.erikdubois.be
-# Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxb.com
-# Website	:	https://www.arcolinuxiso.com
-# Website	:	https://www.arcolinuxforum.com
-###############################################################################
-#
-#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
-#
-###############################################################################
 
 
 ###############################################################################
@@ -24,10 +10,10 @@
 
 
 func_install() {
-	if pacman -Qi $1 &> /dev/null; then
+	if apt show $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
-  		echo "################## The package "$1" is already installed"
+  		echo "##################  "$1" is already installed"
       	echo "###############################################################################"
       	echo
 		tput sgr0
@@ -38,7 +24,7 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo pacman -S --noconfirm --needed $1 
+    	sudo apt install -y $1 
     fi
 }
 

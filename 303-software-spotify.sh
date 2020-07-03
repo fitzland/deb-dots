@@ -10,7 +10,6 @@
 
 
 func_install() {
-
    	tput setaf 3
     	echo "###############################################################################"
     	echo "##################  Installing package "  $1
@@ -21,16 +20,11 @@ func_install() {
 }
 
 ###############################################################################
-echo "Installation of bluetooth software"
+echo "Installation of sound software"
 ###############################################################################
 
 list=(
-bluetooth
-rfkill
-blueman
-bluez
-bluez-tools
-pulseaudio-module-bluetooth
+#curl
 )
 
 count=0
@@ -41,13 +35,15 @@ for name in "${list[@]}" ; do
 	func_install $name
 done
 
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 4773BD5E130D1D45
+
+sudo echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+
+sudo apt update
+
+sudo apt install -y spotify-client
+
 ###############################################################################
-
-tput setaf 5;echo "################################################################"
-echo "Restart to enable services"
-echo "################################################################"
-echo;tput sgr0
-
 
 tput setaf 11;
 echo "################################################################"

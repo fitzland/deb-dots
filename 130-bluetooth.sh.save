@@ -10,15 +10,7 @@
 
 
 func_install() {
-	if apt show $1 &> /dev/null; then
-		tput setaf 2
-  		echo "###############################################################################"
-  		echo "##################  "$1" is already installed"
-      	echo "###############################################################################"
-      	echo
-		tput sgr0
-	else
-    	tput setaf 3
+   	tput setaf 3
     	echo "###############################################################################"
     	echo "##################  Installing package "  $1
     	echo "###############################################################################"
@@ -29,13 +21,16 @@ func_install() {
 }
 
 ###############################################################################
-echo "Installation of Google Chrome Stable"
+echo "Installation of bluetooth software"
 ###############################################################################
 
 list=(
-software-properties-common
-apt-transport-https
-curl
+bluetooth
+rfkill
+blueman
+bluez
+bluez-tools
+pulseaudio-module-bluetooth
 )
 
 count=0
@@ -46,15 +41,13 @@ for name in "${list[@]}" ; do
 	func_install $name
 done
 
-curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-
-sudo apt update
-
-sudo apt install -y code
-
 ###############################################################################
+
+tput setaf 5;echo "################################################################"
+echo "Restart to enable services"
+echo "################################################################"
+echo;tput sgr0
+
 
 tput setaf 11;
 echo "################################################################"

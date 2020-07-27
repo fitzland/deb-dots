@@ -1,0 +1,26 @@
+#
+# ~/.bashrc
+#
+
+# collection of personal aliases
+
+alias eb='nano $HOME/.bashrc'
+alias ebp='nano $HOME/.bashrc-personal'
+
+alias dots='cd $HOME/git/fitzland/my-dots'
+
+alias jrnl='cd $HOME/Dropbox/journal'
+
+alias ei3='code $HOME/.config/i3/config'
+alias skelbin='meld $HOME/.bin /etc/skel/.bin'
+alias skelxr='meld $HOME/.Xresources /etc/skel/.Xresources'
+alias skelocal='meld $HOME/.local /etc/skel/.local'
+alias skelcfg='meld $HOME/.config /etc/skel/.config'
+alias skelbspwm='meld $HOME/.config/bspwm /etc/skel/.config/bspwm'
+alias skeli3='meld $HOME/.config/i3 /etc/skel/.config/i3'
+
+alias chface='cp $HOME/.face-bak .face'alias config='/usr/bin/git --git-dir=/home/jeff/.dots/ --work-tree=/home/jeff'
+
+alias mcserver='ssh jeff@192.168.0.123'
+
+screenfetch

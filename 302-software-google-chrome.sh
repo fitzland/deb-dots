@@ -10,22 +10,13 @@
 
 
 func_install() {
-	if apt show $1 &> /dev/null; then
-		tput setaf 2
-  		echo "###############################################################################"
-  		echo "##################  "$1" is already installed"
-      	echo "###############################################################################"
-      	echo
-		tput sgr0
-	else
-    	tput setaf 3
+   	tput setaf 3
     	echo "###############################################################################"
     	echo "##################  Installing package "  $1
     	echo "###############################################################################"
     	echo
     	tput sgr0
     	sudo apt install -y $1 
-    fi
 }
 
 ###############################################################################
@@ -47,6 +38,8 @@ done
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 sudo apt install ./google-chrome-stable_current_amd64.deb
+
+sudo rm google-chrome-stable_current_amd64.deb
 
 ###############################################################################
 

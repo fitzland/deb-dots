@@ -1,0 +1,46 @@
+    ##START THEMING BAR
+    #Theme name : f1tzl4nd Var Adapta
+
+    # i3 bar colors
+    # variable border background Text
+
+    set $barc00 #222d32
+    set $barc01 #243035
+    set $barc02 #29353b
+    set $barc03 #2f3d44
+    set $barc04 #31363B
+    set $barc05 #41555E
+    set $barc06 #DFDFDF
+    set $barc07 #FFFFFF
+    set $barc08 #3DAEE9
+    set $barc09 #00BCD4
+    set $barc0A #5BB1AD
+    set $barc0B #16A085
+    set $barc0C #F67400
+    set $barc0D #5BB1AD
+    set $barc0E #DA4453
+    set $barc0F #ED1515
+
+    ##STOP THEMING BAR
+
+    ##START THEMING WM
+    #Theme name : f1tzl4nd Var Adapta
+
+    set $winc00 #222d32
+    set $winc01 #243035
+    set $winc02 #29353b
+    set $winc03 #2f3d44
+    set $winc04 #31363B
+    set $winc05 #41555E
+    set $winc06 #DFDFDF
+    set $winc07 #FFFFFF
+    set $winc08 #3DAEE9
+    set $winc09 #00BCD4
+    set $winc0A #5BB1AD
+    set $winc0B #16A085
+    set $winc0C #F67400
+    set $winc0D #5BB1AD
+    set $winc0E #DA4453
+    set $winc0F #ED1515
+    
+    ##STOP THEMING WM

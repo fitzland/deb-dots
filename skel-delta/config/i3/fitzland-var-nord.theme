@@ -1,49 +1,27 @@
-    ##START THEMING BAR
-    #Theme name : f1tzl4nd Var Nord
-
-    # i3 bar colors
-    # variable border background Text
+#Theme name : f1tzl4nd Nord
 
     # Nord theme colors
     # https://www.nordtheme.com/docs/colors-and-palettes
 
-    set $barc00 #2E3440
-    set $barc01 #3B4252
-    set $barc02 #434C5E
-    set $barc03 #4C566A
-    set $barc04 #5E81AC
-    set $barc05 #81A1C1
-    set $barc06 #D8DEE9
-    set $barc07 #ECEFF4
-    set $barc08 #88C0D0
-    set $barc09 #E5E9F0
-    set $barc0A #8FBCBB
-    set $barc0B #A3BE8C
-    set $barc0C #EBCB8B
-    set $barc0D #B48EAD
-    set $barc0E #D08770
-    set $barc0F #BF616A
+*.foreground:   #eceff4
+*.background:   #2E3440
+*.cursorColor:  #eceff4
+*fading: 35
+*fadeColor: #2E3440
 
-    ##STOP THEMING BAR
-
-    ##START THEMING WM
-    #Theme name : f1tzl4nd Var Nord
-
-    set $winc00 #2E3440
-    set $winc01 #3B4252
-    set $winc02 #434C5E
-    set $winc03 #4C566A
-    set $winc04 #5E81AC
-    set $winc05 #81A1C1
-    set $winc06 #D8DEE9
-    set $winc07 #ECEFF4
-    set $winc08 #88C0D0
-    set $winc09 #E5E9F0
-    set $winc0A #8FBCBB
-    set $winc0B #A3BE8C
-    set $winc0C #EBCB8B
-    set $winc0D #B48EAD
-    set $winc0E #D08770
-    set $winc0F #BF616A
-
-    ##STOP THEMING WM
+*.color0: #2E3440
+*.color1: #bf616a
+*.color2: #5e81ac
+*.color3: #b48ead
+*.color4: #434c5e
+*.color5: #a3be8c
+*.color6: #88c0d0
+*.color7: #eceff4
+*.color8: #3b4252
+*.color9: #d08770
+*.color10: #81a1c1
+*.color11: #d8dee9
+*.color12: #4c566a
+*.color13: #8fbcbb
+*.color14: #ebcb8b
+*.color15: #e5e9f0

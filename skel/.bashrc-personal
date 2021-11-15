@@ -5,22 +5,140 @@
 # collection of personal aliases
 
 alias eb='nano $HOME/.bashrc'
-alias ebp='nano $HOME/.bashrc-personal'
+alias eba='nano $HOME/.bashrc-personal'
 
-alias dots='cd $HOME/git/fitzland/deb-dots'
+#readable output
+alias df='df -h'
+
+alias exr='code $HOME/.Xresources'
+alias exrr='code $HOME/.Xresources-regolith'
+alias ei3='code $HOME/.config/i3/config'
+alias eri3='code $HOME/.config/regolith/i3/config'
+
+#hardware info --short
+alias hw="hwinfo --short"
+
+#fix obvious typo's
+alias cd..='cd ..'
+alias pdw="pwd"
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+#readable output
+alias df='df -h'
+
+#pacman unlock
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
+
+#free
+alias free="free -mt"
+
+#userlist
+alias userlist="cut -d: -f1 /etc/passwd"
+
+#merge new settings
+alias merge="xrdb -merge ~/.Xresources"
+alias mrgreg="xrdb -merge ~/.config/regolith/Xresources"
+
+# Aliases for software managment
+# pacman or pm
+#alias pacman='sudo pacman --color auto'
+#alias update='sudo pacman -Syyu'
+alias update='sudo apt update'
+
+# yay as aur helper - updates everything
+#alias pksyua="yay -Syu --noconfirm"
+#alias upall="yay -Syu --noconfirm"
+alias upall='sudo apt update && sudo apt full-upgrade'
+
+#ps
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+#grub update
+alias updgrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+#add new fonts
+alias upfc='sudo fc-cache -fv'
+
+#quickly kill conkies
+alias kc='killall conky'
+
+#hardware info --short
+alias hw="hwinfo --short"
+
+#check vulnerabilities microcode
+alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+
+#youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+#Recent Installed Packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
+
+#Cleanup orphaned packages
+#alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias cleanup='sudo apt autoremove && sudo apt autoclean'
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+#nano for important configuration files
+#know what you do in these files
+alias nlightdm="sudo nano /etc/lightdm/lightdm.conf"
+alias npacman="sudo nano /etc/pacman.conf"
+alias ngrub="sudo nano /etc/default/grub"
+alias nconfgrub="sudo nano /boot/grub/grub.cfg"
+alias nmkinitcpio="sudo nano /etc/mkinitcpio.conf"
+alias nmirrorlist="sudo nano /etc/pacman.d/mirrorlist"
+alias nfstab="sudo nano /etc/fstab"
+alias nsamba="sudo nano /etc/samba/smb.conf"
+
+#systeminfo
+alias probe="sudo -E hw-probe -all -upload"
+
+#shutdown or reboot
+alias ssn="sudo shutdown now"
+alias sr="sudo reboot"
+
+#give the list of all installed desktops - xsessions desktops
+alias xd="ls /usr/share/xsessions"
+
+#Install from AUR
+#alias yay='paru'
+
+#Git commands
+#alias dots='cd $HOME/git/fitzland/arch-dots'
+#alias dots='cd $HOME/git/fitzland/deb-dots'
+alias dots='cd $HOME/git/fitzland/ub-dots'
+alias gtl='git log --oneline'
+alias gts='git status'
+alias gtdwm='cd $HOME/.config/dwm'
 
 alias jrnl='cd $HOME/Dropbox/journal'
 
-alias ei3='code $HOME/.config/i3/config'
 alias skelbin='meld $HOME/.bin /etc/skel/.bin'
 alias skelxr='meld $HOME/.Xresources /etc/skel/.Xresources'
 alias skelocal='meld $HOME/.local /etc/skel/.local'
 alias skelcfg='meld $HOME/.config /etc/skel/.config'
-alias skelbspwm='meld $HOME/.config/bspwm /etc/skel/.config/bspwm'
+#alias skelbspwm='meld $HOME/.config/bspwm /etc/skel/.config/bspwm'
 alias skeli3='meld $HOME/.config/i3 /etc/skel/.config/i3'
 
-alias chface='cp $HOME/.face-bak .face'alias config='/usr/bin/git --git-dir=/home/jeff/.dots/ --work-tree=/home/jeff'
+alias chface='cp $HOME/.face-bak .face'
+alias config='/usr/bin/git --git-dir=/home/jeff/.dots/ --work-tree=/home/jeff'
 
-alias mcserver='ssh jeff@192.168.0.123'
-
-screenfetch
+alias mcserver='ssh jeff@192.168.1.127'

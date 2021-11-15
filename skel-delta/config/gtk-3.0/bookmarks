@@ -1,7 +1,6 @@
-file:///home/jeff/Documents
-file:///home/jeff/Downloads
-file:///home/jeff/Music
-file:///home/jeff/Pictures
-file:///home/jeff/Videos
-file:///home/jeff/bin
-file:///home/jeff/tmp
+file:///home/jeff/images
+file:///home/jeff/videos
+file:///home/jeff/downloads
+file:///home/jeff/git
+file:///home/jeff/.config/dwm
+file:///home/jeff/.xmonad

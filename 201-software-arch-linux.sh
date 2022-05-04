@@ -127,7 +127,6 @@ ghostwriter
 #gramps
 gnucash
 libreoffice
-xreader
 zim
 )
 

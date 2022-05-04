@@ -1,19 +1,5 @@
 #!/bin/bash
 #set -e
-###############################################################################
-# Author	:	Erik Dubois
-# Website	:	https://www.erikdubois.be
-# Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxb.com
-# Website	:	https://www.arcolinuxiso.com
-# Website	:	https://www.arcolinuxforum.com
-###############################################################################
-#
-#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
-#
-###############################################################################
 
 
 ###############################################################################
@@ -24,7 +10,7 @@
 
 
 func_install() {
-	if pacman -Qi $1 &> /dev/null; then
+	if apt show $1 &> /dev/null; then
 		tput setaf 2
   		echo "###############################################################################"
   		echo "################## The package "$1" is already installed"
@@ -38,64 +24,54 @@ func_install() {
     	echo "###############################################################################"
     	echo
     	tput sgr0
-    	sudo pacman -S --noconfirm --needed $1
+    	sudo apt install -y $1
     fi
 }
 
-func_category() {
-	tput setaf 5;
-	echo "################################################################"
-	echo "Installing software for category " $1
-	echo "################################################################"
-	echo;tput sgr0
-}
-
+###############################################################################
+echo "Installation of the core software"
 ###############################################################################
 
-func_category Additional-distro-specific
-
 list=(
-alacritty
-arandr
+sddm
+thunar
+thunar-archive-plugin
+thunar-volman
+bspwm
+sxhkd
 dmenu
-dunst
+xdo
 feh
-flameshot
-#gmrun
-gtk-engine-murrine
-i3blocks
-imagemagick
-jq
-lxappearance
-lxsession
-micro
-net-tools
-nitrogen
-picom
-playerctl
 polybar
-ranger
-rofi
-fonts-font-awesome
-volumeicon
-w3m
-wmname
-xsettingsd
+#xorg-xrandr
 )
 
 count=0
+
 for name in "${list[@]}" ; do
 	count=$[count+1]
 	tput setaf 3;echo "Installing package nr.  "$count " " $name;tput sgr0;
 	func_install $name
 done
-echo "Fixing hardcoded icon paths for applications - Wait for it"
-sudo hardcode-fixer
 
 ###############################################################################
 
+tput setaf 5;echo "################################################################"
+echo "Enabling sddm as display manager"
+echo "################################################################"
+echo;tput sgr0
+sudo systemctl enable sddm.service -f
+
+tput setaf 7;echo "################################################################"
+echo "You now have a very minimal functional desktop"
+echo "################################################################"
+echo;tput sgr0
+
+sudo mkdir -p /usr/share/backgrounds
+sudo cp $HOME/images/wallpapers/system/* /usr/share/backgrounds/
+
 tput setaf 11;
 echo "################################################################"
-echo "Software has been installed"
+echo "Reboot your system"
 echo "################################################################"
 echo;tput sgr0

@@ -1,0 +1,48 @@
+########################################################################################
+# Window Rules
+########################################################################################
+
+##-- Window Rules ------------------------
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="alacritty-float"] floating enable
+for_window [class="Pcmanfm|Onboard|Yad"] floating enable
+for_window [class="Lxappearance|Nitrogen"] floating enable
+for_window [class="Pavucontrol|Xfce4-power-manager-settings|Nm-connection-editor"] floating enable
+for_window [class="feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
+for_window [class="Kvantum Manager|qt5ct"] floating enable
+for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
+
+# bind program to workspace and focus to them on startup:
+assign [class="Gnome-terminal|Alacritty"] $ws1
+assign [class="Atom|Code|Xed"] $ws2
+assign [class="Soffice|Gnucash"] $ws3
+assign [class="Gimp*|Inkscape"] $ws4
+assign [class="(?i)firefox|KeePassXC|TelegramDesktop"] $ws5
+assign [class="Google-chrome|Microsoft-edge"] $ws6
+assign [class="Nautilus|Thunar"] $ws8
+assign [class="Spotify|spotify"] $ws10
+for_window [class="Spotify"] move to workspace $ws10
+
+# automatic set focus new window if it opens on another workspace then the current:
+for_window [class=Alacritty|Gnome-terminal] focus
+for_window [class=Atom|Code|Xed] focus
+for_window [class="^(?i)libreoffice-*"] focus
+for_window [class=(?i)firefox] focus
+for_window [class=Gimp] focus
+for_window [class=Gnome-terminal] focus
+for_window [class=Gnucash] focus
+for_window [class=Google-chrome] focus
+for_window [class=Inkscape] focus
+for_window [class=KeePassXC] focus
+for_window [class=Nautilus] focus
+for_window [class=Synaptic] focus
+for_window [class=Thunar] focus
+#for_window [class=TelegramDesktop] focus
+
+for_window [class="Lxappearance|Nitrogen"] floating enable
+for_window [class="Pavucontrol|Xfce4-power-manager-settings|Nm-connection-editor"] floating enable
+for_window [class="feh|Viewnior|Gpicview|Gimp|MPlayer"] floating enable
+for_window [class="Kvantum Manager|qt5ct"] floating enable
+
+for_window [urgent=latest] focus

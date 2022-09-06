@@ -1,4 +1,4 @@
-## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -15,6 +15,7 @@ include-file = ~/.config/bspwm/polybar/modules
 
 [bar/main]
 monitor = DP-4
+monitor-fallback = DP-5
 monitor-strict = false
 override-redirect = false
 
@@ -48,8 +49,8 @@ font-2 = "google\-mdi:size=12;3"
 font-3 = "Iosevka:style=bold:"size=12;3"
 
 modules-left = bspwm sep mod sep title
-modules-center = kernel sep 
-modules-right = volume sep time
+modules-center = kernel
+modules-right = volume sep mpd sep clock
 
 separator =
 spacing = 0
@@ -78,7 +79,8 @@ scroll-up = bspc desktop -f prev.local
 scroll-down = bspc desktop -f next.local
 
 [bar/extra]
-monitor = DP-0
+monitor = DP-2
+monitor-fallback = DP-7
 monitor-strict = false
 override-redirect = false
 
@@ -113,7 +115,7 @@ font-3 = "Iosevka:style=bold:"size=12;3"
 
 modules-left = bspwm sep mod sep title
 modules-center = network-localip sep network-ipinfo
-modules-right = ethernet sep date
+modules-right = networkspeeddown networkspeedup sep date
 
 separator =
 spacing = 0

@@ -11,12 +11,12 @@
 
 func_install() {
 	if apt show $1 &> /dev/null; then
-		tput setaf 2
-  		echo "###############################################################################"
-  		echo "################## The package "$1" is already installed"
+	tput setaf 2
+	echo "###############################################################################"
+	echo "################## The package "$1" is already installed"
       	echo "###############################################################################"
       	echo
-		tput sgr0
+	tput sgr0
 	else
     	tput setaf 3
     	echo "###############################################################################"
@@ -42,6 +42,7 @@ func_category Accessories
 
 list=(
 catfish
+flameshot
 keepassxc
 screenkey
 )

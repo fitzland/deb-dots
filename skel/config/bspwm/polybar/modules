@@ -1,4 +1,4 @@
-## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -40,7 +40,7 @@ ramp-volume-7 = 墳
 ramp-volume-8 = 墳
 ramp-volume-9 = 墳
 ramp-volume-font = 2
-ramp-volume-foreground = ${color.BLUE}
+ramp-volume-foreground = ${color.ALTBLUE}
 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
@@ -85,7 +85,7 @@ ramp-foreground = ${color.MAGENTA}
 [module/brightness]
 type = internal/backlight
 
-card = ${system.graphics_card}
+card = ${system.sys_graphics_card}
 
 enable-scroll = true
 
@@ -113,14 +113,14 @@ type = internal/battery
 
 full-at = 99
 
-battery = ${system.battery}
-adapter = ${system.adapter}
+battery = ${system.sys_battery}
+adapter = ${system.sys_adapter}
 
 poll-interval = 2
 time-format = %H:%M
 
 format-charging = <animation-charging> <label-charging>
-format-charging-prefix =
+format-charging-prefix = 
 
 format-discharging = <ramp-capacity> <label-discharging>
 
@@ -166,14 +166,16 @@ fuzzy-match = true
 
 ; ws-icon-[0-9]+ = label;icon
 ; Note that the label needs to correspond with the bspwm workspace name
-ws-icon-0 = I;
-ws-icon-1 = II;
-ws-icon-2 = III;
-ws-icon-3 = IV;
-ws-icon-4 = V;
-ws-icon-5 = VI;
-ws-icon-6 = VII;
-ws-icon-7 = VIII;
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
 ws-icon-default = 
 
 format = <label-state>
@@ -188,20 +190,20 @@ label-monitor = %name%
 ;   label-dimmed-occupied
 ;   label-dimmed-urgent
 ;   label-dimmed-empty
-;label-dimmed-foreground = ${color.FOREGROUND}
-;label-dimmed-underline = ${color.YELLOW}
-;label-dimmed-focused-background = ${color.BACKGROUND}
+label-dimmed-focused-foreground = ${color.BLUE}
+label-dimmed-focused-underline = ${color.BLUE}
+label-dimmed-focused-background = ${color.BACKGROUND}
 
 label-focused = %name%
-label-focused-foreground = ${color.BLUE}
+label-focused-foreground = ${color.GREEN}
 label-focused-background = ${color.BACKGROUND}
-label-focused-underline = ${color.BLUE}
+label-focused-underline = ${color.GREEN}
 label-focused-padding = 1
 
 label-occupied = %name%
-label-occupied-foreground = ${color.GREEN}
+label-occupied-foreground = ${color.MAGENTA}
 label-occupied-background = ${color.BACKGROUND}
-;label-occupied-underline = ${color.GREEN}
+label-occupied-underline = ${color.MAGENTA}
 label-occupied-padding = 1
 
 label-urgent = %name%
@@ -225,8 +227,9 @@ label-separator-foreground = ${color.ALTBLACK}
 type = internal/bspwm
 
 format = <label-mode>
-format-background = ${color.YELLOW}
-format-foreground = ${color.BACKGROUND}
+format-background = ${color.BACKGROUND}
+format-foreground = ${color.YELLOW}
+format-underline = ${color.YELLOW}
 format-padding = 1
 
 label-monocle = "Monocle"
@@ -242,6 +245,24 @@ label-private = " | Private"
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
+[module/clock]
+type = internal/date
+
+interval = 1.0
+
+time = %I:%M %p
+time-alt = %A, %d %B %Y
+
+format = <label>
+format-prefix = " "
+format-prefix-font = 3
+format-prefix-foreground = ${color.RED}
+
+label = %time%
+label-font = 4
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
 [module/date]
 type = internal/date
 
@@ -251,29 +272,9 @@ time = %a, %d %b %Y
 time-alt = %I:%M %p
 
 format = <label>
-format-prefix = ""
+format-prefix = " "
 format-prefix-font = 3
-format-prefix-padding = 2
-format-prefix-foreground = ${color.RED}
-
-label = %time%
-label-font = 4
-
-;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
-[module/time]
-type = internal/date
-
-interval = 1.0
-
-time = %I:%M %p
-time-alt = %a, %d %b %Y
-
-format = <label>
-format-prefix = ""
-format-prefix-font = 3
-format-prefix-padding = 2
-format-prefix-foreground = ${color.RED}
+format-prefix-foreground = ${color.MAGENTA}
 
 label = %time%
 label-font = 4
@@ -325,7 +326,7 @@ icon-next-foreground = ${color.CYAN}
 ; If you use both a wired and a wireless network, add both modules in config.
 [module/ethernet]
 type = internal/network
-interface = ${system.network_interface}
+interface = ${system.sys_network_interface}
 
 interval = 1.0
 accumulate-stats = true
@@ -348,7 +349,7 @@ label-disconnected = "%{A1:networkmanager_dmenu &:}Offline%{A}"
 
 [module/network]
 type = internal/network
-interface = ${system.network_interface}
+interface = ${system.sys_network_interface}
 
 interval = 1.0
 
@@ -383,7 +384,7 @@ type = custom/text
 content = ◆
 
 content-background = ${color.BACKGROUND}
-content-foreground = ${color.BLACK}
+content-foreground = ${color.ALTBLACK}
 content-padding = 2
 
 [module/arch-updates]
@@ -418,7 +419,8 @@ interval = 1024
 format-foreground = ${color.FOREGROUND}
 format-background = ${color.BACKGROUND}
 format-prefix = ""
-format-prefix-padding = 2
+format-prefix-font = 3
+format-prefix-padding = 1
 format-prefix-foreground = ${color.ALTBLACK}
 ;format-underline = ${color.ALTBLACK}
 
@@ -433,7 +435,8 @@ interface = enp2s0
 ;interface = enp3s0
 label-connected = "%upspeed:7%"
 format-connected = <label-connected>
-format-connected-prefix = "Up: "
+format-connected-prefix = ""
+format-connected-prefix-padding = 1
 format-connected-prefix-foreground = ${color.ALTRED}
 format-connected-foreground = ${color.FOREGROUND}
 format-connected-background = ${color.BACKGROUND}
@@ -450,7 +453,8 @@ interface = enp2s0
 ;interface = enp3s0
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
-format-connected-prefix = "Down: "
+format-connected-prefix = ""
+format-connected-prefix-padding = 1
 format-connected-prefix-foreground = ${color.ALTGREEN}
 format-connected-foreground = ${color.FOREGROUND}
 format-connected-background = ${color.BACKGROUND}
@@ -491,7 +495,6 @@ interval = 60
 type = custom/script
 exec = ~/.config/bspwm/polybar/scripts/network-ipinfo.sh
 interval = 120
-
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 ;;	    __________  ______

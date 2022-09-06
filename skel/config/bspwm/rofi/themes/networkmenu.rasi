@@ -1,13 +1,13 @@
-/* Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com> */
+/* Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com> */
 /* Everyone is permitted to copy and distribute copies of this file under GNU-GPL3 */
 
 configuration {
-    font:                           "Iosevka 10";
     show-icons:                     false;
     disable-history:                false;
 	click-to-exit: 					true;
 }
 
+@import "font.rasi"
 @import "colors.rasi"
 
 window {
@@ -18,6 +18,7 @@ window {
     border-color:                  	@selected;
     border-radius:                  0px;
     width:                          400px;
+    height:                         420px;
     location:                       center;
     anchor:                         center;
     x-offset:                       0;

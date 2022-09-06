@@ -11,59 +11,61 @@ alias eba='nano $HOME/.bashrc-personal'
 alias df='df -h'
 
 alias exr='code $HOME/.Xresources'
-alias exrr='code $HOME/.Xresources-regolith'
 alias ei3='code $HOME/.config/i3/config'
-alias eri3='code $HOME/.config/regolith/i3/config'
 
 #hardware info --short
 alias hw="hwinfo --short"
 
-#fix obvious typo's
-alias cd..='cd ..'
-alias pdw="pwd"
-
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 #readable output
 alias df='df -h'
 
-#pacman unlock
-alias unlock="sudo rm /var/lib/pacman/db.lck"
-alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
-
 #free
 alias free="free -mt"
+
+#continue download
+alias wget="wget -c"
 
 #userlist
 alias userlist="cut -d: -f1 /etc/passwd"
 
-#merge new settings
+# merge new settings
 alias merge="xrdb -merge ~/.Xresources"
-alias mrgreg="xrdb -merge ~/.config/regolith/Xresources"
 
 # Aliases for software managment
 # pacman or pm
 #alias pacman='sudo pacman --color auto'
 #alias update='sudo pacman -Syyu'
-alias update='sudo apt update'
+alias update='sudo apt update && sudo apt upgrade'
+#alias update='sudo dnf update && sudo dnf upgrade'
+
+# pacman unlock
+alias unlock="sudo rm /var/lib/pacman/db.lck"
+alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
 
 # yay as aur helper - updates everything
-#alias pksyua="yay -Syu --noconfirm"
-#alias upall="yay -Syu --noconfirm"
-alias upall='sudo apt update && sudo apt full-upgrade'
+alias pksyua="yay -Syu --noconfirm"
+alias upall="yay -Syu --noconfirm"
 
 #ps
 alias psa="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
-#grub update
-alias updgrub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+# grub update
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
-#add new fonts
-alias upfc='sudo fc-cache -fv'
+# add new fonts
+alias update-fc='sudo fc-cache -fv'
+
+# git commands
+alias clb='make clean && rm -f config.h'
+alias mci='make && sudo make clean install'
+alias cleangit='make clean && rm -f config.h && git reset --hard origin/main'
+alias trimgit='make clean && rm -f config.h && git push --set-upstream origin'
 
 #quickly kill conkies
 alias kc='killall conky'
@@ -83,7 +85,6 @@ alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
 alias yta-opus="youtube-dl --extract-audio --audio-format opus "
 alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
-
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 #Recent Installed Packages
@@ -93,23 +94,43 @@ alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | n
 #Cleanup orphaned packages
 #alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 alias cleanup='sudo apt autoremove && sudo apt autoclean'
+#alias cleanup='sudo dnf autoremove && sudo dnf autoclean'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-#nano for important configuration files
-#know what you do in these files
+# nano for important configuration files
 alias nlightdm="sudo nano /etc/lightdm/lightdm.conf"
 alias npacman="sudo nano /etc/pacman.conf"
 alias ngrub="sudo nano /etc/default/grub"
 alias nconfgrub="sudo nano /boot/grub/grub.cfg"
-alias nmkinitcpio="sudo nano /etc/mkinitcpio.conf"
-alias nmirrorlist="sudo nano /etc/pacman.d/mirrorlist"
-alias nfstab="sudo nano /etc/fstab"
-alias nsamba="sudo nano /etc/samba/smb.conf"
+alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
+alias nmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
+alias nsddm="sudo $EDITOR /etc/sddm.conf"
+alias nfstab="sudo $EDITOR /etc/fstab"
+alias nnsswitch="sudo $EDITOR /etc/nsswitch.conf"
+alias nsamba="sudo $EDITOR /etc/samba/smb.conf"
+alias ngnupgconf="sudo nano /etc/pacman.d/gnupg/gpg.conf"
+alias nb="$EDITOR ~/.bashrc"
+alias nbp="$EDITOR ~/.bashrc-personal"
+alias nz="$EDITOR ~/.zshrc"
+alias nzp="$EDITOR ~/.zshrc-personal"
+
+alias xd='ls /usr/share/xsessions'
 
 #systeminfo
 alias probe="sudo -E hw-probe -all -upload"
+
+#change between bash and zsh and fish
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
+
+#switch between lightdm and sddm
+alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
+alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
+alias togdm="sudo pacman -S gdm --noconfirm --needed ; sudo systemctl enable gdm.service -f ; echo 'Gdm is active - reboot now'"
+alias tolxdm="sudo pacman -S lxdm --noconfirm --needed ; sudo systemctl enable lxdm.service -f ; echo 'Lxdm is active - reboot now'"
 
 #shutdown or reboot
 alias ssn="sudo shutdown now"
@@ -122,14 +143,15 @@ alias xd="ls /usr/share/xsessions"
 #alias yay='paru'
 
 #Git commands
-#alias dots='cd $HOME/git/fitzland/arch-dots'
-#alias dots='cd $HOME/git/fitzland/deb-dots'
-alias dots='cd $HOME/git/fitzland/ub-dots'
 alias gtl='git log --oneline'
 alias gts='git status'
 alias gtdwm='cd $HOME/.config/dwm'
 
 alias jrnl='cd $HOME/Dropbox/journal'
+alias wp='cd $HOME/images/wallpapers/system'
+alias dots='cd $HOME/git/fitzland/arch-dots'
+#alias dots='cd $HOME/git/fitzland/deb-dots'
+#alias dots='cd $HOME/git/fitzland/ub-dots'
 
 alias skelbin='meld $HOME/.bin /etc/skel/.bin'
 alias skelxr='meld $HOME/.Xresources /etc/skel/.Xresources'
@@ -139,6 +161,4 @@ alias skelcfg='meld $HOME/.config /etc/skel/.config'
 alias skeli3='meld $HOME/.config/i3 /etc/skel/.config/i3'
 
 alias chface='cp $HOME/.face-bak .face'
-alias config='/usr/bin/git --git-dir=/home/jeff/.dots/ --work-tree=/home/jeff'
-
 alias mcserver='ssh jeff@192.168.1.127'

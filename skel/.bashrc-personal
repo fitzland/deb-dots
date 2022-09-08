@@ -149,8 +149,8 @@ alias gtdwm='cd $HOME/.config/dwm'
 
 alias jrnl='cd $HOME/Dropbox/journal'
 alias wp='cd $HOME/images/wallpapers/system'
-alias dots='cd $HOME/git/fitzland/arch-dots'
-#alias dots='cd $HOME/git/fitzland/deb-dots'
+#alias dots='cd $HOME/git/fitzland/arch-dots'
+alias dots='cd $HOME/git/fitzland/deb-dots'
 #alias dots='cd $HOME/git/fitzland/ub-dots'
 
 alias skelbin='meld $HOME/.bin /etc/skel/.bin'

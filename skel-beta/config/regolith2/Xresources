@@ -1,26 +1,19 @@
+regolith.wallpaper.file: /usr/share/backgrounds/dwn.png
+regolith.wallpaper.options: spanned
 
 !workspace_names
-!i3-wm.workspace.01.name: "1:term|  "
-!i3-wm.workspace.02.name: "2:code|  "
-!i3-wm.workspace.03.name: "3:ofc| "
-!i3-wm.workspace.04.name: "4:grfx|  "
-!i3-wm.workspace.05.name: "5:util| 漣 "
-!i3-wm.workspace.06.name: "6:web|  "
-!i3-wm.workspace.07.name: "7:chat|  "
-!i3-wm.workspace.08.name: "8:file|  "
-!i3-wm.workspace.09.name: "9:misc|  "
-!i3-wm.workspace.10.name: "0:media| 露 "
-!i3-wm.workspace.11.name: "11:term|  "
-!i3-wm.workspace.12.name: "12:code|  "
-!i3-wm.workspace.13.name: "13:ofc| "
-!i3-wm.workspace.14.name: "14:grfx|  "
-!i3-wm.workspace.15.name: "15:util| 漣 "
-!i3-wm.workspace.16.name: "16:web|  "
-!i3-wm.workspace.17.name: "17:chat|  "
-!i3-wm.workspace.18.name: "18:file|  "
-!i3-wm.workspace.19.name: "19:misc|  "
+i3-wm.workspace.01.name: "1:term|"
+i3-wm.workspace.02.name: "2:code|"
+i3-wm.workspace.03.name: "3:ofc|"
+i3-wm.workspace.04.name: "4:grfx|"
+i3-wm.workspace.05.name: "5:util|漣"
+i3-wm.workspace.06.name: "6:web|"
+i3-wm.workspace.07.name: "7:chat|"
+i3-wm.workspace.08.name: "8:file|"
+i3-wm.workspace.09.name: "9:misc|"
+i3-wm.workspace.10.name: "0:media|露"
 
-i3-wm.font Iosevka 12
+i3-wm.font JetBrainsMono Nerd Font 14
 
 !15_base_launchers
 i3-wm.binding.browser.google.primary: 
@@ -56,8 +49,5 @@ i3-wm.binding.bar_toggle: b
 !90_user_programs
 i3-wm.program.1: ~/.config/regolith2/bin/autostart.sh
 
-
-regolith.wallpaper.file: /usr/share/backgrounds/dwn.png
-regolith.wallpaper.options: spanned
-!regolith.look.path: /usr/share/regolith-look/dracula
-regolith.look.path: /usr/share/regolith-look/nord
+!regolith.look.path: /usr/share/regolith-look/ayu-dark
+regolith.look.path: /usr/share/regolith-look/lascaille

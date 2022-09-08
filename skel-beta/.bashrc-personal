@@ -41,6 +41,7 @@ alias merge="xrdb -merge ~/.Xresources"
 #alias pacman='sudo pacman --color auto'
 #alias update='sudo pacman -Syyu'
 alias update='sudo apt update && sudo apt upgrade'
+#alias update='sudo dnf update && sudo dnf upgrade'
 
 # pacman unlock
 alias unlock="sudo rm /var/lib/pacman/db.lck"
@@ -93,6 +94,7 @@ alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | n
 #Cleanup orphaned packages
 #alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 alias cleanup='sudo apt autoremove && sudo apt autoclean'
+#alias cleanup='sudo dnf autoremove && sudo dnf autoclean'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"

@@ -1,41 +1,28 @@
-! -----------------------------------------------------------------------------
+! ------------------------------------------------------------------------------
 ! Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
 ! Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 !
-! Dracula color scheme
-! -----------------------------------------------------------------------------
+! Nord color scheme
+! ------------------------------------------------------------------------------
 
-*.foreground: #F8F8F2
-*.background: #282A36
+*background: #2E3440
+*foreground: #D8DEE9
+*cursorColor: #D8DEE9
 
-! Black + DarkGrey
-*.color0:     #3C3E4A
-*.color8:     #4D4D4D
+*color0:  #3B4252
+*color1:  #BF616A
+*color2:  #A3BE8C
+*color3:  #EBCB8B
+*color4:  #81A1C1
+*color5:  #B48EAD
+*color6:  #88C0D0
+*color7:  #E5E9F0
 
-! DarkRed + Red
-*.color1:     #FF5555
-*.color9:     #FF6E67
-
-! DarkGreen + Green
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-
-! DarkYellow + Yellow
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-
-! DarkBlue + Blue
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-
-! DarkMagenta + Magenta
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-
-! DarkCyan + Cyan
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-
-! LightGrey + White
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+*color8:  #4C566A
+*color9:  #BF616A
+*color10:  #A3BE8C
+*color11:  #EBCB8B
+*color12:  #81A1C1
+*color13:  #B48EAD
+*color14:  #8FBCBB
+*color15:  #ECEFF4

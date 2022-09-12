@@ -1,0 +1,96 @@
+## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+
+###############################################
+##----- Keybindings for Function Keys -------##
+###############################################
+
+# Search
+super + F1
+	catfish
+
+# Editor
+super + {_,shift} + F2
+	{code,alacritty --config-file ~/.config/i3/alacritty/alacritty.yml -e nano}
+
+# Inkscape
+super + {_,shift} + F3
+    {inkscape,gimp}
+
+# Gimp
+super + {_,shift} + F4
+    {lowriter,localc}
+
+# Meld
+super + F5
+    meld
+
+# GnuCash
+super {_,shift}+ F6
+    {gnucash,meld}
+
+# KeePassXC
+super + {_,shift} + F7
+    keepassxc {~/Dropbox/journal/home.kdbx,keepassxc ~/Dropbox/journal/work.kdbx}
+
+# File Manager
+super + {_,shift} + F8
+    {thunar,alacritty --config-file ~/.config/i3/alacritty/alacritty.yml -e ranger}
+
+# Typora
+super + {_,shift} + F9
+    {ghostwriter,typora}
+
+# Firefox
+super + {_,shift} + F10
+    {firefox-developer-edition,firefox-developer-edition --private-window}
+
+#Microsoft Edge
+super + {_,shift} + F11
+    {microsoft-edge-stable --profile-directory='Default',microsoft-edge-stable --profile-directory='Profile 1'}
+
+#Chrome Primary
+super + {_,shift} + F12
+    {google-chrome-stable --profile-directory='Default',google-chrome-stable --profile-directory='Profile 1'}
+
+###############################################
+##---------- Rofi Launcher & Menus ----------##
+###############################################
+
+# Rofi App Launcher
+super + slash
+	sh ~/.config/i3/rofi/bin/launcher-app
+
+# Rofi Term Launcher
+super + {_,shift} + backslash
+	sh ~/.config/i3/rofi/bin/{launcher-cmd,windows}
+
+#dmenu
+super + p
+	dmenu_run -b -m 1 -p dmenu:
+
+# Rofi Themes Menu
+ctrl + alt + t
+	sh ~/.config/i3/rofi/bin/themes
+
+# Rofi Menus/Applets
+super + {m,x,r,s,n}
+	sh ~/.config/i3/rofi/bin/{mpd,powermenu,asroot,screenshot,network}
+
+###############################################
+##---------- Applications -------------------##
+###############################################
+
+# Terminal and File Manager
+super + {_,shift} + Return
+	{i3-sensible-terminal,thunar}
+
+# Launch Apps
+super + shift + {f,w,e}
+	{thunar,firefox-developer-editon,xed}
+
+# Terminal Apps
+ctrl + alt + {r,h}
+	alacritty --config-file ~/.config/i3/alacritty/alacritty.yml -e {ranger,htop}
+
+##---------- EOF ----------##

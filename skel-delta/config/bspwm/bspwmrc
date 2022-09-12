@@ -152,7 +152,7 @@ bspc rule -a 'VirtualBox Manager' desktop='^9' follow=on focus=on
 bspc rule -a 'Mozilla VPN' desktop='^9' follow=on focus=on
 
 ## 10 > media (always open media apps on workspace-10)
-declare -a media=(Audacity Music MPlayer Lxmusic obs)
+declare -a media=(Audacity Music MPlayer Lxmusic obs spotify)
 for i in ${media[@]}; do
    bspc rule -a $i desktop='^10' state=floating follow=on focus=on; done
 
@@ -208,7 +208,7 @@ nm-applet --indicator &
 blueberry-tray &
 
 # Pamac-stalonetray
-pamac-tray &
+#pamac-tray &
 
 # Restore wallpaper
 feh --no-xinerama --no-fehbg --bg-scale "$CURRENT_WALLPAPER"

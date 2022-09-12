@@ -188,7 +188,7 @@ workspace $ws9 output $secondMonitor
 workspace $ws0 output $secondMonitor
 
 ###############################################################################
-# Window and Workspace Navigation
+##  Window and Workspace Navigation  ----------------------------------------##
 ###############################################################################
 
 ## Navigate // Relative Window // <> ← ↓ ↑ → ##
@@ -221,9 +221,57 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0
 
-########################################################################################
-# Window Rules
-########################################################################################
+## Navigate // Next Workspace // <> o ##
+set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next o
+bindsym $mod+$i3-wm.binding.ws_next workspace next
+
+## Navigate // move container workspace next // <> <Shift> o ##
+set_from_resource $i3-wm.binding.ws_next_move i3-wm.binding.ws_next_move Shift+o
+bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; workspace next
+
+## Navigate // Next Workspace // <> <Alt> → ##
+set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Right
+bindsym $mod+$alt+$i3-wm.binding.ws_next2 workspace next
+
+## Navigate // move container workspace next // <> <Ctrl> → ##
+set_from_resource $i3-wm.binding.ws_next_move2 i3-wm.binding.ws_next_move2 Ctrl+Right
+bindsym $mod+$i3-wm.binding.ws_next_move2 move container to workspace next; workspace next
+
+## Navigate // Previous Workspace // <> i ##
+set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev i
+bindsym $mod+$i3-wm.binding.ws_prev workspace prev
+
+## Navigate // move container workspace next // <> <Shift> i ##
+set_from_resource $i3-wm.binding.ws_prev_move i3-wm.binding.ws_prev_move Shift+i
+bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; workspace prev
+
+## Navigate // Previous Workspace // <><Alt> ← ##
+set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Left
+bindsym $mod+$alt+$i3-wm.binding.ws_prev2 workspace prev
+
+## Navigate // move container workspace prev // <> <Ctrl> ← ##
+set_from_resource $i3-wm.binding.ws_prev_move2 i3-wm.binding.ws_prev_move2 Ctrl+Left
+bindsym $mod+$i3-wm.binding.ws_prev_move2 move container to workspace next; workspace next
+
+## Navigate // move container output next // <> comma ##
+set_from_resource $i3-wm.binding.ws_output_next i3-wm.binding.ws_output_next comma
+bindsym $mod+$i3-wm.binding.ws_output_next move workspace to output next
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+## Navigate // Scratchpad // <> minus ##
+set_from_resource $i3-wm.binding.scratchpad i3-wm.binding.scratchpad minus
+bindsym $mod+$i3-wm.binding.scratchpad scratchpad show
+
+## Navigate // Urgent Workspace // <> u ##
+set_from_resource $i3-wm.binding.urgent_workspace i3-wm.binding.urgent_workspace u
+bindsym $mod+$i3-wm.binding.urgent_workspace [urgent=latest] focus
+
+
+###############################################################################
+##  Window Rules  -----------------------------------------------------------##
+###############################################################################
 
 # bind program to workspace and focus to them on startup:
 assign [class="X-terminal-emulator|Gnome-terminal|Alacritty"] $ws1
@@ -270,45 +318,9 @@ for_window [class="Kvantum Manager|qt5ct"] floating enable
 
 for_window [urgent=latest] focus
 
-
-## Navigate // Next Workspace // <> o ##
-set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next o
-bindsym $mod+$i3-wm.binding.ws_next workspace next
-
-## Navigate // move container workspace next // <> <Shift> o ##
-set_from_resource $i3-wm.binding.ws_next_move i3-wm.binding.ws_next_move Shift+o
-bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; workspace next
-
-## Navigate // Next Workspace // <> <Alt> → ##
-set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Right
-bindsym $mod+$alt+$i3-wm.binding.ws_next2 workspace next
-
-## Navigate // move container workspace next // <> <Ctrl> → ##
-set_from_resource $i3-wm.binding.ws_next_move2 i3-wm.binding.ws_next_move2 Ctrl+Right
-bindsym $mod+$i3-wm.binding.ws_next_move2 move container to workspace next; workspace next
-
-## Navigate // Previous Workspace // <> i ##
-set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev i
-bindsym $mod+$i3-wm.binding.ws_prev workspace prev
-
-## Navigate // move container workspace next // <> <Shift> i ##
-set_from_resource $i3-wm.binding.ws_prev_move i3-wm.binding.ws_prev_move Shift+i
-bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; workspace prev
-
-## Navigate // Previous Workspace // <><Alt> ← ##
-set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Left
-bindsym $mod+$alt+$i3-wm.binding.ws_prev2 workspace prev
-
-## Navigate // move container workspace prev // <> <Ctrl> ← ##
-set_from_resource $i3-wm.binding.ws_prev_move2 i3-wm.binding.ws_prev_move2 Ctrl+Left
-bindsym $mod+$i3-wm.binding.ws_prev_move2 move container to workspace next; workspace next
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-## Navigate // Scratchpad // <> minus ##
-set_from_resource $i3-wm.binding.scratchpad i3-wm.binding.scratchpad minus
-bindsym $mod+$i3-wm.binding.scratchpad scratchpad show
+###############################################################################
+##  window resize (floating)  -----------------------------------------------##
+###############################################################################
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -378,40 +390,40 @@ client.background         $background
 
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
-bar {
+#bar {
 #   font pango: Noto Sans Regular 10
-	status_command i3status -c ~/.config/i3/i3status-primary.conf
+#	status_command i3status -c ~/.config/i3/i3status-primary.conf
 #	status_command i3blocks -c ~/.config/i3/i3blocks-primary.conf
 # 	Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
 # 	#08052be6 --> e6=90%
 #	i3bar_command i3bar --transparency
 # 	it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # 	reference: https://i3wm.org/docs/userguide.html#_tray_output
-	output DP-4
-    position bottom
-	tray_output primary
-	tray_padding 0
+#	output DP-4
+#        position bottom
+#	tray_output primary
+#	tray_padding 0
 # 	When strip_workspace_numbers is set to yes,
 # 	any workspace that has a name of the form
 # 	“[n][:][NAME]” will display only the name.
-	strip_workspace_numbers no
-	strip_workspace_name no
+#	strip_workspace_numbers no
+#	strip_workspace_name no
 
-	colors {
-		separator          $magenta
-		background         $background
-        statusline         $foreground
+#	colors {
+#		separator          $magenta
+#		background         $background
+#               statusline         $foreground
 #							border		bg			txt			indicator
-		focused_workspace	$green		$green		$background	$magenta
-		active_workspace	$magenta	$magenta	$background	$magenta
-		inactive_workspace	$blue		$blue		$background	$magenta
-		urgent_workspace	$red		$red		$background	$magenta
-	}
-}
+#		focused_workspace	$green		$green		$background	$magenta
+#		active_workspace	$magenta	$magenta	$background	$magenta
+#		inactive_workspace	$blue		$blue		$background	$magenta
+#		urgent_workspace	$red		$red		$background	$magenta
+#	}
+#}
 
-bar {
+#bar {
 #        font pango: Noto Sans Regular 10
-    status_command i3status -c ~/.config/i3/i3status-secondary.conf
+#       status_command i3status -c ~/.config/i3/i3status-secondary.conf
 #	status_command i3blocks -c ~/.config/i3/i3blocks-secondary.conf
 # Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
 # https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
@@ -419,27 +431,27 @@ bar {
 #	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-	output DP-2
-        position bottom
-	tray_output primary
-	tray_padding 0
+#	output DP-2
+#       position bottom
+#	tray_output primary
+#	tray_padding 0
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
-	strip_workspace_numbers no
-	strip_workspace_name no
+#	strip_workspace_numbers no
+#	strip_workspace_name no
 
-	colors {
-		separator          $magenta
-		background         $background
-                statusline         $foreground
+#	colors {
+#		separator          $magenta
+#		background         $background
+#               statusline         $foreground
 #					border		bg		txt		indicator
-		focused_workspace	$green		$green		$background	$magenta
-		active_workspace	$magenta	$magenta	$background	$magenta
-		inactive_workspace	$blue		$blue		$background	$magenta
-		urgent_workspace	$red		$red		$background	$magenta
-	}
-}
+#		focused_workspace	$green		$green		$background	$magenta
+#		active_workspace	$magenta	$magenta	$background	$magenta
+#		inactive_workspace	$blue		$blue		$background	$magenta
+#		urgent_workspace	$red		$red		$background	$magenta
+#	}
+#}
 
 #############################################
 # autostart applications/services on login: #
@@ -455,25 +467,45 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 # disable power saving (for example if using xscreensaver)
 #exec --no-startup-id xset -dpms
 
-# Autostart apps as you like
-#exec --no-startup-id sleep 2 && xfce4-terminal
-#exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
-#exec --no-startup-id sleep 3 && thunar
+# num lock activated
+#exec --no-startup-id numlockx on
+
+#exec --no-startup-id setxkbmap -option compose:rctrl &
 
 ## Set wallpaper
 exec --no-startup-id feh --no-xinerama --no-fehbg --bg-scale $i3-wm.wallpaper
 #hsetroot -cover ~/.config/i3/wallpapers/default.png
 
+# polkit agent
+#exec --no-startup-id /usr/bin/lxpolkit
+
+# Launch notification daemon
+#exec --no-startup-id ~/.config/i3/bin/i3dunst.sh
+
+# Launch polybar
+#exec_always --no-startup-id ~/.config/i3/bin/i3bar.sh
+
+# Launch compositor
+#exec --no-startup-id ~/.config/i3/bin/i3comp.sh
+
+# Polybar
+#exec_always --no-startup-id ~/.config/polybar/launch.sh &
+
 exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
 
-###############
-# system tray #
-###############
+###############################################################################
+##  system tray  ------------------------------------------------------------##
+###############################################################################
+
+# Autostart apps as you like
+exec --no-startup-id sleep 2 && dropbox start
+#exec --no-startup-id sleep 3 && thunar
+
 # if you do not use dex: exec --no-startup-id dex --autostart --environment i3
 # you need to have tray apps started manually one by one:
 
 # start blueberry app for managing bluetooth devices from tray:
-#exec --no-startup-id blueberry-tray
+exec --no-startup-id blueberry-tray
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

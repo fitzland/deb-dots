@@ -37,9 +37,6 @@ exec dropbox &
 
 # set wallpaper
 #exec --no-startup-id sleep 2 && nitrogen --restore
-#exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
-#hsetroot -cover ~/.config/i3/wallpapers/default.png
-#feh --no-xinerama --no-fehbg --bg-scale /usr/share/backgrounds/dwm.png
 
 # Launch notification daemon
 ~/.config/i3/bin/i3dunst.sh
@@ -49,6 +46,3 @@ exec dropbox &
 
 # Launch compositor
 ~/.config/i3/bin/i3comp.sh
-
-# Start mpd
-# exec mpd &

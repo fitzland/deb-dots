@@ -1,0 +1,17 @@
+## Dracula color scheme
+## ----------------------------
+
+[color]
+BG = #282A36
+BGL = #45495E
+FG = #F8F8F2
+FGA = #F8F8F2
+
+BLACK = #3C3E4A
+RED = #FF5555
+GREEN = #50FA7B
+YELLOW = #F1FA8C
+BLUE = #BD93F9
+MAGENTA = #FF79C6
+CYAN = #8BE9FD
+WHITE = #BFBFBF

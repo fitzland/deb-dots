@@ -33,7 +33,7 @@ case $chosen in
         bash ${WMT}/set-theme  'otis.png' 'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
         ;;
     $theme_nordic)
-        bash ${WMT}/set-theme  'nord.png' 'nord' 'Nordic' 'Papirus-Dark' 'Qogir'
+        bash ${WMT}/set-theme  'dwm.png' 'nord' 'Nordic' 'Papirus-Dark' 'Qogir'
         ;;
     $theme_sweet)
         bash ${WMT}/set-theme  'hack.png' 'sweet' 'Sweet-Dark' 'Candy' 'Sweet-cursors'

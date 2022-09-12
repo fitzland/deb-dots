@@ -418,7 +418,7 @@ interval = 1024
 
 format-foreground = ${color.FOREGROUND}
 format-background = ${color.BACKGROUND}
-format-prefix = ""
+format-prefix = ""
 format-prefix-font = 3
 format-prefix-padding = 1
 format-prefix-foreground = ${color.ALTBLACK}

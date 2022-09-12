@@ -16,6 +16,7 @@ set_style () {
 
 	# apply color-scheme
 	cat "$WM"/themes/${2} > "$XRES"/colors
+	cat "$WM"/themes/${6} > "$WM"/polybar/colors
 
 	# set gtk theme, icons and cursor
 	if [[ `pidof xsettingsd` ]]; then
@@ -40,4 +41,4 @@ set_style () {
 	i3-msg restart
 }
 
-set_style "${1}" "${2}" "${3}" "${4}" "${5}"
+set_style "${1}" "${2}" "${3}" "${4}" "${5}" "${6}"

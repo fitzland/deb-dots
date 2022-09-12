@@ -1,0 +1,17 @@
+##  Cubic color scheme
+##  ---------------------------
+
+[color]
+FG = #c5c8c6
+FGA = #c5c8c6
+BG = #1d1f21
+BGL =  #313538
+
+BLACK = #1d1f21
+RED = #cc6666
+GREEN = #b5bd68
+YELLOW = #f0c674
+BLUE = #81a2be
+MAGENTA = #b294bb
+CYAN = #8abeb7
+WHITE = #c5c8c6

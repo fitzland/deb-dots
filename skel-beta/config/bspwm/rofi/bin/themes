@@ -52,7 +52,7 @@ set_style() {
 	bspc wm -r
 }
 
-chosen="$(echo -e "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
+chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
     $theme_adapta)
         set_style  'adapta' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'

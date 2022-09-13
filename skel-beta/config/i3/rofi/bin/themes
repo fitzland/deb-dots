@@ -21,21 +21,21 @@ options="$theme_cubic\n$theme_dracula\n$theme_forest\n$theme_otis\n$theme_nordic
 chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
     $theme_cubic)
-        bash ${WMT}/set-theme  'cubic.jpg' 'cubic' 'Hash' 'Paper' 'Adwaita'
+        bash ${WMT}/set-theme  'cubic.jpg' 'cubic' 'Hash' 'Paper' 'Adwaita' 'cubic-polybar'
         ;;
     $theme_dracula)
-        bash ${WMT}/set-theme  'dracula.png' 'dracula' 'Dracula' 'Dracula' 'Qogir-ubuntu-dark'
+        bash ${WMT}/set-theme  'dracula.png' 'dracula' 'Dracula' 'Dracula' 'Qogir-ubuntu-dark' 'dracula-polybar'
         ;;
     $theme_forest)
-        bash ${WMT}/set-theme  'forest.jpg' 'forest' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
+        bash ${WMT}/set-theme  'forest.jpg' 'forest' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark' 'forest-polybar'
         ;;
     $theme_otis)
-        bash ${WMT}/set-theme  'otis.png' 'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
+        bash ${WMT}/set-theme  'otis.png' 'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark' 'otis-polybar'
         ;;
     $theme_nordic)
-        bash ${WMT}/set-theme  'dwm.png' 'nord' 'Nordic' 'Papirus-Dark' 'Qogir'
+        bash ${WMT}/set-theme  'dwm.png' 'nord' 'Nordic' 'Papirus-Dark' 'Qogir' 'nord-polybar'
         ;;
     $theme_sweet)
-        bash ${WMT}/set-theme  'hack.png' 'sweet' 'Sweet-Dark' 'Candy' 'Sweet-cursors'
+        bash ${WMT}/set-theme  'hack.png' 'sweet' 'Sweet-Dark' 'Candy' 'Sweet-cursors' 'sweet-polybar'
         ;;
 esac

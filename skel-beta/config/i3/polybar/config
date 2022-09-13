@@ -133,17 +133,17 @@ font-4 = "archcraft:size=14;4"
 
 ; Modules are added to one of the available blocks
 ;   modules-left = cpu ram
-;   modules-center = xwindow xbrightness
+;   modules-center = title
 ;   modules-right = ipc clock
 
 # Default
-modules-left = dot LD i3 RD dot
+modules-left = dot LD i3 RD dot 
 modules-center = xwindow
 modules-right = volume dot ethernet dot LD clock RD dot
 
 # Alternate
 ;modules-left = openbox 2LD cpu 3LD memory 4LD filesystem 5LD
-;modules-center = mpd
+;modules-center = secondary-i3-window
 ;modules-right = 2RD volume 3RD brightness 4RD battery 5RD ethernet 6RD date sep
 
 ; The separator will be inserted between the output of each module

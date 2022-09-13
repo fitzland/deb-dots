@@ -69,16 +69,16 @@ case $WEATHER_CONDITION in
 esac
 
 WEATHER_COLOR="#FFFFFF"
-if [ "$WEATHER_INT" -lt "-11" ]; then
+if [ "$WEATHER_INT" -lt "40" ]; then
     WEATHER_COLOR="#0000FF"
-elif [ "$WEATHER_INT" -gt 35 ]; then
+elif [ "$WEATHER_INT" -gt 90 ]; then
     WEATHER_COLOR="#FF0000"
 else
     WEATHER_INT=$(( WEATHER_INT + 11 )) 
     WEATHER_COLOR="${temps[$WEATHER_INT]}"
 fi
 
-full_text="${WEATHER_ICON}  ${WEATHER_TEMP}°F :: ${DESCRIPTION} "
+full_text="${WEATHER_ICON}  ${WEATHER_TEMP}°F :: ${DESCRIPTION}"
 if [ "$WEATHER_ALERT" != "null" ]; then
     WARN_START=$(echo "$WEATHER_RESPONSE" | jq '.alerts[0].start')
     WARN_END=$(echo "$WEATHER_RESPONSE" | jq '.alerts[0].end')

@@ -1,0 +1,32 @@
+##  Forest color scheme
+##  ---------------------------
+
+[color]
+BG = #222D32
+BGL = #445963
+FG = #C4C7C5
+FGA = #afbfbf
+
+BLACK = #263640
+ALTBLACK = #4a697d
+
+RED = #EC7875
+ALTRED = #FB8784
+
+GREEN = #61C766
+ALTGREEN = #70D675
+
+YELLOW = #FDD835
+ALTYELLOW = #FFE744
+
+BLUE = #42A5F5
+ALTBLUE = #51B4FF
+
+MAGENTA = #BA68C8
+ALTMAGENTA = #C979D7
+
+CYAN = #4DD0E1
+ALTCYAN = #5CDFF0
+
+WHITE = #bfbaac
+ALTWHITE =#fdf6e3

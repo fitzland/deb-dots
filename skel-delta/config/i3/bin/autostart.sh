@@ -33,7 +33,7 @@ fi
 #sxhkd -c $HOME/.config/i3/sxhkdrc &
 
 # Start dropbox
-exec dropbox &
+exec dropbox start &
 
 # set wallpaper
 #exec --no-startup-id sleep 2 && nitrogen --restore
@@ -42,7 +42,7 @@ exec dropbox &
 ~/.config/i3/bin/i3dunst.sh
 
 # Launch polybar
-#~/.config/i3/bin/i3bar.sh
+~/.config/i3/bin/i3bar.sh
 
 # Launch compositor
 ~/.config/i3/bin/i3comp.sh

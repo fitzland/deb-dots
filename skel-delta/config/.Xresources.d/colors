@@ -1,13 +1,11 @@
-! ------------------------------------------------------------------------------
-! Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
-! Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
-!
-! Nord color scheme
-! ------------------------------------------------------------------------------
+##  Nord color scheme
+##  ---------------------------
 
-*background: #2E3440
-*foreground: #D8DEE9
-*cursorColor: #D8DEE9
+[color]
+BG = #2E3440
+BGL = 
+FG = #D8DEE9
+FGA = #D8DEE9
 
 *color0:  #3B4252
 *color1:  #BF616A

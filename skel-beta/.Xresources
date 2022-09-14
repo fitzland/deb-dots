@@ -7,3 +7,23 @@
 #include ".Xresources.d/fonts"
 #include ".Xresources.d/rxvt-unicode"
 #include ".Xresources.d/variables"
+
+XTerm.vt100.foreground: rgb:f8/f8/f2
+XTerm.vt100.background: rgb:28/2a/36
+XTerm.vt100.color0: rgb:3c/3e/4a
+XTerm.vt100.color1: rgb:ff/55/55
+XTerm.vt100.color1: rgb:ff/55/55
+XTerm.vt100.color2: rgb:50/fa/7b
+XTerm.vt100.color3: rgb:f1/fa/8c
+XTerm.vt100.color4: rgb:bd/93/f9
+XTerm.vt100.color5: rgb:ff/79/c6
+XTerm.vt100.color6: rgb:8b/e9/fd
+XTerm.vt100.color7: rgb:bf/bf/bf
+XTerm.vt100.color8: rgb:4d/4d/4d
+XTerm.vt100.color9: rgb:ff/6e/67
+XTerm.vt100.color10: rgb:fa/f7/8e
+XTerm.vt100.color11: rgb:f4/f9/9d
+XTerm.vt100.color12: rgb:ca/a9/fa
+XTerm.vt100.color13: rgb:ff/92/d0
+XTerm.vt100.color14: rgb:9a/ed/fe
+XTerm.vt100.color15: rgb:e6/e6/e6

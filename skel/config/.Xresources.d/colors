@@ -2,40 +2,40 @@
 ! Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
 ! Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 !
-! Sweet color scheme
+! Dracula color scheme
 ! -----------------------------------------------------------------------------
 
-*background: #161925
-*foreground: #C3C7D1
+*.foreground: #F8F8F2
+*.background: #282A36
 
 ! Black + DarkGrey
-*color0:  #0c0e15
-*color8:  #181b28
+*.color0:     #3C3E4A
+*.color8:     #4D4D4D
 
 ! DarkRed + Red
-*color1:  #e6133e 
-*color9:  #ef3d61
+*.color1:     #FF5555
+*.color9:     #FF6E67
 
 ! DarkGreen + Green
-*color2:  #00f17d
-*color10: #71f79f
+*.color2:     #50FA7B
+*.color10:    #5AF78E
 
 ! DarkYellow + Yellow
-*color3:  #cc5500
-*color11: #ff6a00
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
 
 ! DarkBlue + Blue
-*color4:  #0096b1
-*color12: #00c1e4
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
 
 ! DarkMagenta + Magenta
-*color5:  #db10ea
-*color13: #C50ED2
+*.color5:     #FF79C6
+*.color13:    #FF92D0
 
 ! DarkCyan + Cyan
-*color6:  #00e8c6
-*color14: #00f7d2
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
 
 ! LightGrey + White
-*color7:  #fefefe
-*color15: #C3C7D1
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6

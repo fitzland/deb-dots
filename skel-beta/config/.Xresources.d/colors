@@ -1,26 +1,41 @@
-##  Nord color scheme
-##  ---------------------------
+! -----------------------------------------------------------------------------
+! Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+! Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+!
+! Sweet color scheme
+! -----------------------------------------------------------------------------
 
-[color]
-BG = #2E3440
-BGL = 
-FG = #D8DEE9
-FGA = #D8DEE9
+*background: #161925
+*foreground: #C3C7D1
 
-*color0:  #3B4252
-*color1:  #BF616A
-*color2:  #A3BE8C
-*color3:  #EBCB8B
-*color4:  #81A1C1
-*color5:  #B48EAD
-*color6:  #88C0D0
-*color7:  #E5E9F0
+! Black + DarkGrey
+*color0:  #0c0e15
+*color8:  #181b28
 
-*color8:  #4C566A
-*color9:  #BF616A
-*color10:  #A3BE8C
-*color11:  #EBCB8B
-*color12:  #81A1C1
-*color13:  #B48EAD
-*color14:  #8FBCBB
-*color15:  #ECEFF4
+! DarkRed + Red
+*color1:  #e6133e 
+*color9:  #ef3d61
+
+! DarkGreen + Green
+*color2:  #00f17d
+*color10: #71f79f
+
+! DarkYellow + Yellow
+*color3:  #cc5500
+*color11: #ff6a00
+
+! DarkBlue + Blue
+*color4:  #0096b1
+*color12: #00c1e4
+
+! DarkMagenta + Magenta
+*color5:  #db10ea
+*color13: #C50ED2
+
+! DarkCyan + Cyan
+*color6:  #00e8c6
+*color14: #00f7d2
+
+! LightGrey + White
+*color7:  #fefefe
+*color15: #C3C7D1

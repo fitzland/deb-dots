@@ -3,9 +3,9 @@
 
 [color]
 BG = #161925
-BGL = 
+BGL = #181b28
 FG = #C3C7D1
-FGA = #fefefe
+FGA = #181b28
 
 BLACK = #0c0e15
 ALTBLACK = #181b28

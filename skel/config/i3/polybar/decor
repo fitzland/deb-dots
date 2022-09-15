@@ -15,7 +15,7 @@ type = custom/text
 content = 
 
 content-background = ${color.BG}
-content-foreground = ${color.BGL}
+content-foreground = ${color.FGA}
 content-padding = 2
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_

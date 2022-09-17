@@ -38,11 +38,14 @@ exec dropbox start &
 # set wallpaper
 #exec --no-startup-id sleep 2 && nitrogen --restore
 
+# Launch colors
+#~/.config/i3/bin/i3colors.sh
+
 # Launch notification daemon
-~/.config/i3/bin/i3dunst.sh
+#~/.config/i3/bin/i3dunst.sh
 
 # Launch polybar
-~/.config/i3/bin/i3bar.sh
+#~/.config/i3/bin/i3bar.sh
 
 # Launch compositor
-~/.config/i3/bin/i3comp.sh
+#~/.config/i3/bin/i3comp.sh

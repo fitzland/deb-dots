@@ -225,7 +225,7 @@ bindsym $mod+Shift+0 move container to workspace $ws0
 set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next o
 bindsym $mod+$i3-wm.binding.ws_next workspace next
 
-## Navigate // move container workspace next // <> <Shift> o ##
+## Navigate // move focsed container workspace next // <> <Shift> o ##
 set_from_resource $i3-wm.binding.ws_next_move i3-wm.binding.ws_next_move Shift+o
 bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; workspace next
 
@@ -233,7 +233,7 @@ bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; works
 set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Right
 bindsym $mod+$alt+$i3-wm.binding.ws_next2 workspace next
 
-## Navigate // move container workspace next // <> <Ctrl> → ##
+## Navigate // move focused container workspace next // <> <Ctrl> → ##
 set_from_resource $i3-wm.binding.ws_next_move2 i3-wm.binding.ws_next_move2 Ctrl+Right
 bindsym $mod+$i3-wm.binding.ws_next_move2 move container to workspace next; workspace next
 
@@ -241,7 +241,7 @@ bindsym $mod+$i3-wm.binding.ws_next_move2 move container to workspace next; work
 set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev i
 bindsym $mod+$i3-wm.binding.ws_prev workspace prev
 
-## Navigate // move container workspace next // <> <Shift> i ##
+## Navigate // move focused container workspace next // <> <Shift> i ##
 set_from_resource $i3-wm.binding.ws_prev_move i3-wm.binding.ws_prev_move Shift+i
 bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; workspace prev
 
@@ -249,13 +249,13 @@ bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; works
 set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Left
 bindsym $mod+$alt+$i3-wm.binding.ws_prev2 workspace prev
 
-## Navigate // move container workspace prev // <> <Ctrl> ← ##
+## Navigate // move focused container workspace prev // <> <Ctrl> ← ##
 set_from_resource $i3-wm.binding.ws_prev_move2 i3-wm.binding.ws_prev_move2 Ctrl+Left
 bindsym $mod+$i3-wm.binding.ws_prev_move2 move container to workspace next; workspace next
 
 ## Navigate // move container output next // <> comma ##
 set_from_resource $i3-wm.binding.ws_output_next i3-wm.binding.ws_output_next comma
-bindsym $mod+$i3-wm.binding.ws_output_next move workspace to output next
+bindsym $mod+$i3-wm.binding.ws_output_next move container to output next
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -274,7 +274,7 @@ bindsym $mod+$i3-wm.binding.urgent_workspace [urgent=latest] focus
 ###############################################################################
 
 # bind program to workspace and focus to them on startup:
-assign [class="X-terminal-emulator|Gnome-terminal|Guake|Alacritty|UXTERM"] $ws1
+assign [class="X-terminal-emulator|Gnome-terminal|Guake|Alacritty|xterm"] $ws1
 assign [class="Atom|Code|Xed"] $ws2
 assign [class="Soffice|Gnucash"] $ws3
 assign [class="Gimp*|Inkscape"] $ws4
@@ -500,7 +500,7 @@ exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && dropbox start
 
-exec --no-startup-id sleep 3 && guake
+exec --no-startup-id sleep 3 && guake gui
 
 # if you do not use dex: exec --no-startup-id dex --autostart --environment i3
 # you need to have tray apps started manually one by one:

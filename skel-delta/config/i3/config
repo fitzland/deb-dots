@@ -274,7 +274,7 @@ bindsym $mod+$i3-wm.binding.urgent_workspace [urgent=latest] focus
 ###############################################################################
 
 # bind program to workspace and focus to them on startup:
-assign [class="X-terminal-emulator|Gnome-terminal|Alacritty"] $ws1
+assign [class="X-terminal-emulator|Gnome-terminal|Guake|Alacritty|UXTERM"] $ws1
 assign [class="Atom|Code|Xed"] $ws2
 assign [class="Soffice|Gnucash"] $ws3
 assign [class="Gimp*|Inkscape"] $ws4
@@ -296,7 +296,7 @@ for_window [class="Kvantum Manager|qt5ct"] floating enable
 for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
 
 # automatic set focus new window if it opens on another workspace then the current:
-for_window [class=Alacritty|Gnome-terminal] focus
+for_window [class=Alacritty|Gnome-terminal|Guake|UXTERM] focus
 for_window [class=Atom|Code|Xed] focus
 for_window [class="^(?i)libreoffice-*"] focus
 for_window [class=(?i)firefox] focus
@@ -499,7 +499,8 @@ exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
 
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && dropbox start
-#exec --no-startup-id sleep 3 && thunar
+
+exec --no-startup-id sleep 3 && guake
 
 # if you do not use dex: exec --no-startup-id dex --autostart --environment i3
 # you need to have tray apps started manually one by one:

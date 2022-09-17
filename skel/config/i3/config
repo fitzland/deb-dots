@@ -459,7 +459,7 @@ client.background         $background
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
+#exec --no-startup-id dex --autostart --environment i3
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -478,18 +478,17 @@ exec --no-startup-id feh --no-xinerama --no-fehbg --bg-scale $i3-wm.wallpaper
 
 # polkit agent
 #exec --no-startup-id /usr/bin/lxpolkit
+# Set color scheme
+exec_always --no-startup-id ~/.config/i3/bin/i3colors.sh
 
 # Launch notification daemon
-#exec --no-startup-id ~/.config/i3/bin/i3dunst.sh
+exec --no-startup-id ~/.config/i3/bin/i3dunst.sh
 
 # Launch polybar
-#exec_always --no-startup-id ~/.config/i3/bin/i3bar.sh
+exec_always --no-startup-id ~/.config/i3/bin/i3bar.sh
 
 # Launch compositor
-#exec --no-startup-id ~/.config/i3/bin/i3comp.sh
-
-# Polybar
-#exec_always --no-startup-id ~/.config/polybar/launch.sh &
+exec --no-startup-id ~/.config/i3/bin/i3comp.sh
 
 exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
 
@@ -499,8 +498,6 @@ exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
 
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && dropbox start
-
-exec --no-startup-id sleep 3 && guake gui
 
 # if you do not use dex: exec --no-startup-id dex --autostart --environment i3
 # you need to have tray apps started manually one by one:
@@ -523,4 +520,119 @@ exec --no-startup-id nm-applet
 set_from_resource $i3-wm.binding.theme i3-wm.binding.theme Ctrl+t
 bindsym $alt+$i3-wm.binding.theme exec --no-startup-id sh ~/.config/i3/rofi/bin/themes
 
-include ~/.config/i3/config.d/*.conf
+###############################################################################
+##  Base launchers  ---------------------------------------------------------##
+###############################################################################
+
+# Load stylesheet if exists
+set_from_resource $rofi.stylesheet rofi.stylesheet
+
+## Launch // dmenu // <> d ##
+# start dmenu (a program launcher)
+set_from_resource $i3-wm.binding.dmenu i3-wm.binding.dmenu d
+bindsym $mod+$i3-wm.binding.dmenu exec --no-startup-id dmenu_run -m 1 -p dmenu:
+
+## Launch // Terminal // <> Return ##
+set_from_resource $i3-wm.binding.terminal i3-wm.binding.terminal Return
+bindsym $mod+$i3-wm.binding.terminal exec --no-startup-id i3-sensible-terminal
+
+## Launch // File Manager // <> <Shift> Return ##
+set_from_resource $i3-wm.binding.filemgr i3-wm.binding.filemgr Shift+Return
+bindsym $mod+$i3-wm.binding.filemgr exec --no-startup-id thunar
+
+## Launch // Application // <> slash ##
+set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app slash
+bindsym $mod+$i3-wm.binding.launcher.app exec --no-startup-id sh ~/.config/i3/rofi/bin/launcher-app
+
+## Navigate // Window by Name // <> <Shift> slash ##
+set_from_resource $i3-wm.binding.launcher.window i3-wm.binding.launcher.window Shift+slash
+bindsym $mod+$i3-wm.binding.launcher.window exec --no-startup-id sh ~/.config/i3/rofi/bin/windows
+
+## Launch // Command // <> backslash ##
+set_from_resource $i3-wm.binding.launcher.cmd i3-wm.binding.launcher.cmd backslash
+bindsym $mod+$i3-wm.binding.launcher.cmd exec --no-startup-id sh ~/.config/i3/rofi/bin/launcher-cmd
+
+
+###############################################################################
+##  Function Key Launchers  -------------------------------------------------##
+###############################################################################
+
+## Launch // IDE // Primary <> F2 ##
+set_from_resource $i3-wm.binding.ide.primary i3-wm.binding.ide.primary F2
+bindsym $mod+$i3-wm.binding.ide.primary exec --no-startup-id code
+
+## Launch // IDE // Secondary <> <Shift> F2 ##
+set_from_resource $i3-wm.binding.ide.secondary i3-wm.binding.ide.secondary Shift+F2
+bindsym $mod+$i3-wm.binding.ide.secondary exec --no-startup-id atom
+
+## Launch // Graphix // Primary <> F3 ##
+set_from_resource $i3-wm.binding.graphix.primary i3-wm.binding.graphix.primary F3
+bindsym $mod+$i3-wm.binding.graphix.primary exec --no-startup-id inkscape
+
+## Launch // Graphix // Secondary <> <Shift> F3 ##
+set_from_resource $i3-wm.binding.graphix.secondary i3-wm.binding.graphix.secondary Shift+F3
+bindsym $mod+$i3-wm.binding.graphix.secondary exec --no-startup-id gimp
+
+## Launch // Office // Primary <> F4 ##
+set_from_resource $i3-wm.binding.office.primary i3-wm.binding.office.primary F4
+bindsym $mod+$i3-wm.binding.office.primary exec --no-startup-id lowriter
+
+## Launch // Office // Secondary <> <Shift> F4 ##
+set_from_resource $i3-wm.binding.office.secondary i3-wm.binding.office.secondary Shift+F4
+bindsym $mod+$i3-wm.binding.office.secondary exec --no-startup-id localc
+
+## Launch // Music // Primary <> F5 ##
+set_from_resource $i3-wm.binding.music.primary i3-wm.binding.music.primary F5
+bindsym $mod+$i3-wm.binding.music.primary exec --no-startup-id spotify
+
+## Launch // Music // Secondary <> <Shift> F5 ##
+set_from_resource $i3-wm.binding.music.secondary i3-wm.binding.music.secondary Shift+F5
+bindsym $mod+$i3-wm.binding.music.secondary exec --no-startup-id quodlibet
+
+## Launch // Utility // Primary <> F6 ##
+set_from_resource $i3-wm.binding.utility.primary i3-wm.binding.utility.primary F6
+bindsym $mod+$i3-wm.binding.utility.primary exec --no-startup-id gnucash
+
+## Launch // Utility // Secondary <> <Shift> F6 ##
+set_from_resource $i3-wm.binding.utility.secondary i3-wm.binding.utility.secondary Shift+F6
+bindsym $mod+$i3-wm.binding.utility.secondary exec --no-startup-id meld
+
+## Launch // Password // Primary <> F7 ##
+set_from_resource $i3-wm.binding.password.primary i3-wm.binding.password.primary F7
+bindsym $mod+$i3-wm.binding.password.primary exec --no-startup-id keepassxc ~/Dropbox/journal/home.kdbx
+
+## Launch // Password // Secondary <> <Shift> F7 ##
+set_from_resource $i3-wm.binding.password.secondary i3-wm.binding.password.secondary Shift+F7
+bindsym $mod+$i3-wm.binding.password.secondary exec --no-startup-id keepassxc ~/Dropbox/journal/work.kdbx
+
+## Launch // Markdown // Primary <> F9 ##
+set_from_resource $i3-wm.binding.markdown.primary i3-wm.binding.markdown.primary F9
+bindsym $mod+$i3-wm.binding.markdown.primary exec --no-startup-id ghostwriter
+
+## Launch // Markdown // Secondary <> <Shift> F9 ##
+set_from_resource $i3-wm.binding.markdown.secondary i3-wm.binding.markdown.secondary Shift+F9
+bindsym $mod+$i3-wm.binding.markdown.secondary exec --no-startup-id typora
+
+## Launch // Browser // Mozilla // Primary <> F10 ##
+set_from_resource $i3-wm.binding.browser.mozilla.primary i3-wm.binding.browser.mozilla.primary F10
+bindsym $mod+$i3-wm.binding.browser.mozilla.primary exec --no-startup-id firefox
+
+## Launch // Browser // Mozilla // Secondary <> <Shift> F10 ##
+set_from_resource $i3-wm.binding.browser.mozilla.secondary i3-wm.binding.browser.mozilla.secondary Shift+F10
+bindsym $mod+$i3-wm.binding.browser.mozilla.secondary exec --no-startup-id firefox --private window
+
+## Launch // Browser // Microsoft // Primary <> F11 ##
+set_from_resource $i3-wm.binding.browser.micosoft.primary i3-wm.binding.browser.microsoft.primary F11
+bindsym $mod+$i3-wm.binding.browser.microsoft.primary exec --no-startup-id microsoft-edge-stable --profile-directory='Default'
+
+## Launch // Browser // Microsoft // Secondary <> <Shift> F11 ##
+set_from_resource $i3-wm.binding.browser.microsoft.secondary i3-wm.binding.browser.microsoft.secondary Shift+F11
+bindsym $mod+$i3-wm.binding.browser.microsoft.secondary exec --no-startup-id microsoft-edge-stable --profile-directory='Profile 1'
+
+## Launch // Browser // Google // Primary <> F12 ##
+set_from_resource $i3-wm.binding.browser.google.primary i3-wm.binding.browser.google.primary F12
+bindsym $mod+$i3-wm.binding.browser.google.primary exec --no-startup-id google-chrome-stable --profile-directory='Default'
+
+## Launch // Browser // Google // Secondary <> <Shift> F12 ##
+set_from_resource $i3-wm.binding.browser.google.secondary i3-wm.binding.browser.google.secondary Shift+F12
+bindsym $mod+$i3-wm.binding.browser.google.secondary exec --no-startup-id google-chrome-stable --profile-directory='Profile 1'

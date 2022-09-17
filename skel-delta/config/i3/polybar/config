@@ -103,7 +103,7 @@ line-color = ${color.BLUE}
 ; the border is placed withing this area. So you effectively only have the
 ; following horizontal space on the bar:
 ;   width - border-right-size - border-left-size
-border-size = 6
+border-size = 2
 border-color = ${color.BG}
 
 ; Number of spaces to add at the beginning/end of the bar
@@ -333,7 +333,7 @@ line-color = ${color.BLUE}
 ; the border is placed withing this area. So you effectively only have the
 ; following horizontal space on the bar:
 ;   width - border-right-size - border-left-size
-border-size = 6
+border-size = 2
 border-color = ${color.BG}
 
 ; Number of spaces to add at the beginning/end of the bar
@@ -365,7 +365,7 @@ font-3 = "Inconsolata Nerd Font:Regular:size=12;4"
 # Default
 modules-left = dot i3 dot
 modules-center = xwindow
-modules-right = cpu dot memory dot date dot
+modules-right = wireless-network dot cpu dot memory dot date dot
 
 # Alternate
 ;modules-left = openbox 2LD cpu 3LD memory 4LD filesystem 5LD

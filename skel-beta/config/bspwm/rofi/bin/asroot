@@ -19,7 +19,7 @@ term='alacritty --class alacritty-float,alacritty-float --config-file /root/.con
 
 # Functions
 
-chosen="$(echo "$options" | $rofi_cmd -p "Run apps as root" -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | $rofi_cmd -p "Run apps as root" -dmenu -selected-row 0)"
 case $chosen in
     $terminal)
         bsproot "$term"

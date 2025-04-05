@@ -1,274 +1,122 @@
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
-##
-## Keybindings config for BSPWM
+super + b
+	 firefox-esr
 
-########################################
-##---------- Keys for Apps -----------##
-########################################
+super + shift + b
+	firefox-esr -private-window
 
-# Search
-super + F1
-	catfish
+super + Return
+	tilix
 
-# Editor
-super + {_,shift} + F2
-	{code,alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e nano}
-
-# Inkscape
-super + F3
-    inkscape
-
-# Gimp
-super + {_,shift} +F4
-    {gimp,shotwell}
-
-# Meld
-super + F5
-    meld
-
-# GnuCash
-super + F6
-    gnucash
-
-# KeePassXC
-super + {_,shift} + F7
-    keepassxc {$HOME/Dropbox/journal/home.kdbx,keepassxc $HOME/Dropbox/journal/work.kdbx}
-
-# File Manager
-super + {_,shift} + F8
-    {thunar,alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e ranger}
-
-# Markdown Editor
-super + {_,shift} + F9
-    {ghostwriter,typora}
-
-# Firefox
-super + {_,shift} + F10
-    {firefox-developer-edition,firefox-developer-edition --private-window}
-
-#Microsoft Edge
-super + {_,shift} + F11
-    {microsoft-edge-stable --profile-directory='Default',microsoft-edge-stable --profile-directory='Profile 1'}
-
-#Chrome Primary
-super + {_,shift} + F12
-    {google-chrome-stable --profile-directory='Default',google-chrome-stable --profile-directory='Profile 1'}
-
-##########################################
-##---------- Launcher & Menus ----------##
-##########################################
-
-# Rofi App Launcher
-super + {_,shift} + slash
-	{sh ~/.config/bspwm/rofi/bin/{launcher-app,asroot}
-
-# Rofi Term Launcher
-super + {_,shift} + backslash
-	sh ~/.config/bspwm/rofi/bin/{launcher-cmd,windows}
-
-# Terminal (alacritty)
-super + {_,shift} + Return
-	{rofi-sensible-terminal,thunar}
-
-# Terminal (fullscreen)
-super + t
-	bspterm --full
-
-##---------- Rofi Launcher & Menus ----------##
-
-# Rofi Network Menu
-super + n
-	nmd
-
-# Rofi Themes Menu
-ctrl + alt + t
-	sh ~/.config/bspwm/rofi/bin/themes
-
-# Rofi Menus/Applets
-super + {w,m,x,r,s}
-	sh ~/.config/bspwm/rofi/bin/{windows,mpd,powermenu,asroot,screenshot}
-
-##########################################
-##---------- Applications --------------##
-##########################################
-
-# Launch Apps
-super + shift + {f,w,e}
-	{thunar,firefox-developer-editon,xed}
-
-# Terminal Apps
-ctrl + alt + {v,r,h}
-	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {vim,ranger,htop}
-
-# Color Picker
-super + p
-	color-gpick
-
-# Lockscreen
-ctrl + alt + k
-    betterlockscreen --lock
-
-##########################################
-##------ Screenshots -------------------##
-##########################################
-
-# Take a screenshot
-Print
-	takeshot --now
-	
-# Take screenshot in 5 second
-alt + Print	
-	takeshot --in5
-
-# Take screenshot in 10 second
-shift + Print	
-	takeshot --in10
-
-# Take screenshot of active window
-ctrl + Print
-	takeshot --win
-
-# Take screenshot of area
-ctrl + alt + Print
-	takeshot --area
-
-##########################################
-##------ Multimedia Keys ---------------##
-##########################################
-
-# Brighness control
-XF86MonBrightness{Up,Down}
-	brightness{ --inc, --dec}
-	
-# Volume control
-XF86Audio{RaiseVolume,LowerVolume}
-	amixer {-D pulse sset Master 5%+,-D pulse sset Master 5%-}
-
-XF86AudioMute
-	amixer sset Master toggle
-
-XF86AudioMicMute
-	volume --toggle-mic
-	
-# Music control
-XF86Audio{Next,Prev,Play,Pause}
-	playerctl {next,previous,play,pause}
-
-##########################################
-##------ System Config -----------------##
-##########################################
-
-# Close App
-super + {_,shift + }c
-	bspc node -{c,k}
-
-# Reload Keybindings
-super + Escape
-	pkill -USR1 -x sxhkd
-
-# kill window
-ctrl + alt + Escape
-    xkill
-
-# Quit/Restart bspwm
-ctrl + shift + {q,r}
-	bspc {quit,wm -r}
-	
-# Split horizontal, vertical or cancel
-super + {h,v,q}
-	bspc node -p {east,south,cancel}
-
-# Preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-##########################################
-##------ Window States -----------------##
-##########################################
-
-# Fullscreen or Monocle
-super + f
-#	bspc desktop -l next
-    bspc node -t "~"fullscreen
-
-# Toggle beetwen floating & tiled
+# rofi launchers
 super + space
-    bspc node -t "~"{floating,tiled}
-
-# Pseudo Tiled & tiled mode
-super + shift + space
-#super + {p,t}
-    bspc node -t "~"{pseudo_tiled,tiled}
-
-# Set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
-# Expanding windows
-super + control + {Left,Right,Up,Down}
-	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
+   	rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons 
+   	
+super + shift + Return
+    kitty
 	
-## Shrinking windows
-super + alt + {Left,Right,Up,Down}
-	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+# help with shortcuts
+super + h
+	tilix -e ~/.config/bspwm/keyhelper.sh
+
+# application launchers
+
+super + f
+	thunar
+
+super + e 	
+	geany
+
+super + g
+	gimp
+
+super + v
+   tilix -e pulsemixer
+
 	
-## Move floating windows
-alt + shift + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+super + d
+	Discord
 
-##########################################
-##------ Navigation --------------------##
-##########################################
+super + o
+	obs
 
-# Send the window to another edge of the screen
-super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east} --follow
+# set the window state
+super + shift + {t,s,f}
+	bspc node -t {tiled,floating,fullscreen}
 
-# Change focus to next window, including floating window
-alt + {_,shift + }Tab
-	bspc node -f {next.local,prev.local}
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+	
+super + shift + r
+	bspc wm -r; notify-send 'bspwm' 'Restarted'
 
-# focus the next/previous desktop all monitors
-ctrl + alt + {Left,Right}
-	bspc desktop -f {prev,next}
+## windows keybindings
+super + shift + q
+	bspc quit
 
-# focus the next/previous desktop OCCUPIED
-super + {i,o}
-	bspc desktop -f {prev,next}.occupied
+super + q
+	bspc node -c
 
-# focus the next/previous desktop LOCAL (current monitor)
-super + alt + {i,o}
-	bspc desktop -f {prev,next}.local
+super + i
+    bspc node -R 90
+super + shift + i
+    bspc node -R -90
 
-# Send node to next/previous workspace
-super + shift + {i,o}
-	bspc node -d {prev,next} --follow
+super + { Left, Down, Up, Right}
+	bspc node -f {west,south,north,east}
+	
+super + shift + { Left, Down, Up, Right}
+	bspc node -s {west,south,north,east}
 
-# Send node to next/previous workspace OCCUPIED
-super + ctrl + {i,o}
-	bspc node -d {prev,next}.occupied --follow
-
-# Send node to next/previous workspace local
-super + ctrl + {Prior,Next}
-	bspc node -d {prev,next}.local --follow
-
-# Switch to last opened workspace
-super + {Tab,grave}
-	bspc {node,desktop} -f last
-
-# focus on / move focused window to / other monitor
-super + {_,shift} + {comma,period}
-	bspc node -{f,m} {prev,next} --follow
-
-# focus or send to the given desktop
+## Change workspace with dunst feedback
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop --focus,node --to-desktop} 'focused:^{1-9,10}' --follow
 
-# Hide/Unhide Window
-super + shift + h
-	winmask		
+# Resize tiling windows
+super + ctrl + {Left,Down,Up,Right}
+	{bspc node -z left -40 0; bspc node -z right -40 0, \
+	bspc node -z bottom 0 40; bspc node -z top 0 40, \
+	bspc node -z bottom 0 -40; bspc node -z top 0 -40, \ 
+	bspc node -z left 40 0; bspc node -z right 40 0}
+	
+## audio
 
-##########################################
-##---------- EOF -----------------------##
-##########################################
+# Change volume, chunky
+super + Insert
+    ~/scripts/changevolume up
+    
+super + Delete
+	~/scripts/changevolume down
+	
+super + m
+	~/scripts/changevolume mute
+	
+# dedicated volume keys
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	pamixer {-i,-d} 2
+
+# dedicated backlight keys
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+	xbacklight {+10,-10}
+
+
+#########
+# Scrot #
+#########
+super + @Print
+	scrot -s -e 'mv $f ~/Screenshots'; \
+	notify-send 'Scrot' 'Selected image to ~/Screenshots'
+
+@Print
+	scrot -e 'mv $f ~/Screenshots'; \
+	notify-send 'Scrot' 'Image saved to ~/Screenshots'
+	
+## redshift
+super + alt + r
+	~/scripts/redshift-on
+	
+super + alt + b
+	~/scripts/redshift-off
+    
+super + @equal
+	bspc query -N -d | xargs -I % bspc node % -B

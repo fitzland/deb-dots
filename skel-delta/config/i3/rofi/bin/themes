@@ -3,39 +3,155 @@
 ## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
-DIR="$HOME/.config/i3"
-WMT="$HOME/.config/i3/themes"
-rofi_command="rofi -theme $DIR/rofi/themes/themes.rasi"
+CFGDIR="$HOME/.config"
+WMDIR="$CFGDIR/i3"
+THEMEDIR="$WMDIR/themes"
+XFILE="$WMDIR/xsettingsd"
+
+rofi_command="rofi -theme $WMDIR/rofi/themes/themes.rasi"
 
 # Themes
+theme_adapta=" Adapta"
+theme_1=" Beach"
+theme_2=" Blade"
+theme_3=" Bouquet"
 theme_cubic=" Cubic"
+theme_4=" Cyberpunk"
 theme_dracula=" Dracula"
+theme_6=" Flowers"
 theme_forest=" Forest"
-theme_otis=" Otis"
+theme_8=" Groot"
+theme_9=" Gruvbox"
+theme_11=" Keyboards"
+theme_12=" Light"
+theme_13=" Manhattan"
+theme_nord=" Nord"
 theme_nordic=" Nordic"
+theme_otis=" Otis"
+theme_15=" Pastel"
+theme_16=" Rick"
+theme_17=" Slime"
+theme_18=" Spark"
 theme_sweet=" Sweet"
+theme_19=" Tealize"
+theme_tron=" Tron"
+theme_20=" Wave"
 
 # Variable passed to rofi
-options="$theme_cubic\n$theme_dracula\n$theme_forest\n$theme_otis\n$theme_nordic\n$theme_sweet"
+options="$theme_adapta\n$theme_1\n$theme_2\n$theme_3\n$theme_cubic\n$theme_4\n$theme_dracula\
+\n$theme_6\n$theme_forest\n$theme_8\n$theme_9\n$theme_11\n$theme_12\
+\n$theme_13\n$theme_nord\n$theme_nordic\n$theme_otis\n$theme_15\
+\n$theme_16\n$theme_17\n$theme_18\n$theme_sweet\n$theme_19\n$theme_tron\n$theme_20"
+
+## Apply theme
+set_style() {
+	# apply color-scheme
+	cat "$THEMEDIR"/${1}.bash > "$THEMEDIR"/current.bash
+	echo "\n# Don't Delete This File" >> "$THEMEDIR"/current.bash
+
+    # apply wallpaper
+	feh --bg-scale --no-xinerama /usr/share/backgrounds/${1}.png
+	
+	# set gtk theme, icons and cursor
+	if [[ `pidof xsettingsd` ]]; then
+		sed -i -e "s|Net/ThemeName .*|Net/ThemeName \"$2\"|g" ${XFILE}
+		sed -i -e "s|Net/IconThemeName .*|Net/IconThemeName \"$3\"|g" ${XFILE}
+		sed -i -e "s|Gtk/CursorThemeName .*|Gtk/CursorThemeName \"$4\"|g" ${XFILE}
+	else
+		sed -i -e "s/gtk-theme-name=.*/gtk-theme-name=\"$2\"/g" ${HOME}/.gtkrc-2.0
+		sed -i -e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=\"$3\"/g" ${HOME}/.gtkrc-2.0
+		sed -i -e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=\"$4\"/g" ${HOME}/.gtkrc-2.0
+		
+		sed -i -e "s/gtk-theme-name=.*/gtk-theme-name=$2/g" ${CFGDIR}/gtk-3.0/settings.ini
+		sed -i -e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$3/g" ${CFGDIR}/gtk-3.0/settings.ini
+		sed -i -e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$4/g" ${CFGDIR}/gtk-3.0/settings.ini
+
+   		sed -i -e "s/gtk-theme-name=.*/gtk-theme-name=$2/g" ${CFGDIR}/gtk-4.0/settings.ini
+		sed -i -e "s/gtk-icon-theme-name=.*/gtk-icon-theme-name=$3/g" ${CFGDIR}/gtk-4.0/settings.ini
+		sed -i -e "s/gtk-cursor-theme-name=.*/gtk-cursor-theme-name=$4/g" ${CFGDIR}/gtk-4.0/settings.ini
+
+	fi
+	
+# reload config
+	i3-msg restart
+#    polybar-msg cmd restart
+}
 
 chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
+    $theme_1)
+        set_style  'beach' 'Gruvbox' 'Mint-Y-Teal' 'Qogir-manjaro-dark'
+        ;;
+    $theme_2)
+        set_style  'blade' 'Blade' 'Nordic-Folders' 'LyraS'
+        ;;
+    $theme_3)
+        set_style  'bouquet' 'Juno-mirage' 'Luna-Dark' 'Future-dark'
+        ;;
+    $theme_4)
+        set_style  'cyberpunk' 'Cyberpunk' 'Archcraft-Dark' 'LyraB'
+        ;;
+    $theme_6)
+        set_style  'flowers' 'Kripton' 'Zafiro' 'Fluent-dark'
+        ;;
+    $theme_8)
+        set_style  'groot' 'Groot' 'Luna-Dark' 'Pear'
+        ;;
+    $theme_9)
+        set_style  'gruvbox' 'Gruvbox' 'Luna-Dark' 'Future-dark'
+        ;;
+    $theme_11)
+        set_style  'keyboards' 'Sweet-Dark' 'Zafiro-Purple' 'Sweet'
+        ;;
+    $theme_12)
+        set_style  'light' 'White' 'Arc-Circle' 'Fluent-dark'
+        ;;
+    $theme_13)
+        set_style  'manhattan' 'Manhattan' 'Luv-Folders-Dark' 'Vimix-dark'
+        ;;
+    $theme_15)
+        set_style  'pastel' 'White' 'Qogir' 'Qogirr-dark'
+        ;;
+    $theme_16)
+        set_style  'rick' 'Rick' 'Zafiro' 'Vimix-dark'
+        ;;
+    $theme_17)
+        set_style  'slime' 'Slime' 'Luv-Folders' 'Qogirr-dark'
+        ;;
+    $theme_18)
+        set_style  'spark' 'Spark' 'Luv-Folders' 'Vimix'
+        ;;
+    $theme_19)
+        set_style  'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Vimix'
+        ;;
+    $theme_20)
+        set_style  'wave' 'Wave' 'Luv-Folders-Dark' 'Vimix'
+        ;;
+    $theme_adapta)
+        set_style  'adapta' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
+        ;;
     $theme_cubic)
-        bash ${WMT}/set-theme  'cubic.jpg' 'cubic' 'Hash' 'Paper' 'Adwaita' 'cubic-polybar'
+        set_style  'cubic' 'Hash' 'Paper' 'Adwaita'
         ;;
     $theme_dracula)
-        bash ${WMT}/set-theme  'dracula.png' 'dracula' 'Dracula' 'Dracula' 'Qogir-ubuntu-dark' 'dracula-polybar'
+        set_style  'dracula' 'Dracula' 'Dracula' 'Qogir-ubuntu-dark'
         ;;
     $theme_forest)
-        bash ${WMT}/set-theme  'forest.jpg' 'forest' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark' 'forest-polybar'
+        set_style  'forest' 'Otis-forest' 'Nordic-green' 'Qogir-manjaro-dark'
         ;;
     $theme_otis)
-        bash ${WMT}/set-theme  'otis.png' 'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark' 'otis-polybar'
+        set_style  'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
+        ;;
+    $theme_nord)
+        set_style  'nord' 'Nordic' 'Papirus-Dark' 'Qogir'
         ;;
     $theme_nordic)
-        bash ${WMT}/set-theme  'dwm.png' 'nord' 'Nordic' 'Papirus-Dark' 'Qogir' 'nord-polybar'
+        set_style  'nordic' 'Nordic' 'Papirus-Dark' 'Qogir'
         ;;
     $theme_sweet)
-        bash ${WMT}/set-theme  'hack.png' 'sweet' 'Sweet-Dark' 'Candy' 'Sweet-cursors' 'sweet-polybar'
+        set_style  'sweet' 'Sweet-Dark' 'Candy' 'Sweet-cursors'
+        ;;
+    $theme_tron)
+        set_style  'tron' 'Kripton' 'Hack' 'Nordic-cursors'
         ;;
 esac

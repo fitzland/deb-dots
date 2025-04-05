@@ -1,9 +1,9 @@
 ## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
 ## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
 
-Net/ThemeName "Hash"
-Net/IconThemeName "Paper"
-Gtk/CursorThemeName "Adwaita"
+Net/ThemeName "Otis"
+Net/IconThemeName "Qogir-manjaro-dark"
+Gtk/CursorThemeName "Qogir-manjaro-dark"
 Net/EnableEventSounds "0"
 Net/EnableInputFeedbackSounds "0"
 Xft/DPI "-1"

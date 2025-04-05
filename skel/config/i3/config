@@ -31,24 +31,6 @@ set_from_resource $i3-wm.wallpaper i3-wm.wallpaper ~/images/wallpapers/system/en
 # Uncomment this to disable title bars
 for_window [class=".*"] border pixel 2
 
-###############################################################################
-##  Media Keys  -------------------------------------------------------------##
-###############################################################################
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# audio control
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-
 ##############################
 # extra options for windows: #
 ##############################
@@ -68,29 +50,29 @@ title_align center
 ##  Session Management  -----------------------------------------------------##
 ###############################################################################
 
-## Session // Exit App // <> <Shift> q ##
+## Session // Exit App // $mod <Shift> q ##
 set_from_resource $i3-wm.binding.exit_app i3-wm.binding.exit_app Shift+q
 bindsym $mod+$i3-wm.binding.exit_app [con_id="__focused__"] kill
 
-## Session // Terminate App // <> <Alt> q ##
+## Session // Terminate App // $mod <Alt> q ##
 set_from_resource $i3-wm.binding.kill_app i3-wm.binding.kill_app q
 bindsym $mod+$alt+$i3-wm.binding.kill_app [con_id="__focused__"] exec --no-startup-id kill -9 $(xdotool getwindowfocus getwindowpid)
 
-## Session // Reload i3 Config // <> <Shift> c ##
+## Session // Reload i3 Config // $mod <Shift> c ##
 set_from_resource $i3-wm.binding.reload i3-wm.binding.reload Shift+c
 bindsym $mod+$i3-wm.binding.reload reload
 
-## Session // Restart i3 // <> <Shift> r ##
+## Session // Restart i3 // $mod <Shift> r ##
 set_from_resource $i3-wm.binding.restart i3-wm.binding.restart Shift+r
 bindsym $mod+$i3-wm.binding.restart restart
 
 ## Lock the system
 # lock with a picture:
-bindsym $mod+k exec i3lock -i ~/.config/i3/wallpapers/i3-lock-screen.png -p default|win -t
+#bindsym $mod+k exec i3lock -i ~/.config/i3/wallpapers/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
-#bindsym $mod+k exec ~/.config/i3/scripts/blur-lock
+bindsym $mod+k exec ~/.config/i3/bin/blur-lock
 
-## Session // Powermenu // <> x ##
+## Session // Powermenu // $mod x ##
 set_from_resource $i3-wm.binding.logout i3-wm.binding.logout x
 bindsym $mod+$i3-wm.binding.logout exec sh ~/.config/i3/rofi/bin/powermenu
 
@@ -98,17 +80,17 @@ bindsym $mod+$i3-wm.binding.logout exec sh ~/.config/i3/rofi/bin/powermenu
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Backup exit
-# Press ctrl+alt+delete - check toolbar for next choices
-bindsym Ctrl+$alt+Delete mode "$mode_system"
+# Press ctrl+alt+x - check toolbar for next choices
+bindsym Ctrl+$alt+x mode "$mode_system"
 
 set $mode_system System (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown
 mode "$mode_system" {
-    bindsym k exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit.sh hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown, mode "default"
+    bindsym k exec --no-startup-id ~/.config/i3/bin/i3exit.sh lock, mode "default"
+    bindsym l exec --no-startup-id ~/.config/i3/bin/i3exit.sh logout, mode "default"
+    bindsym u exec --no-startup-id ~/.config/i3/bin/i3exit.sh suspend, mode "default"
+    bindsym h exec --no-startup-id ~/.config/i3/bin/i3exit.sh hibernate, mode "default"
+    bindsym r exec --no-startup-id ~/.config/i3/bin/i3exit.sh reboot, mode "default"
+    bindsym s exec --no-startup-id ~/.config/i3/bin/i3exit.sh shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -134,20 +116,43 @@ bindsym $mod+s layout stacking; exec notify-send 'container layout stacking'
 bindsym $mod+w layout tabbed; exec notify-send 'container layout tabbed'
 bindsym $mod+e layout toggle split
 
+workspace_layout tabbed
+
 ## toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 ## change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-## Navigate // Relative Parent // <> a ##/
+## Navigate // Relative Parent // $mod a ##/
 set_from_resource $i3-wm.binding.focus_parent i3-wm.binding.focus_parent a
 bindsym $mod+$i3-wm.binding.focus_parent focus parent
 
-## Navigate // Relative Child // <> z ##/
+## Navigate // Relative Child // $mod z ##/
 set_from_resource $i3-wm.binding.focus_child i3-wm.binding.focus_child z
 bindsym $mod+$i3-wm.binding.focus_child focus child
 
+###############################################################################
+##  Media Keys  -------------------------------------------------------------##
+###############################################################################
+
+# volume
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
+# mute
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# audio control
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Power Profiles menu switcher (rofi)
+bindsym $mod+Shift+p exec ~/.config/i3/bin/power-profiles
 
 ###############################################################################
 ##  Workspace Names  --------------------------------------------------------##
@@ -169,9 +174,9 @@ set_from_resource $ws0 i3-wm.workspace.10.name "10:media"
 ##  Output Labels  ----------------------------------------------------------##
 ###############################################################################
 
-set $firstMonitor DP-4
+set $firstMonitor DP-2
 #set $firstMonitor DP-5
-set $secondMonitor DP-2
+set $secondMonitor DP-1
 #set $secondMonitor DP-7
 
 
@@ -191,13 +196,19 @@ workspace $ws0 output $secondMonitor
 ##  Window and Workspace Navigation  ----------------------------------------##
 ###############################################################################
 
-## Navigate // Relative Window // <> ← ↓ ↑ → ##
+## Navigate // Relative Window // $mod ← ↓ ↑ → ##
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-## Navigate // switch to workspace // <> 0..9 ##
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+## Navigate // switch to workspace // $mod 0..9 ##
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -209,7 +220,32 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws0
 
-## Navigate // move focused container to workspace // <> <Shift> 0..9 ##
+# switch to workspace with numpad keys
+bindcode $mod+87 workspace $ws1
+bindcode $mod+88 workspace $ws2
+bindcode $mod+89 workspace $ws3
+bindcode $mod+83 workspace $ws4
+bindcode $mod+84 workspace $ws5
+bindcode $mod+85 workspace $ws6
+bindcode $mod+79 workspace $ws7
+bindcode $mod+80 workspace $ws8
+bindcode $mod+81 workspace $ws9
+bindcode $mod+90 workspace $ws0
+
+# switch to workspace with numlock numpad keys
+bindcode $mod+Mod2+87 workspace $ws1
+bindcode $mod+Mod2+88 workspace $ws2
+bindcode $mod+Mod2+89 workspace $ws3
+bindcode $mod+Mod2+83 workspace $ws4
+bindcode $mod+Mod2+84 workspace $ws5
+bindcode $mod+Mod2+85 workspace $ws6
+bindcode $mod+Mod2+79 workspace $ws7
+bindcode $mod+Mod2+80 workspace $ws8
+bindcode $mod+Mod2+81 workspace $ws9
+bindcode $mod+Mod2+90 workspace $ws0
+
+
+## Navigate // move focused container to workspace // $mod <Shift> 0..9 ##
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -221,50 +257,75 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws0
 
-## Navigate // Next Workspace // <> o ##
+# move focused container to workspace with numpad keys
+bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1; workspace $ws1
+bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2; workspace $ws2
+bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3; workspace $ws3
+bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4; workspace $ws4
+bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5; workspace $ws5
+bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6; workspace $ws6
+bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7; workspace $ws7
+bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8; workspace $ws8
+bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9; workspace $ws9
+bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws0; workspace $ws0
+
+# move focused container to workspace with numpad keys
+bindcode $mod+Shift+87 	 move container to workspace  $ws1; workspace $ws1
+bindcode $mod+Shift+88 	 move container to workspace  $ws2; workspace $ws2
+bindcode $mod+Shift+89 	 move container to workspace  $ws3; workspace $ws3
+bindcode $mod+Shift+83 	 move container to workspace  $ws4; workspace $ws4
+bindcode $mod+Shift+84 	 move container to workspace  $ws5; workspace $ws5
+bindcode $mod+Shift+85 	 move container to workspace  $ws6; workspace $ws6
+bindcode $mod+Shift+79 	 move container to workspace  $ws7; workspace $ws7
+bindcode $mod+Shift+80 	 move container to workspace  $ws8; workspace $ws8
+bindcode $mod+Shift+81 	 move container to workspace  $ws9; workspace $ws9
+bindcode $mod+Shift+90 	 move container to workspace  $ws0; workspace $ws0
+
+
+## Navigate // Next Workspace // <Win> o ##
 set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next o
 bindsym $mod+$i3-wm.binding.ws_next workspace next
 
-## Navigate // move focsed container workspace next // <> <Shift> o ##
+## Navigate // move focused container workspace next // <Win> <Shift> o ##
 set_from_resource $i3-wm.binding.ws_next_move i3-wm.binding.ws_next_move Shift+o
 bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; workspace next
 
-## Navigate // Next Workspace // <> <Alt> → ##
+## Navigate // Next Workspace // <Win> <Alt> Right ##
 set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Right
 bindsym $mod+$alt+$i3-wm.binding.ws_next2 workspace next
 
-## Navigate // move focused container workspace next // <> <Ctrl> → ##
+## Navigate // move focused container workspace next // <Win> <Ctrl> Right ##
 set_from_resource $i3-wm.binding.ws_next_move2 i3-wm.binding.ws_next_move2 Ctrl+Right
 bindsym $mod+$i3-wm.binding.ws_next_move2 move container to workspace next; workspace next
 
-## Navigate // Previous Workspace // <> i ##
+## Navigate // Previous Workspace // <Win> i ##
 set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev i
 bindsym $mod+$i3-wm.binding.ws_prev workspace prev
 
-## Navigate // move focused container workspace next // <> <Shift> i ##
+## Navigate // move focused container workspace next // <Win> <Shift> i ##
 set_from_resource $i3-wm.binding.ws_prev_move i3-wm.binding.ws_prev_move Shift+i
 bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; workspace prev
 
-## Navigate // Previous Workspace // <><Alt> ← ##
+## Navigate // Previous Workspace // <Win><Alt> Left ##
 set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Left
 bindsym $mod+$alt+$i3-wm.binding.ws_prev2 workspace prev
 
-## Navigate // move focused container workspace prev // <> <Ctrl> ← ##
+## Navigate // move focused container workspace prev // <Win> <Ctrl> Left ##
 set_from_resource $i3-wm.binding.ws_prev_move2 i3-wm.binding.ws_prev_move2 Ctrl+Left
 bindsym $mod+$i3-wm.binding.ws_prev_move2 move container to workspace next; workspace next
 
-## Navigate // move container output next // <> comma ##
+## Navigate // move container output next // <Win> comma ##
 set_from_resource $i3-wm.binding.ws_output_next i3-wm.binding.ws_output_next comma
 bindsym $mod+$i3-wm.binding.ws_output_next move container to output next
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 
-## Navigate // Scratchpad // <> minus ##
+## Navigate // Scratchpad // <Win> minus ##
 set_from_resource $i3-wm.binding.scratchpad i3-wm.binding.scratchpad minus
 bindsym $mod+$i3-wm.binding.scratchpad scratchpad show
 
-## Navigate // Urgent Workspace // <> u ##
+## Navigate // Urgent Workspace // <Win> u ##
 set_from_resource $i3-wm.binding.urgent_workspace i3-wm.binding.urgent_workspace u
 bindsym $mod+$i3-wm.binding.urgent_workspace [urgent=latest] focus
 
@@ -275,11 +336,12 @@ bindsym $mod+$i3-wm.binding.urgent_workspace [urgent=latest] focus
 
 # bind program to workspace and focus to them on startup:
 assign [class="X-terminal-emulator|Gnome-terminal|Guake|Alacritty|xterm"] $ws1
-assign [class="Atom|Code|Xed"] $ws2
+assign [class="Atom|Code|Xed|code-oss"] $ws2
 assign [class="Soffice|Gnucash"] $ws3
 assign [class="Gimp*|Inkscape"] $ws4
-assign [class="(?i)firefox|KeePassXC|TelegramDesktop"] $ws5
-assign [class="Google-chrome|Microsoft-edge"] $ws6
+assign [class="(?i)firefox|KeePassXC|Microsoft-edge"] $ws5
+assign [class="Google-chrome"] $ws6
+assign [class="TelegramDesktop|Discord"] $ws7
 assign [class="Nautilus|Thunar"] $ws8
 assign [class="Spotify|spotify"] $ws0
 for_window [class="Spotify"] move to workspace $ws0
@@ -297,7 +359,7 @@ for_window [class="VirtualBox Manager|qemu|Qemu-system-x86_64"] floating enable
 
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=Alacritty|Gnome-terminal|Guake|UXTERM] focus
-for_window [class=Atom|Code|Xed] focus
+for_window [class=Atom|Code|Xed|code-oss] focus
 for_window [class="^(?i)libreoffice-*"] focus
 for_window [class=(?i)firefox] focus
 for_window [class=Gimp] focus
@@ -453,13 +515,26 @@ client.background         $background
 #	}
 #}
 
-#############################################
-# autostart applications/services on login: #
-#############################################
+###############################################################################
+##  autostart applications/services on login  -------------------------------##
+###############################################################################
 
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-#exec --no-startup-id dex --autostart --environment i3
+# num lock activated
+exec_always --no-startup-id numlockx on
+
+exec --no-startup-id setxkbmap -option compose:rctrl
+
+#get auth work with polkit agent
+exec --no-startup-id /usr/bin/lxpolkit &
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Set display from arandr saved script
+exec --no-startup-id sh ~/.screenlayout/monitor-debian.sh
+
+## Set wallpaper
+#exec --no-startup-id feh --no-xinerama --no-fehbg --bg-scale $i3-wm.wallpaper
+exec --no-startup-id ~/.fehbg
+#hsetroot -cover ~/.config/i3/wallpapers/default.png
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -467,19 +542,11 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 # disable power saving (for example if using xscreensaver)
 #exec --no-startup-id xset -dpms
 
-# num lock activated
-#exec --no-startup-id numlockx on
-
-#exec --no-startup-id setxkbmap -option compose:rctrl &
-
-## Set wallpaper
-exec --no-startup-id feh --no-xinerama --no-fehbg --bg-scale $i3-wm.wallpaper
-#hsetroot -cover ~/.config/i3/wallpapers/default.png
-
-# polkit agent
-#exec --no-startup-id /usr/bin/lxpolkit
 # Set color scheme
 exec_always --no-startup-id ~/.config/i3/bin/i3colors.sh
+
+# Launch key daemon
+#exec --no-startup-id sxhkd -c ~/.config/i3/sxhkd/sxhkdrc
 
 # Launch notification daemon
 exec --no-startup-id ~/.config/i3/bin/i3dunst.sh
@@ -490,65 +557,73 @@ exec_always --no-startup-id ~/.config/i3/bin/i3bar.sh
 # Launch compositor
 exec --no-startup-id ~/.config/i3/bin/i3comp.sh
 
-exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
+#exec_always --no-startup-id ~/.config/i3/bin/autostart.sh
 
 ###############################################################################
 ##  system tray  ------------------------------------------------------------##
 ###############################################################################
 
-# Autostart apps as you like
-exec --no-startup-id sleep 2 && dropbox start
+# if you do not use dex: you need to have tray apps started manually one by one:
+# Start XDG autostart .desktop files using dex. 
+# See also https://wiki.archlinux.org/index.php/XDG_Autostart
+#exec --no-startup-id dex --autostart --environment i3
 
-# if you do not use dex: exec --no-startup-id dex --autostart --environment i3
-# you need to have tray apps started manually one by one:
+# Autostart apps as you like
+exec --no-startup-id sleep 10 && dropbox start
+
+# Updater
+#exec --no-startup-id pamac-tray
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
 
 # start blueberry app for managing bluetooth devices from tray:
-exec --no-startup-id blueberry-tray
+exec --no-startup-id blueman-applet
+
+# start firewall app:
+exec --no-startup-id firewall-applet
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-## Launch // Theme Chooser // <Alt> <Ctrl> t ##
-set_from_resource $i3-wm.binding.theme i3-wm.binding.theme Ctrl+t
-bindsym $alt+$i3-wm.binding.theme exec --no-startup-id sh ~/.config/i3/rofi/bin/themes
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/bin/blur-lock-emf --nofork
 
 ###############################################################################
 ##  Base launchers  ---------------------------------------------------------##
 ###############################################################################
 
+## Launch // Theme Chooser // <Alt> <Ctrl> t ##
+set_from_resource $i3-wm.binding.theme i3-wm.binding.theme Ctrl+t
+bindsym $alt+$i3-wm.binding.theme exec --no-startup-id sh ~/.config/i3/rofi/bin/themes
+
 # Load stylesheet if exists
 set_from_resource $rofi.stylesheet rofi.stylesheet
 
-## Launch // dmenu // <> d ##
+## Launch // dmenu // $mod d ##
 # start dmenu (a program launcher)
 set_from_resource $i3-wm.binding.dmenu i3-wm.binding.dmenu d
 bindsym $mod+$i3-wm.binding.dmenu exec --no-startup-id dmenu_run -m 1 -p dmenu:
 
-## Launch // Terminal // <> Return ##
+## Launch // Terminal // $mod Return ##
 set_from_resource $i3-wm.binding.terminal i3-wm.binding.terminal Return
-bindsym $mod+$i3-wm.binding.terminal exec --no-startup-id i3-sensible-terminal
+bindsym $mod+$i3-wm.binding.terminal exec --no-startup-id ~/.config/i3/bin/i3term.sh
 
-## Launch // File Manager // <> <Shift> Return ##
+## Launch // File Manager // $mod <Shift> Return ##
 set_from_resource $i3-wm.binding.filemgr i3-wm.binding.filemgr Shift+Return
 bindsym $mod+$i3-wm.binding.filemgr exec --no-startup-id thunar
 
-## Launch // Application // <> slash ##
+## Launch // Application // $mod slash ##
 set_from_resource $i3-wm.binding.launcher.app i3-wm.binding.launcher.app slash
 bindsym $mod+$i3-wm.binding.launcher.app exec --no-startup-id sh ~/.config/i3/rofi/bin/launcher-app
 
-## Navigate // Window by Name // <> <Shift> slash ##
+## Navigate // Window by Name // $mod <Shift> slash ##
 set_from_resource $i3-wm.binding.launcher.window i3-wm.binding.launcher.window Shift+slash
 bindsym $mod+$i3-wm.binding.launcher.window exec --no-startup-id sh ~/.config/i3/rofi/bin/windows
 
-## Launch // Command // <> backslash ##
+## Launch // Command // $mod backslash ##
 set_from_resource $i3-wm.binding.launcher.cmd i3-wm.binding.launcher.cmd backslash
 bindsym $mod+$i3-wm.binding.launcher.cmd exec --no-startup-id sh ~/.config/i3/rofi/bin/launcher-cmd
 
@@ -557,82 +632,64 @@ bindsym $mod+$i3-wm.binding.launcher.cmd exec --no-startup-id sh ~/.config/i3/ro
 ##  Function Key Launchers  -------------------------------------------------##
 ###############################################################################
 
-## Launch // IDE // Primary <> F2 ##
-set_from_resource $i3-wm.binding.ide.primary i3-wm.binding.ide.primary F2
-bindsym $mod+$i3-wm.binding.ide.primary exec --no-startup-id code
+## Launch // IDE // Primary ##
+bindsym $mod+F2 exec --no-startup-id code
 
-## Launch // IDE // Secondary <> <Shift> F2 ##
-set_from_resource $i3-wm.binding.ide.secondary i3-wm.binding.ide.secondary Shift+F2
-bindsym $mod+$i3-wm.binding.ide.secondary exec --no-startup-id atom
+## Launch // IDE // Secondary ##
+bindsym $mod+Shift+F2 exec --no-startup-id xed
 
-## Launch // Graphix // Primary <> F3 ##
-set_from_resource $i3-wm.binding.graphix.primary i3-wm.binding.graphix.primary F3
-bindsym $mod+$i3-wm.binding.graphix.primary exec --no-startup-id inkscape
+## Launch // Office // Primary ##
+#bindsym $mod+F3 exec --no-startup-id lowriter
 
-## Launch // Graphix // Secondary <> <Shift> F3 ##
-set_from_resource $i3-wm.binding.graphix.secondary i3-wm.binding.graphix.secondary Shift+F3
-bindsym $mod+$i3-wm.binding.graphix.secondary exec --no-startup-id gimp
+## Launch // Office // Secondary ##
+#bindsym $mod+Shift+F3 exec --no-startup-id localc
 
-## Launch // Office // Primary <> F4 ##
-set_from_resource $i3-wm.binding.office.primary i3-wm.binding.office.primary F4
-bindsym $mod+$i3-wm.binding.office.primary exec --no-startup-id lowriter
+## Launch // Graphix // Primary ##
+#bindsym $mod+F4 exec --no-startup-id inkscape
 
-## Launch // Office // Secondary <> <Shift> F4 ##
-set_from_resource $i3-wm.binding.office.secondary i3-wm.binding.office.secondary Shift+F4
-bindsym $mod+$i3-wm.binding.office.secondary exec --no-startup-id localc
+## Launch // Graphix // Secondary ##
+#bindsym $mod+Shift+F4 exec --no-startup-id gimp
 
-## Launch // Music // Primary <> F5 ##
-set_from_resource $i3-wm.binding.music.primary i3-wm.binding.music.primary F5
-bindsym $mod+$i3-wm.binding.music.primary exec --no-startup-id spotify
+## Launch // Music // Primary ##
+bindsym $mod+F5 exec --no-startup-id spotify
 
-## Launch // Music // Secondary <> <Shift> F5 ##
-set_from_resource $i3-wm.binding.music.secondary i3-wm.binding.music.secondary Shift+F5
-bindsym $mod+$i3-wm.binding.music.secondary exec --no-startup-id quodlibet
+## Launch // Music // Secondary ##
+bindsym $mod+Shift+F5 exec --no-startup-id quodlibet
 
-## Launch // Utility // Primary <> F6 ##
-set_from_resource $i3-wm.binding.utility.primary i3-wm.binding.utility.primary F6
-bindsym $mod+$i3-wm.binding.utility.primary exec --no-startup-id gnucash
+## Launch // Utility // Primary ##
+bindsym $mod+F6 exec --no-startup-id gnucash
 
-## Launch // Utility // Secondary <> <Shift> F6 ##
-set_from_resource $i3-wm.binding.utility.secondary i3-wm.binding.utility.secondary Shift+F6
-bindsym $mod+$i3-wm.binding.utility.secondary exec --no-startup-id meld
+## Launch // Utility // Secondary ##
+bindsym $mod+Shift+F6 exec --no-startup-id meld
 
-## Launch // Password // Primary <> F7 ##
-set_from_resource $i3-wm.binding.password.primary i3-wm.binding.password.primary F7
-bindsym $mod+$i3-wm.binding.password.primary exec --no-startup-id keepassxc ~/Dropbox/journal/home.kdbx
+## Launch // Password // Primary ##
+bindsym $mod+F7 exec --no-startup-id keepassxc ~/Dropbox/journal/home.kdbx
 
-## Launch // Password // Secondary <> <Shift> F7 ##
-set_from_resource $i3-wm.binding.password.secondary i3-wm.binding.password.secondary Shift+F7
-bindsym $mod+$i3-wm.binding.password.secondary exec --no-startup-id keepassxc ~/Dropbox/journal/work.kdbx
+## Launch // Password // Secondary F7 ##
+bindsym $mod+Shift+F7 exec --no-startup-id keepassxc ~/Dropbox/journal/work.kdbx
 
-## Launch // Markdown // Primary <> F9 ##
-set_from_resource $i3-wm.binding.markdown.primary i3-wm.binding.markdown.primary F9
-bindsym $mod+$i3-wm.binding.markdown.primary exec --no-startup-id ghostwriter
+## Launch // Markdown // Primary ##
+bindsym $mod+F8 exec --no-startup-id thunar
 
-## Launch // Markdown // Secondary <> <Shift> F9 ##
-set_from_resource $i3-wm.binding.markdown.secondary i3-wm.binding.markdown.secondary Shift+F9
-bindsym $mod+$i3-wm.binding.markdown.secondary exec --no-startup-id typora
+## Launch // Markdown // Secondary ##
+bindsym $mod+Shift+F8 exec --no-startup-id ghostwriter
 
-## Launch // Browser // Mozilla // Primary <> F10 ##
-set_from_resource $i3-wm.binding.browser.mozilla.primary i3-wm.binding.browser.mozilla.primary F10
-bindsym $mod+$i3-wm.binding.browser.mozilla.primary exec --no-startup-id firefox
+## Launch // Browser // Mozilla // Primary ##
+bindsym $mod+F10 exec --no-startup-id firefox-devedition
+#bindsym $mod+F10 exec --no-startup-id firefox-developer-edition
 
-## Launch // Browser // Mozilla // Secondary <> <Shift> F10 ##
-set_from_resource $i3-wm.binding.browser.mozilla.secondary i3-wm.binding.browser.mozilla.secondary Shift+F10
-bindsym $mod+$i3-wm.binding.browser.mozilla.secondary exec --no-startup-id firefox --private window
+## Launch // Browser // Mozilla // Secondary ##
+bindsym $mod+Shift+F10 exec --no-startup-id firefox-devedition --private-window
+#bindsym $mod+Shift+F10 exec --no-startup-id firefox-developer-edition --private-window
 
-## Launch // Browser // Microsoft // Primary <> F11 ##
-set_from_resource $i3-wm.binding.browser.micosoft.primary i3-wm.binding.browser.microsoft.primary F11
-bindsym $mod+$i3-wm.binding.browser.microsoft.primary exec --no-startup-id microsoft-edge-stable --profile-directory='Default'
+## Launch // Browser // Microsoft // Primary ##
+bindsym $mod+F11 exec --no-startup-id microsoft-edge-stable --profile-directory='Default'
 
-## Launch // Browser // Microsoft // Secondary <> <Shift> F11 ##
-set_from_resource $i3-wm.binding.browser.microsoft.secondary i3-wm.binding.browser.microsoft.secondary Shift+F11
-bindsym $mod+$i3-wm.binding.browser.microsoft.secondary exec --no-startup-id microsoft-edge-stable --profile-directory='Profile 1'
+## Launch // Browser // Microsoft // Secondary ##
+bindsym $mod+Shift+F11 exec --no-startup-id microsoft-edge-stable --profile-directory='Profile 1'
 
-## Launch // Browser // Google // Primary <> F12 ##
-set_from_resource $i3-wm.binding.browser.google.primary i3-wm.binding.browser.google.primary F12
-bindsym $mod+$i3-wm.binding.browser.google.primary exec --no-startup-id google-chrome-stable --profile-directory='Default'
+## Launch // Browser // Google // Primary ##
+bindsym $mod+F12 exec --no-startup-id google-chrome-stable --profile-directory='Default'
 
-## Launch // Browser // Google // Secondary <> <Shift> F12 ##
-set_from_resource $i3-wm.binding.browser.google.secondary i3-wm.binding.browser.google.secondary Shift+F12
-bindsym $mod+$i3-wm.binding.browser.google.secondary exec --no-startup-id google-chrome-stable --profile-directory='Profile 1'
+## Launch // Browser // Google // Secondary ##
+bindsym $mod+Shift+F12 exec --no-startup-id google-chrome-stable --profile-directory='Profile 1'

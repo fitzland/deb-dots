@@ -34,10 +34,10 @@ include-file = ~/.config/i3/polybar/decor
 ; If unspecified, the application will pick the first one it finds.
 ; $ polybar -m | cut -d ':' -f 1
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = DP-4
+monitor = DP-2
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-5
+monitor-fallback = DP-4
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes reports my monitor as being disconnected (when in use)
@@ -68,10 +68,10 @@ offset-x = 0%
 offset-y = 0%
 
 ; Background ARGB color (e.g. #f00, #ff992a, #ddff1023)
-background = ${color.BG}
+background = ${color.BACKGROUND}
 
 ; Foreground ARGB color (e.g. #f00, #ff992a, #ddff1023)
-foreground = ${color.FG}
+foreground = ${color.FOREGROUND}
 
 ; Background gradient (vertical steps)
 ;   background-[0-9]+ = #aarrggbb
@@ -104,7 +104,7 @@ line-color = ${color.BLUE}
 ; following horizontal space on the bar:
 ;   width - border-right-size - border-left-size
 border-size = 2
-border-color = ${color.BG}
+border-color = ${color.BACKGROUND}
 
 ; Number of spaces to add at the beginning/end of the bar
 ; Individual side values can be defined using:
@@ -193,7 +193,7 @@ tray-maxsize = 16
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
 ; By default the tray container will use the bar
 ; background color.
-tray-background = ${color.BG}
+tray-background = ${color.BACKGROUND}
 
 ; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 tray-offset-x = 0
@@ -264,10 +264,10 @@ cursor-scroll =
 ; If unspecified, the application will pick the first one it finds.
 ; $ polybar -m | cut -d ':' -f 1
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = DP-2
+monitor = DP-1
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-7
+monitor-fallback = DP-3
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes reports my monitor as being disconnected (when in use)
@@ -298,10 +298,10 @@ offset-x = 0%
 offset-y = 0%
 
 ; Background ARGB color (e.g. #f00, #ff992a, #ddff1023)
-background = ${color.BG}
+background = ${color.BACKGROUND}
 
 ; Foreground ARGB color (e.g. #f00, #ff992a, #ddff1023)
-foreground = ${color.FG}
+foreground = ${color.FOREGROUND}
 
 ; Background gradient (vertical steps)
 ;   background-[0-9]+ = #aarrggbb
@@ -334,12 +334,12 @@ line-color = ${color.BLUE}
 ; following horizontal space on the bar:
 ;   width - border-right-size - border-left-size
 border-size = 2
-border-color = ${color.BG}
+border-color = ${color.BACKGROUND}
 
 ; Number of spaces to add at the beginning/end of the bar
 ; Individual side values can be defined using:
 ;   padding-{left,right}
-padding = 0
+padding = 2
 
 ; Number of spaces to add before/after each module
 ; Individual side values can be defined using:
@@ -420,7 +420,7 @@ tray-maxsize = 16
 ; ARGB color (e.g. #f00, #ff992a, #ddff1023)
 ; By default the tray container will use the bar
 ; background color.
-tray-background = ${color.BG}
+tray-background = ${color.BACKGROUND}
 
 ; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 tray-offset-x = 0

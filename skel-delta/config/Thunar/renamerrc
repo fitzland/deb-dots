@@ -1,22 +1,22 @@
 [Configuration]
 LastActiveMode=THUNAR_RENAMER_MODE_BOTH
-LastActiveRenamer=ThunarSbrInsertRenamer
-
-[ThunarSbrReplaceRenamer]
-CaseSensitive=FALSE
-Replacement=8366
-Pattern=8366-
-Regexp=FALSE
-
-[ThunarSbrNumberRenamer]
-TextMode=THUNAR_SBR_TEXT_MODE_TN
-Text=sf-lemons-
-Mode=THUNAR_SBR_NUMBER_MODE_010203
-Start=1
+LastActiveRenamer=ThunarSbrReplaceRenamer
 
 [ThunarSbrInsertRenamer]
 Offset=0
-Text=.conf
+Text=-jag
 Mode=THUNAR_SBR_INSERT_MODE_INSERT
 OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
+[ThunarSbrNumberRenamer]
+TextMode=THUNAR_SBR_TEXT_MODE_TN
+Text=esther-
+Mode=THUNAR_SBR_NUMBER_MODE_010203
+Start=09
+
+[ThunarSbrReplaceRenamer]
+CaseSensitive=FALSE
+Replacement=-
+Pattern=_
+Regexp=FALSE
 

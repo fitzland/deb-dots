@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+## launch rdesktop 
+
+rdesktop -u user -k en-us 192.168.4.229
+
+exit

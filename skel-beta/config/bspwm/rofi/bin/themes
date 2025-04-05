@@ -27,6 +27,9 @@ set_style() {
 	# apply color-scheme
 	cat "$THEMEDIR"/${1}.bash > "$THEMEDIR"/current.bash
 	echo "\n# Don't Delete This File" >> "$THEMEDIR"/current.bash
+
+    # apply wallpaper
+    feh --bg-scale --no-xinerama /usr/share/backgrounds/${1}.png
 	
 	# set gtk theme, icons and cursor
 	if [[ `pidof xsettingsd` ]]; then
@@ -52,7 +55,7 @@ set_style() {
 	bspc wm -r
 }
 
-chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
+chosen="$(echo -e "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
     $theme_adapta)
         set_style  'adapta' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'

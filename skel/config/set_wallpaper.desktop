@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Exec=/usr/bin/set_default_kde_wallpaper-mx.sh
-Hidden=true
-NoDisplay=false
-Name=Set Wallpaper
-OnlyShowIn=KDE;

@@ -5,7 +5,7 @@
 ## Autostart Programs
 
 # Set display from arandr saved script
-sh ~/.screenlayout/monitor.sh &
+#sh ~/.screenlayout/monitor.sh &
 
 # Kill already running process
 _ps=(picom dunst lxpolkit mpd)
@@ -16,24 +16,24 @@ for _prs in "${_ps[@]}"; do
 done
 
 # num lock activated
-exec --no-startup-id numlockx on
+#exec --no-startup-id numlockx on
 
 # Set Compose key
-setxkbmap -option compose:rctrl &
+#setxkbmap -option compose:rctrl &
 
 # Fix cursor
-xsetroot -cursor_name left_ptr
+#xsetroot -cursor_name left_ptr
 
 # polkit agent
-if [[ ! `pidof lxpolkit` ]]; then
-	/usr/bin/lxpolkit &
-fi
+#if [[ ! `pidof lxpolkit` ]]; then
+#	/usr/bin/lxpolkit &
+#fi
 
 # Launch keybindings daemon
 #sxhkd -c $HOME/.config/i3/sxhkdrc &
 
 # Start dropbox
-exec dropbox start &
+#exec dropbox start &
 
 # set wallpaper
 #exec --no-startup-id sleep 2 && nitrogen --restore

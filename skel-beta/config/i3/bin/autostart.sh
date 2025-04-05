@@ -16,13 +16,13 @@ for _prs in "${_ps[@]}"; do
 done
 
 # num lock activated
-exec --no-startup-id numlockx on
+#exec --no-startup-id numlockx on
 
 # Set Compose key
-setxkbmap -option compose:rctrl &
+#setxkbmap -option compose:rctrl &
 
 # Fix cursor
-xsetroot -cursor_name left_ptr
+#xsetroot -cursor_name left_ptr
 
 # polkit agent
 if [[ ! `pidof lxpolkit` ]]; then
@@ -30,19 +30,22 @@ if [[ ! `pidof lxpolkit` ]]; then
 fi
 
 # Launch keybindings daemon
-#sxhkd -c $HOME/.config/i3/sxhkdrc &
+sxhkd -c $HOME/.config/i3/sxhkdrc &
 
 # Start dropbox
-exec dropbox start &
+#exec dropbox start &
 
 # set wallpaper
 #exec --no-startup-id sleep 2 && nitrogen --restore
 
+# Launch colors
+#~/.config/i3/bin/i3colors.sh
+
 # Launch notification daemon
-~/.config/i3/bin/i3dunst.sh
+#~/.config/i3/bin/i3dunst.sh
 
 # Launch polybar
-~/.config/i3/bin/i3bar.sh
+#~/.config/i3/bin/i3bar.sh
 
 # Launch compositor
-~/.config/i3/bin/i3comp.sh
+#~/.config/i3/bin/i3comp.sh

@@ -1,0 +1,37 @@
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+
+## Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+  #  family: "Iosevka Nerd Font"
+    family: "Fira Mono"
+    #style: Regular
+
+  # Bold font face
+  bold:
+    family: "Fira Mono"
+    #style: Bold
+
+  # Italic font face
+  italic:
+    family: "Fira Mono"
+    #style: Italic
+
+  # Bold italic font face
+  bold_italic:
+    family: "Fira Mono"
+    #style: Bold Italic
+
+  # Point size
+  size: 13
+
+  # Offset
+  #offset:
+  #  x: 0
+  #  y: 0
+
+  # Glyph offset
+  #glyph_offset:
+  #  x: 0
+  #  y: 0

@@ -25,10 +25,9 @@ cp -r $HOME/.config/i3* ./skel/config/
 cp -r $HOME/.config/keepassxc ./skel/config/
 cp -r $HOME/.config/nitrogen ./skel/config/
 cp -r $HOME/.config/qt5ct ./skel/config/
-cp -r $HOME/.config/regolith2 ./skel/config/
 cp -r $HOME/.config/Thunar ./skel/config/
 cp -r $HOME/.Xresources.d ./skel/config/
-cp $HOME/.bashrc* ./skel/
+cp $HOME/.bashrc ./skel/.bashrc-deb
 cp $HOME/.Xresources ./skel/
 cp $HOME/.face ./skel/
 cp $HOME/.jwmrc ./skel/

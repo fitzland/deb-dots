@@ -12,7 +12,7 @@ content-foreground = ${color.BG}
 
 [module/dot]
 type = custom/text
-content = 
+content = •
 
 content-background = ${color.BG}
 content-foreground = ${color.FGA}

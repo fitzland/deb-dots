@@ -66,16 +66,16 @@ ws-icon-default = 
 ;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
 ;   <label-mode> (default)
 format = <label-state> <label-mode>
-format-background = ${color.BGL}
+format-background = ${color.BACKGROUND}
 
 
 ; Available tokens:
 ;   %mode%
 ; Default: %mode%
 label-mode = %mode%
-label-mode-padding = 1
+label-mode-padding = 
 label-mode-background = ${color.YELLOW}
-label-mode-foreground = ${color.BGL}
+label-mode-foreground = ${color.BACKGROUND}
 
 ; Available tokens:
 ;   %name%
@@ -84,8 +84,8 @@ label-mode-foreground = ${color.BGL}
 ;   %output%
 ; Default: %icon%  %name%
 label-focused = %name%
-label-focused-foreground = ${color.BGL}
-label-focused-background = ${color.GREEN}
+label-focused-foreground = ${color.BACKGROUND}
+label-focused-background = ${color.ALTGREEN}
 
 ; Available tokens:
 ;   %name%
@@ -94,8 +94,8 @@ label-focused-background = ${color.GREEN}
 ;   %output%
 ; Default: %icon%  %name%
 label-unfocused = %name%
-label-unfocused-foreground = ${color.FG}
-label-unfocused-background = ${color.BGL}
+label-unfocused-foreground = ${color.ALTBLUE}
+label-unfocused-background = ${color.BACKGROUND}
 
 ; Available tokens:
 ;   %name%
@@ -104,8 +104,8 @@ label-unfocused-background = ${color.BGL}
 ;   %output%
 ; Default: %icon%  %name%
 label-visible = %name%
-label-visible-foreground = ${color.BGL}
-label-visible-background = ${color.BLUE}
+label-visible-foreground = ${color.BACKGROUND}
+label-visible-background = ${color.ALTBLUE}
 
 ; Available tokens:
 ;   %name%
@@ -114,20 +114,20 @@ label-visible-background = ${color.BLUE}
 ;   %output%
 ; Default: %icon%  %name%
 label-urgent = %name%
-label-urgent-foreground = ${color.BGL}
-label-urgent-background = ${color.RED}
+label-urgent-foreground = ${color.BACKGROUND}
+label-urgent-background = ${color.ALTRED}
 
 ; Paddings
-label-focused-padding = 1
-label-unfocused-padding = 1
-label-visible-padding = 1
-label-urgent-padding = 1
+label-focused-padding = 3
+label-unfocused-padding = 3
+label-visible-padding = 3
+label-urgent-padding = 3
 
 ; Separator in between workspaces
-label-separator = |
+label-separator =
 label-separator-padding = 0
-label-separator-foreground = ${color.BGL}
-label-separator-background = ${color.BGL}
+label-separator-foreground = ${color.BACKGROUND}
+label-separator-background = ${color.BACKGROUND}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -146,7 +146,7 @@ interval = 1
 ;   <ramp-coreload>
 ;;format = <label> <ramp-coreload>
 format = <label>
-format-prefix = ""
+format-prefix = "CPU"
 format-prefix-font = 4
 format-prefix-foreground = ${color.YELLOW}
 
@@ -178,8 +178,8 @@ label = %title%
 label-maxlen = 50
 label-ellipsis = true
 
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format-foreground = ${color.FOREGROUND}
+format-background = ${color.BACKGROUND}
 
 
 [module/clock]
@@ -205,7 +205,7 @@ time-alt = %b %d, %G
 ;   <label> (default)
 
 format = <label>
-format-prefix = ""
+format-prefix = "󰥔 "
 format-prefix-font = 4
 format-prefix-foreground = ${color.MAGENTA}
 
@@ -213,7 +213,7 @@ format-prefix-foreground = ${color.MAGENTA}
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = "  %time%"
+label = "%time%"
 label-margin = 0px
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -229,19 +229,19 @@ interval = 1.0
 ;;date = %Y-%m-%d%
 
 ; Optional time format
-time = %b %d, %G
+date = %b %d, %G
 
 ; if `date-alt` or `time-alt` is defined, clicking
 ; the module will toggle between formats
 ;;date-alt = %A, %d %B %Y
 #time-alt = %d/%m/%Y%
-time-alt = %I:%M %p
+date-alt = %I:%M %p
 
 ; Available tags:
 ;   <label> (default)
 
 format = <label>
-format-prefix = ""
+format-prefix = "󰨲 "
 format-prefix-font = 4
 format-prefix-foreground = ${color.MAGENTA}
 
@@ -249,7 +249,7 @@ format-prefix-foreground = ${color.MAGENTA}
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = "  %time%"
+label = " %date%"
 label-margin = 0px
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -332,7 +332,7 @@ interval = 3
 format = <label>
 ; format-foreground = ${color.CYAN}
 
-format-prefix = "﬙"
+format-prefix = "MEM"
 format-prefix-font = 4
 format-prefix-foreground = ${color.CYAN}
 
@@ -409,7 +409,7 @@ format-online = <icon-prev> <toggle> <icon-next>
 ;;format-online-prefix = " "
 ;;format-online-prefix-font = 2
 ;;format-online-prefix-foreground = ${color.GREEN}
-format-online-background = ${color.BGL}
+format-online-background = ${color.BACKGROUND}
 
 format-playing = ${self.format-online}
 format-paused = ${self.format-online}
@@ -419,7 +419,7 @@ format-stopped = ${self.format-online}
 ;   <label-offline>
 format-offline = <label-offline>
 format-offline-prefix = " "
-format-offline-background = ${color.BGL}
+format-offline-background = ${color.BACKGROUND}
 
 ; Available tokens:
 ;   %artist%
@@ -501,8 +501,8 @@ format-connected-margin = 0
 format-disconnected = <label-disconnected>
 format-disconnected-prefix = " "
 format-disconnected-prefix-font = 4
-format-disconnected-foreground = ${color.FGA}
-format-disconnected-background = ${color.BG}
+format-disconnected-foreground = ${color.FOREGROUND}
+format-disconnected-background = ${color.BACKGROUND}
 format-disconnected-padding = 0
 
 label-connected = "%{A1:~/.config/i3/rofi/bin/network_menu &:}%downspeed%, %upspeed%%{A}"
@@ -644,7 +644,7 @@ format-volume = <ramp-volume> <label-volume>
 ;   <ramp-volume>
 ;   <bar-volume>
 format-muted = <label-muted>
-format-muted-prefix = 婢
+format-muted-prefix = "VOL"
 format-muted-prefix-font = 4
 format-muted-foreground = ${color.BLUE}
 
@@ -655,7 +655,7 @@ format-muted-foreground = ${color.BLUE}
 ; Available tokens:
 ;   %percentage% (default)
 label-muted = " Mute"
-label-muted-foreground = ${color.FGA}
+label-muted-foreground = ${color.FOREGROUND}
 
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 奄

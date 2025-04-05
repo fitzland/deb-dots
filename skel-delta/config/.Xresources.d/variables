@@ -1,4 +1,4 @@
-i3-wm.wallpaper: "/usr/share/backgrounds/dwm.png"
+i3-wm.wallpaper: "/usr/share/backgrounds/otis.png"
 
 !workspace_names
 i3-wm.workspace.01.name: "1:term"
@@ -14,10 +14,6 @@ i3-wm.workspace.10.name: "10:media"
 
 i3-wm.font Iosevka Nerd Font 12
 
-!15_base_launchers
-i3-wm.binding.browser.google.primary: 
-i3-wm.binding.browser.google.secondary:
-
 !20_rofi
 i3-wm.binding.launcher.app: slash
 i3-wm.binding.launcher.cmd: backslash
@@ -31,19 +27,3 @@ i3-wm.binding.ws_next_on_output:
 i3-wm.binding.ws_prev: i
 !i3-wm.binding.ws_prev2: i
 i3-wm.binding.ws_prev_on_output:
-
-!40_next-workspace
-i3-wm.binding.next_free: space
-i3-wm.binding.move_next_free: Shift+space
-i3-wm.binding.take_next_free: space
-
-!60_config_keybindings
-i3-wm.binding.bluetooth: u
-!i3_wm.binding.files: Shift+Return
-!i3-wm.program.files: /usr/bin/thunar
-
-!70_bar
-i3-wm.binding.bar_toggle: b
-
-!90_user_programs
-i3-wm.program.1: ~/.config/regolith2/bin/autostart.sh

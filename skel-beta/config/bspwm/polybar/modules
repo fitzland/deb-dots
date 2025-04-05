@@ -217,8 +217,8 @@ label-empty-foreground = ${color.FOREGROUND}
 label-empty-padding = 1
 
 ; Separator in between workspaces
-label-separator = "∙"
-label-separator-padding = 0
+label-separator = " ∙"
+label-separator-padding = 1
 label-separator-foreground = ${color.ALTBLACK}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -298,7 +298,7 @@ format-playing = ${self.format-online}
 format-paused = <label-song> <toggle>
 
 format-offline = <label-offline>
-format-offline-prefix = " "
+format-offline-prefix = "ﰝ "
 format-offline-prefix-foreground = ${color.RED}
 label-offline = "Offline"
 
@@ -418,7 +418,7 @@ interval = 1024
 
 format-foreground = ${color.FOREGROUND}
 format-background = ${color.BACKGROUND}
-format-prefix = ""
+format-prefix = " "
 format-prefix-font = 3
 format-prefix-padding = 1
 format-prefix-foreground = ${color.ALTBLACK}

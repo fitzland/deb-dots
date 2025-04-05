@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
+## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+
+DIR="$HOME/.config/i3"
+WMT="$HOME/.config/i3/themes"
+rofi_command="rofi -theme $DIR/rofi/themes/themes.rasi"
+
+# Themes
+theme_cubic=" Cubic"
+theme_dracula=" Dracula"
+theme_forest=" Forest"
+theme_otis=" Otis"
+theme_nordic=" Nordic"
+theme_sweet=" Sweet"
+
+# Variable passed to rofi
+options="$theme_cubic\n$theme_dracula\n$theme_forest\n$theme_otis\n$theme_nordic\n$theme_sweet"
+
+chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
+case $chosen in
+    $theme_cubic)
+        bash ${WMT}/set-theme  'cubic.jpg' 'cubic' 'Hash' 'Paper' 'Adwaita' 'cubic-polybar'
+        ;;
+    $theme_dracula)
+        bash ${WMT}/set-theme  'dracula.png' 'dracula' 'Dracula' 'Dracula' 'Qogir-ubuntu-dark' 'dracula-polybar'
+        ;;
+    $theme_forest)
+        bash ${WMT}/set-theme  'forest.jpg' 'forest' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark' 'forest-polybar'
+        ;;
+    $theme_otis)
+        bash ${WMT}/set-theme  'otis.png' 'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark' 'otis-polybar'
+        ;;
+    $theme_nordic)
+        bash ${WMT}/set-theme  'dwm.png' 'nord' 'Nordic' 'Papirus-Dark' 'Qogir' 'nord-polybar'
+        ;;
+    $theme_sweet)
+        bash ${WMT}/set-theme  'hack.png' 'sweet' 'Sweet-Dark' 'Candy' 'Sweet-cursors' 'sweet-polybar'
+        ;;
+esac

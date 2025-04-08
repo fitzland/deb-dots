@@ -1,0 +1,126 @@
+#################################################################
+# KEYBOARD BINDINGS FOR DWM
+#################################################################
+
+##---------- Keybindings for apps ----------##
+
+# Search
+super + F1
+	catfish
+
+# Editor
+super + {_,shift} + F2
+	{code,xed}
+
+# Writer/calc
+super + {_,shift} + F3
+    {lowriter,localc}
+
+# Inkscape/Gimp
+super + {_,shift} + F4
+    {inkscape,gimp}
+
+# Meld
+super + F5
+    meld
+
+# GnuCash
+super + F6
+    gnucash
+
+# KeePassXC
+super + {_,shift} + F7
+    keepassxc {$HOME/Dropbox/journal/home.kdbx,keepassxc $HOME/Dropbox/journal/work.kdbx}
+
+# File Manager
+super + {_,shift} + F8
+    {thunar,alacritty --config-file ~/.dwm/alacritty/alacritty.yml -e ranger}
+
+# Markdown Editor
+super + {_,shift} + F9
+    {ghostwriter,xreader}
+
+# Firefox
+super + {_,shift} + F10
+    {firefox-devedition,firefox-devedition --private-window}
+
+#Microsoft Edge
+super + {_,shift} + F11
+    {microsoft-edge-stable --profile-directory='Default',microsoft-edge-stable --profile-directory='Profile 1'}
+
+#Chrome Primary
+super + {_,shift} + F12
+    {google-chrome-stable --profile-directory='Default',google-chrome-stable --profile-directory='Profile 1'}
+
+##---------- Rofi Launcher & Menus ----------##
+
+# Rofi App Launcher
+super + {_,shift} + slash
+	sh ~/.dwm/rofi/bin/{launcher-app,launcher-file}
+
+# Rofi Term Launcher
+super + {_,shift} + backslash
+	sh ~/.dwm/rofi/bin/{launcher-cmd,launcher-win}
+
+#dmenu
+super + p
+	dmenu_run -b -m 1 -p dmenu:
+
+# Rofi Themes Menu
+ctrl + alt + t
+	sh ~/.dwm/rofi/bin/themes
+
+# Rofi Menus/Applets
+super + {x,r,s,n}
+	sh ~/.dwm/rofi/bin/{powermenu,asroot,screenshot,network}
+
+# rofi launchers
+ctrl + alt + space
+   	rofi -show drun -modi drun -line-padding 2 -hide-scrollbar -show-icons
+   	
+	
+# help with shortcuts
+super + h
+	alacritty -e ~/.config/suckless/sxhkd/keyhelper.sh
+	
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+# application launchers
+
+# Change volume, chunky
+super + Insert
+    ~/scripts/changevolume up
+    
+super + Delete
+	~/scripts/changevolume down
+	
+super + m
+	~/scripts/changevolume mute
+	
+# dedicated volume keys
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	pamixer {-i,-d} 2
+
+# dedicated backlight keys
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+	xbacklight {+10,-10}
+	
+#########
+# Scrot #
+#########
+super + @Print
+	flameshot gui --path ~/Screenshots/
+
+@Print
+	flameshot full --path ~/Screenshots/
+	
+## redshift
+super + alt + r
+	~/scripts/redshift-on
+	
+super + alt + b
+	~/scripts/redshift-off
+
+super + alt + delete 
+	~/scripts/power

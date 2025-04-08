@@ -17,6 +17,6 @@ Start=09
 [ThunarSbrReplaceRenamer]
 CaseSensitive=FALSE
 Replacement=-
-Pattern=_
+Pattern=-beatitudes-
 Regexp=FALSE
 

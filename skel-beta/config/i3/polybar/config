@@ -37,7 +37,7 @@ include-file = ~/.config/i3/polybar/decor
 monitor = DP-2
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-4
+monitor-fallback = DP-5
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes reports my monitor as being disconnected (when in use)
@@ -267,7 +267,7 @@ cursor-scroll =
 monitor = DP-1
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-3
+monitor-fallback = DP-7
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes reports my monitor as being disconnected (when in use)

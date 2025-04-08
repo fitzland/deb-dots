@@ -70,7 +70,9 @@ set_style() {
 #    polybar-msg cmd restart
 }
 
-chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
+## Use the first for debian and second for arch
+chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)" 
+#chosen="$(echo -e "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
     $theme_beach)
         set_style  'beach' 'Gruvbox' 'Mint-L-Aqua' 'Qogir-manjaro-dark'

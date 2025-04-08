@@ -15,9 +15,9 @@ set $alt Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:IBM Plex Mono 11
-#font pango:Noto Sans Mono 11
+font pango:Noto Sans Mono 8
 #font pango:RobotoMono Nerd Font 11
-font pango:Iosevka Nerd Font 12
+#font pango:Iosevka Nerd Font 12
 #font pango:JetBrains Mono 11
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -176,7 +176,7 @@ set_from_resource $ws0 i3-wm.workspace.10.name "10:media"
 
 set $firstMonitor DP-2
 #set $firstMonitor DP-5
-set $secondMonitor DP-1
+set $secondMonitor DP-4
 #set $secondMonitor DP-7
 
 
@@ -329,6 +329,8 @@ bindsym $mod+$i3-wm.binding.scratchpad scratchpad show
 set_from_resource $i3-wm.binding.urgent_workspace i3-wm.binding.urgent_workspace u
 bindsym $mod+$i3-wm.binding.urgent_workspace [urgent=latest] focus
 
+## Navigate // Jump to Next Numbered Workspace available for Current screen
+bindsym $mod+n exec ~/.config/i3/bin/i3-new-workspace
 
 ###############################################################################
 ##  Window Rules  -----------------------------------------------------------##
@@ -339,9 +341,9 @@ assign [class="X-terminal-emulator|Gnome-terminal|Guake|Alacritty|xterm"] $ws1
 assign [class="Atom|Code|Xed|code-oss"] $ws2
 assign [class="Soffice|Gnucash"] $ws3
 assign [class="Gimp*|Inkscape"] $ws4
-assign [class="(?i)firefox|KeePassXC|Microsoft-edge"] $ws5
+assign [class="(?i)firefox|Microsoft-edge"] $ws5
 assign [class="Google-chrome"] $ws6
-assign [class="TelegramDesktop|Discord"] $ws7
+assign [class="TelegramDesktop|KeePassXC|Discord"] $ws7
 assign [class="Nautilus|Thunar"] $ws8
 assign [class="Spotify|spotify"] $ws0
 for_window [class="Spotify"] move to workspace $ws0
@@ -437,7 +439,7 @@ set_from_resource $altmagenta i3wm.color13 #B48EAD
 set_from_resource $altcyan i3wm.color14 #8FBCBB
 set_from_resource $altwhite i3wm.color15 #ECEFF4
 
-# class                   border        backgr.         text            indicator       child_border
+# class                   border        background      text            indicator       child_border
 client.focused            $green        $green          $background     $yellow         $cyan
 client.focused_inactive   $magenta      $magenta        $background     $yellow         $cyan
 client.unfocused          $blue         $blue           $background     $yellow         $cyan
@@ -452,68 +454,74 @@ client.background         $background
 
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
-#bar {
-#   font pango: Noto Sans Regular 10
-#	status_command i3status -c ~/.config/i3/i3status-primary.conf
-#	status_command i3blocks -c ~/.config/i3/i3blocks-primary.conf
-# 	Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
-# 	#08052be6 --> e6=90%
-#	i3bar_command i3bar --transparency
-# 	it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# 	reference: https://i3wm.org/docs/userguide.html#_tray_output
-#	output DP-4
-#        position bottom
-#	tray_output primary
-#	tray_padding 0
-# 	When strip_workspace_numbers is set to yes,
-# 	any workspace that has a name of the form
-# 	“[n][:][NAME]” will display only the name.
-#	strip_workspace_numbers no
-#	strip_workspace_name no
 
-#	colors {
-#		separator          $magenta
-#		background         $background
-#               statusline         $foreground
-#							border		bg			txt			indicator
-#		focused_workspace	$green		$green		$background	$magenta
-#		active_workspace	$magenta	$magenta	$background	$magenta
-#		inactive_workspace	$blue		$blue		$background	$magenta
-#		urgent_workspace	$red		$red		$background	$magenta
-#	}
-#}
-
-#bar {
-#        font pango: Noto Sans Regular 10
+bar {
+        font pango: Noto Sans Regular 10
 #       status_command i3status -c ~/.config/i3/i3status-secondary.conf
-#	status_command i3blocks -c ~/.config/i3/i3blocks-secondary.conf
+	status_command i3blocks -c ~/.config/i3/i3blocks-primary.conf
+        separator_symbol " • " # Unicode bullet point with spaces
 # Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
 # https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
-# #08052be6 --> e6=90%
-#	i3bar_command i3bar --transparency
+ #08052be6 --> e6=90%
+	i3bar_command i3bar --transparency
 # it could be that you have no primary display set: set one (xrandr --output <output> --primary)
 # reference: https://i3wm.org/docs/userguide.html#_tray_output
-#	output DP-2
-#       position bottom
-#	tray_output primary
-#	tray_padding 0
+	output DP-2
+        position top
+	tray_output primary
+	tray_padding 0
 # When strip_workspace_numbers is set to yes,
 # any workspace that has a name of the form
 # “[n][:][NAME]” will display only the name.
-#	strip_workspace_numbers no
-#	strip_workspace_name no
+	strip_workspace_numbers no
+	strip_workspace_name no
 
-#	colors {
-#		separator          $magenta
-#		background         $background
-#               statusline         $foreground
-#					border		bg		txt		indicator
-#		focused_workspace	$green		$green		$background	$magenta
-#		active_workspace	$magenta	$magenta	$background	$magenta
-#		inactive_workspace	$blue		$blue		$background	$magenta
-#		urgent_workspace	$red		$red		$background	$magenta
-#	}
-#}
+	colors {
+		separator          $altblue
+		background         $background
+                statusline         $foreground
+
+		# Col Header		border		background	text		indicator
+		focused_workspace	$green		$green		$background	$magenta
+		active_workspace	$magenta	$magenta	$background	$magenta
+		inactive_workspace	$blue		$blue		$background	$magenta
+		urgent_workspace	$red		$red		$background	$magenta
+	}
+}
+
+bar {
+        font pango: Noto Sans Regular 10
+#       status_command i3status -c ~/.config/i3/i3status-secondary.conf
+	status_command i3blocks -c ~/.config/i3/i3blocks-secondary.conf
+        separator_symbol " • " # Unicode bullet point with spaces
+# Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
+# https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+ #08052be6 --> e6=90%
+	i3bar_command i3bar --transparency
+# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
+# reference: https://i3wm.org/docs/userguide.html#_tray_output
+	output DP-1
+        position top
+	tray_output primary
+	tray_padding 0
+# When strip_workspace_numbers is set to yes,
+# any workspace that has a name of the form
+# “[n][:][NAME]” will display only the name.
+	strip_workspace_numbers no
+	strip_workspace_name no
+
+	colors {
+		separator          $altblue
+		background         $background
+                statusline         $foreground
+
+		# Col Header		border		background	text		indicator
+		focused_workspace	$green		$green		$background	$magenta
+		active_workspace	$magenta	$magenta	$background	$magenta
+		inactive_workspace	$blue		$blue		$background	$magenta
+		urgent_workspace	$red		$red		$background	$magenta
+	}
+}
 
 ###############################################################################
 ##  autostart applications/services on login  -------------------------------##
@@ -529,6 +537,7 @@ exec --no-startup-id /usr/bin/lxpolkit &
 #exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Set display from arandr saved script
+#exec --no-startup-id sh ~/.screenlayout/monitor-arch.sh
 exec --no-startup-id sh ~/.screenlayout/monitor-debian.sh
 
 ## Set wallpaper
@@ -552,7 +561,7 @@ exec_always --no-startup-id ~/.config/i3/bin/i3colors.sh
 exec --no-startup-id ~/.config/i3/bin/i3dunst.sh
 
 # Launch polybar
-exec_always --no-startup-id ~/.config/i3/bin/i3bar.sh
+#exec_always --no-startup-id ~/.config/i3/bin/i3bar.sh
 
 # Launch compositor
 exec --no-startup-id ~/.config/i3/bin/i3comp.sh
@@ -589,7 +598,7 @@ exec --no-startup-id firewall-applet
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/bin/blur-lock-emf --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/bin/blur-lock --nofork
 
 ###############################################################################
 ##  Base launchers  ---------------------------------------------------------##
@@ -605,7 +614,7 @@ set_from_resource $rofi.stylesheet rofi.stylesheet
 ## Launch // dmenu // $mod d ##
 # start dmenu (a program launcher)
 set_from_resource $i3-wm.binding.dmenu i3-wm.binding.dmenu d
-bindsym $mod+$i3-wm.binding.dmenu exec --no-startup-id dmenu_run -m 1 -p dmenu:
+bindsym $mod+$i3-wm.binding.dmenu exec --no-startup-id dmenu_run -m 0 -p dmenu: -b
 
 ## Launch // Terminal // $mod Return ##
 set_from_resource $i3-wm.binding.terminal i3-wm.binding.terminal Return
@@ -639,16 +648,16 @@ bindsym $mod+F2 exec --no-startup-id code
 bindsym $mod+Shift+F2 exec --no-startup-id xed
 
 ## Launch // Office // Primary ##
-#bindsym $mod+F3 exec --no-startup-id lowriter
+bindsym $mod+F3 exec --no-startup-id lowriter
 
 ## Launch // Office // Secondary ##
-#bindsym $mod+Shift+F3 exec --no-startup-id localc
+bindsym $mod+Shift+F3 exec --no-startup-id localc
 
 ## Launch // Graphix // Primary ##
-#bindsym $mod+F4 exec --no-startup-id inkscape
+bindsym $mod+F4 exec --no-startup-id inkscape
 
 ## Launch // Graphix // Secondary ##
-#bindsym $mod+Shift+F4 exec --no-startup-id gimp
+bindsym $mod+Shift+F4 exec --no-startup-id gimp
 
 ## Launch // Music // Primary ##
 bindsym $mod+F5 exec --no-startup-id spotify
@@ -683,10 +692,10 @@ bindsym $mod+Shift+F10 exec --no-startup-id firefox-devedition --private-window
 #bindsym $mod+Shift+F10 exec --no-startup-id firefox-developer-edition --private-window
 
 ## Launch // Browser // Microsoft // Primary ##
-bindsym $mod+F11 exec --no-startup-id microsoft-edge-stable --profile-directory='Default'
+bindsym $mod+F11 exec --no-startup-id microsoft-edge-stable --profile-directory='Profile 1'
 
 ## Launch // Browser // Microsoft // Secondary ##
-bindsym $mod+Shift+F11 exec --no-startup-id microsoft-edge-stable --profile-directory='Profile 1'
+bindsym $mod+Shift+F11 exec --no-startup-id microsoft-edge-stable --profile-directory='Default'
 
 ## Launch // Browser // Google // Primary ##
 bindsym $mod+F12 exec --no-startup-id google-chrome-stable --profile-directory='Default'

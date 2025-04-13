@@ -1,0 +1,71 @@
+
+set $mod Mod4
+set $alt Mod1
+
+#font pango:monospace 8
+#font pango:IBM Plex Mono 11
+#font pango:Noto Sans Mono 8
+#font pango:RobotoMono Nerd Font 11
+font pango:IosevkaTerm Nerd Font 12
+
+# Set display from arandr saved script
+#exec --no-startup-id sh ~/.screenlayout/monitor-arch.sh
+exec --no-startup-id sh ~/.screenlayout/monitor-debian.sh
+
+###############################################################################
+##  Workspace Names  --------------------------------------------------------##
+###############################################################################
+
+set_from_resource $ws1 i3-wm.workspace.01.name "1:term"
+set_from_resource $ws2 i3-wm.workspace.02.name "2:code"
+set_from_resource $ws3 i3-wm.workspace.03.name "3:ofc"
+set_from_resource $ws4 i3-wm.workspace.04.name "4:grfx"
+set_from_resource $ws5 i3-wm.workspace.05.name "5:util"
+set_from_resource $ws6 i3-wm.workspace.06.name "6:web"
+set_from_resource $ws7 i3-wm.workspace.07.name "7:chat"
+set_from_resource $ws8 i3-wm.workspace.08.name "8:file"
+set_from_resource $ws9 i3-wm.workspace.09.name "9:misc"
+set_from_resource $ws0 i3-wm.workspace.10.name "10:media"
+
+include $HOME/.config/i3/workspaces.conf
+include $HOME/.config/i3/rules.conf
+include $HOME/.config/i3/keybinds.conf
+include $HOME/.config/i3/colors.conf
+
+exec_always --no-startup-id ~/.config/i3/autostart.sh
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+###############################################################################
+##  system tray  ------------------------------------------------------------##
+###############################################################################
+
+# if you do not use dex: you need to have tray apps started manually one by one:
+# Start XDG autostart .desktop files using dex. 
+# See also https://wiki.archlinux.org/index.php/XDG_Autostart
+#exec --no-startup-id dex --autostart --environment i3
+
+# Autostart apps as you like
+exec --no-startup-id sleep 10 && dropbox start
+
+# Updater
+#exec --no-startup-id pamac-tray
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# start blueberry app for managing bluetooth devices from tray:
+#exec --no-startup-id blueman-applet
+
+# start firewall app:
+exec --no-startup-id firewall-applet
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/bin/blur-lock --nofork
+

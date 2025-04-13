@@ -621,60 +621,63 @@ ramp-signal-font = 2
 [module/volume]
 type = internal/pulseaudio
 
-; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
-; If not, uses default sink
-sink = alsa_output.pci-0000_12_00.3.analog-stereo
-
-; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
-; Default: true
+; Sink to be used, if it exists (find using `pacmd list-sinks`, look for 'name: ...')
+; sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+; Use default sink if uncommented sink is not found
 use-ui-max = false
-
-; Interval for volume increase/decrease (in percent points)
-; Default: 5
 interval = 5
 
+;; --- Display Format ---
 ; Available tags:
 ;   <label-volume> (default)
 ;   <ramp-volume>
 ;   <bar-volume>
 format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.MAGENTA} ; Use your theme's foreground color
+format-volume-padding = 1
+
+label-volume = %percentage%%
 
 ; Available tags:
 ;   <label-muted> (default)
 ;   <ramp-volume>
 ;   <bar-volume>
+; format-muted = <label-muted> <label-volume>
+; Or if you prefer hiding the volume when muted:
 format-muted = <label-muted>
-format-muted-prefix = "VOL"
-format-muted-prefix-font = 4
-format-muted-foreground = ${color.BLUE}
+format-muted-foreground = ${colors.ALTBLACK} ; Use a dimmed/disabled color from your theme
+format-muted-padding = 1
 
-; Available tokens:
-;   %percentage% (default)
-;label-volume = %percentage%%
+label-muted =  muted
+; Alternative icon using Font Awesome 4/5:  (fa-volume-mute) or  (fa-volume-off)
+label-muted-prefix = " " ; Optional: Add space before the muted label if needed
+label-muted-prefix-foreground = ${colors.ALTBLACK}
 
-; Available tokens:
-;   %percentage% (default)
-label-muted = " Mute"
-label-muted-foreground = ${color.FOREGROUND}
+;; --- Volume Icons/Ramps ---
+; Adjust icons based on your installed Nerd Font or Font Awesome
+; These examples use Nerd Font symbols
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.MAGENTA} ; Use your theme's foreground color
 
-; Only applies if <ramp-volume> is used
-ramp-volume-0 = 奄
-ramp-volume-1 = 奄
-ramp-volume-2 = 奄
-ramp-volume-3 = 奔
-ramp-volume-4 = 奔
-ramp-volume-5 = 奔
-ramp-volume-6 = 墳
-ramp-volume-7 = 墳
-ramp-volume-8 = 墳
-ramp-volume-9 = ﰝ
-ramp-volume-font = 4
-ramp-volume-foreground = ${color.BLUE}
+;; --- Mouse Actions ---
+; Left click - Open mixer (optional)
+click-left = pavucontrol &
 
-; Right and Middle click
-click-right = pavucontrol
-; click-middle = 
+; Right click - Toggle mute
+; We use pamixer here for simplicity
+click-right = pamixer --toggle-mute
 
+; Scrolling Up/Down adjusts volume automatically via the internal module.
+; You DON'T typically need to define scroll-up/scroll-down commands here
+; unless you want very specific behavior not covered by the internal handling.
+; If you did want to override:
+; scroll-up = pamixer --unmute --increase 5
+; scroll-down = pamixer --decrease 5
+
+; Middle click - Toggle mute (alternative)
+;click-middle = pamixer --toggle-mute
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [module/temperature]

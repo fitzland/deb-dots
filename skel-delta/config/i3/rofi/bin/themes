@@ -12,25 +12,19 @@ rofi_command="rofi -theme $WMDIR/rofi/themes/themes.rasi"
 
 # Themes
 theme_adapta=" Adapta"
-theme_1=" Beach"
-theme_2=" Blade"
-theme_3=" Bouquet"
+theme_beach=" Beach"
+theme_blade=" Blade"
+theme_bouquet=" Bouquet"
 theme_cubic=" Cubic"
-theme_4=" Cyberpunk"
 theme_dracula=" Dracula"
-theme_6=" Flowers"
 theme_forest=" Forest"
-theme_8=" Groot"
-theme_9=" Gruvbox"
-theme_11=" Keyboards"
-theme_12=" Light"
-theme_13=" Manhattan"
+theme_groot=" Groot"
+theme_gruvbox=" Gruvbox"
+theme_keyboards=" Keyboards"
+theme_manhattan=" Manhattan"
 theme_nord=" Nord"
 theme_nordic=" Nordic"
 theme_otis=" Otis"
-theme_15=" Pastel"
-theme_16=" Rick"
-theme_17=" Slime"
 theme_18=" Spark"
 theme_sweet=" Sweet"
 theme_19=" Tealize"
@@ -38,10 +32,9 @@ theme_tron=" Tron"
 theme_20=" Wave"
 
 # Variable passed to rofi
-options="$theme_adapta\n$theme_1\n$theme_2\n$theme_3\n$theme_cubic\n$theme_4\n$theme_dracula\
-\n$theme_6\n$theme_forest\n$theme_8\n$theme_9\n$theme_11\n$theme_12\
-\n$theme_13\n$theme_nord\n$theme_nordic\n$theme_otis\n$theme_15\
-\n$theme_16\n$theme_17\n$theme_18\n$theme_sweet\n$theme_19\n$theme_tron\n$theme_20"
+options="$theme_adapta\n$theme_beach\n$theme_blade\n$theme_bouquet\n$theme_cubic\
+\n$theme_dracula\n$theme_forest\n$theme_groot\n$theme_gruvbox\n$theme_keyboards\
+\n$theme_manhattan\n$theme_nord\n$theme_nordic\n$theme_otis\n$theme_18\n$theme_sweet\n$theme_19\n$theme_tron\n$theme_20"
 
 ## Apply theme
 set_style() {
@@ -79,56 +72,38 @@ set_style() {
 
 chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
-    $theme_1)
-        set_style  'beach' 'Gruvbox' 'Mint-Y-Teal' 'Qogir-manjaro-dark'
+    $theme_beach)
+        set_style  'beach' 'Gruvbox' 'Mint-L-Aqua' 'Qogir-manjaro-dark'
         ;;
-    $theme_2)
-        set_style  'blade' 'Blade' 'Nordic-Folders' 'LyraS'
+    $theme_blade)
+        set_style  'blade' 'Material' 'Mint-L-Red' 'Paper'
         ;;
-    $theme_3)
-        set_style  'bouquet' 'Juno-mirage' 'Luna-Dark' 'Future-dark'
+    $theme_bouquet)
+        set_style  'bouquet' 'Juno-ocean' 'Mint-L-Sand' 'Adwaita'
         ;;
-    $theme_4)
-        set_style  'cyberpunk' 'Cyberpunk' 'Archcraft-Dark' 'LyraB'
+    $theme_groot)
+        set_style  'groot' 'Matcha-dark-pueril' 'Mint-Y-Yaru' 'Paper'
         ;;
-    $theme_6)
-        set_style  'flowers' 'Kripton' 'Zafiro' 'Fluent-dark'
+    $theme_gruvbox)
+        set_style  'gruvbox' 'Mint-Y-Dark-Sand' 'Nordic-green' 'Nordic-cursors'
         ;;
-    $theme_8)
-        set_style  'groot' 'Groot' 'Luna-Dark' 'Pear'
+    $theme_keyboards)
+        set_style  'keyboards' 'Sweet-Dark' 'Mint-Y-Navy' 'Sweet-cursors'
         ;;
-    $theme_9)
-        set_style  'gruvbox' 'Gruvbox' 'Luna-Dark' 'Future-dark'
-        ;;
-    $theme_11)
-        set_style  'keyboards' 'Sweet-Dark' 'Zafiro-Purple' 'Sweet'
-        ;;
-    $theme_12)
-        set_style  'light' 'White' 'Arc-Circle' 'Fluent-dark'
-        ;;
-    $theme_13)
-        set_style  'manhattan' 'Manhattan' 'Luv-Folders-Dark' 'Vimix-dark'
-        ;;
-    $theme_15)
-        set_style  'pastel' 'White' 'Qogir' 'Qogirr-dark'
-        ;;
-    $theme_16)
-        set_style  'rick' 'Rick' 'Zafiro' 'Vimix-dark'
-        ;;
-    $theme_17)
-        set_style  'slime' 'Slime' 'Luv-Folders' 'Qogirr-dark'
+    $theme_manhattan)
+        set_style  'manhattan' 'Qogir-Dark' 'Mint-L-Red' 'Paper'
         ;;
     $theme_18)
-        set_style  'spark' 'Spark' 'Luv-Folders' 'Vimix'
+        set_style  'spark' 'Otis' 'Mint-L-Blue' 'Nordic-cursors'
         ;;
     $theme_19)
-        set_style  'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Vimix'
+        set_style  'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Nordic-cursors'
         ;;
     $theme_20)
-        set_style  'wave' 'Wave' 'Luv-Folders-Dark' 'Vimix'
+        set_style  'wave' 'Wave' 'Luv-Folders-Dark' 'Nordic-cursors'
         ;;
     $theme_adapta)
-        set_style  'adapta' 'Matcha-dark-sea' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
+        set_style  'adapta' 'Matcha-dark-sea' 'Mint-L-Teal' 'Qogir-manjaro-dark'
         ;;
     $theme_cubic)
         set_style  'cubic' 'Hash' 'Paper' 'Adwaita'

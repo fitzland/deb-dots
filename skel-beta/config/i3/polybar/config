@@ -21,7 +21,6 @@ margin-top = 0
 
 include-file = ~/.config/i3/polybar/system
 
-include-file = ~/.config/i3/polybar/colors
 include-file = ~/.config/i3/polybar/modules
 include-file = ~/.config/i3/polybar/decor
 
@@ -264,10 +263,10 @@ cursor-scroll =
 ; If unspecified, the application will pick the first one it finds.
 ; $ polybar -m | cut -d ':' -f 1
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = DP-1
+monitor = DP-4
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-7
+monitor-fallback = DP-1
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes reports my monitor as being disconnected (when in use)

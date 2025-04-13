@@ -5,7 +5,7 @@
 ## Autostart Programs
 
 # Set display from arandr saved script
-sh ~/.screenlayout/monitor.sh &
+#sh ~/.screenlayout/monitor.sh &
 
 # Kill already running process
 _ps=(picom dunst lxpolkit mpd)
@@ -25,12 +25,12 @@ done
 #xsetroot -cursor_name left_ptr
 
 # polkit agent
-if [[ ! `pidof lxpolkit` ]]; then
-	/usr/bin/lxpolkit &
-fi
+#if [[ ! `pidof lxpolkit` ]]; then
+#	/usr/bin/lxpolkit &
+#fi
 
 # Launch keybindings daemon
-sxhkd -c $HOME/.config/i3/sxhkdrc &
+#sxhkd -c $HOME/.config/i3/sxhkdrc &
 
 # Start dropbox
 #exec dropbox start &

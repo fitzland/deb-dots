@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Check if the process is running
+if pgrep -x dropbox &> /dev/null; then
+    # Optional: Use the dropbox CLI for more detail
+    # status=$(dropbox status)
+    # echo "DB: $status"
+
+    # Simple running indicator:
+    echo "Dropbox ✔"  # Or use a Font Awesome icon: echo " On"
+    echo "Dropbox Running" # Short text (optional)
+    echo "#00FF00" # Green color (optional)
+else
+    echo "Dropbox ✖" # Or use a Font Awesome icon: echo " Off"
+    echo "Dropbox Stopped" # Short text (optional)
+    echo "#FF0000" # Red color (optional)
+fi

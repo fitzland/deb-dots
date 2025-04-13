@@ -18,10 +18,9 @@ mkdir -p ~/.local/share/fonts
 fonts=( 
     "CascadiaCode"
     "FiraCode"  
-    "Hack"  
     "Inconsolata"
+    "IosevkaTerm"
     "JetBrainsMono" 
-    "Meslo"
     "Mononoki" 
     "RobotoMono" 
     "SourceCodePro" 

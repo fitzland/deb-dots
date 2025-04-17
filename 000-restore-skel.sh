@@ -10,7 +10,7 @@ echo "################################################################"
 echo "###############       DEFAULT Config      ######################"
 echo "################################################################"
 
-cp ./skel/config/i3/config $HOME/.config/i3/
+#cp ./skel/config/i3/config $HOME/.config/i3/
 cp ./skel/config/i3/i3status-* $HOME/.config/i3/
 cp -r ./skel/config/rofi $HOME/.config/
 cp -r ./skel/config/sxhkd $HOME/.config/

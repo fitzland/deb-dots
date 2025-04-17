@@ -53,7 +53,7 @@ imagemagick
 jq
 lxappearance
 lxsession
-#micro
+micro
 net-tools
 nitrogen
 picom

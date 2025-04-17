@@ -2,18 +2,11 @@
 
 # Main list of packages
 packages=(
-    "libxcb-randr0-dev"
-    "libxcb-util-dev"
-    "libxcb-icccm4-dev"
-    "libxcb-cursor-dev"
-    "libxcb-keysyms1-dev"
-    "libxcb-res0-dev"
+	"i3"
     "sxhkd"
     "suckless-tools"
     "polybar"
-    "tilix"
-    "kitty"
-    "firefox-esr"
+    "alacritty"
 )
 
 # Function to read common packages from a file
@@ -28,7 +21,7 @@ read_common_packages() {
 }
 
 # Read common packages from file
-read_common_packages "$HOME/bookworm-scripts/install_scripts/common_packages.txt"
+read_common_packages $HOME/git/fitzland/deb-dots/scripts/common_packages.txt
 
 # Function to install packages if they are not already installed
 install_packages() {
@@ -65,14 +58,6 @@ sudo systemctl enable acpid
 xdg-user-dirs-update
 mkdir ~/Screenshots/
 
-cd ~/Downloads
-
-git clone https://bitbucket.org/natemaia/dk.git
-cd dk
-make
-sudo make install
-mkdir -p ~/.config/dk
-rm -rf ~/Downloads/dk
 
 SCRIPT_DIR=~/bookworm-scripts
 REPO_URL=https://github.com/drewgrif/jag_dots.git
@@ -91,23 +76,4 @@ else
         exit 1
     fi
 fi
-
-\cp -r ~/bookworm-scripts/jag_dots/scripts/ ~
-\cp -r ~/bookworm-scripts/jag_dots/.config/dk/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/polybar/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/backgrounds/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/picom/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/rofi/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/kitty/ ~/.config/
-\cp -r ~/bookworm-scripts/jag_dots/.config/dunst/ ~/.config/
-
-chmod +x ~/.config/dk/dkrc
-chmod +x ~/.config/dk/polybar-dk
-
-# FT-Labs picom and nerdfonts are installed
-bash ~/bookworm-scripts/install_scripts/picom.sh
-bash ~/bookworm-scripts/install_scripts/nerdfonts.sh
-
-# adding gtk theme and icon theme
-bash ~/bookworm-scripts/colorschemes/blue.sh
 

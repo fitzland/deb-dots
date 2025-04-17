@@ -4,18 +4,25 @@
 sudo apt update && sudo apt upgrade
 
 # Install required packages
-sudo apt install dirmngr ca-certificates software-properties-common apt-transport-https curl -y
+sudo apt install ca-certificates software-properties-common apt-transport-https curl -y
 
 # Import Microsoft GPG Key
-curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg >/dev/null
+wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 
 # Add Microsoft VSCode Apt Repository
-echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
+echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" | sudo tee -a /etc/apt/sources.list.d/mozilla.list > /dev/null
+
+# Prioritize Mozilla Packages
+echo '
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+' | sudo tee /etc/apt/preferences.d/mozilla
 
 # Update APT Cache
 sudo apt update
 
 # Install Visual Studio Code
-sudo apt install code -y
+sudo apt install firefox-devedition -y
 
-echo "Microsoft Visual Studio Code has been Installed!"
+echo "Mozilla Firefox Developer Edition has been Installed!"

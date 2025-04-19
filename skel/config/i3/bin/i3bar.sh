@@ -52,8 +52,8 @@ launch_bar() {
 	fi
 
 	if [[ ! `pidof polybar` ]]; then
-		polybar -q main -c "$DIR"/i3bar.ini &
-		polybar -q extra -c "$DIR"/i3bar.ini &
+		polybar -q main -c "$DIR"/config &
+		polybar -q extra -c "$DIR"/config &
 	else
 		polybar-msg cmd restart
 	fi

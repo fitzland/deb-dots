@@ -18,6 +18,7 @@ suspend=""
 options="$shutdown\n$reboot\n$logout\n$lock\n$suspend"
 
 chosen="$(echo "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 2)"
+#chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 2)"
 case $chosen in
     $shutdown)
 			systemctl poweroff

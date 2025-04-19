@@ -3,109 +3,49 @@
 # Function to install vanilla AwesomeWM
 install_vanilla_awesome() {
     echo "Installing vanilla AwesomeWM..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_awesome.sh
+    bash ./108-desktop-awesome-vanilla.sh
 }
 
 # Function to install customized AwesomeWM
 install_custom_awesome() {
     echo "Installing JUSTAGUYLINUX customized AwesomeWM..."
-    bash ~/bookworm-scripts/install_scripts/custom_awesome.sh
+    bash ./107-desktop-awesome-vanilla.sh
 }
 
 # Function to install vanilla BSPWM
 install_vanilla_bspwm() {
     echo "Installing vanilla BSPWM..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_bspwm.sh
+    bash ./106-desktop-bspwm-vanilla.sh
 }
 
 # Function to install customized BSPWM
 install_custom_bspwm() {
     echo "Installing JUSTAGUYLINUX customized BSPWM..."
-    bash ~/bookworm-scripts/install_scripts/custom_bspwm.sh
-}
-
-# Function to install vanilla DK Window Manager 
-install_vanilla_dk() {
-    echo "Installing vanilla DK Window Manager..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_dk.sh
-}
-
-# Function to install customized DK Window Manager 
-install_custom_dk() {
-    echo "Installing JUSTAGUYLINUX customized DK Window Manager..."
-    bash ~/bookworm-scripts/install_scripts/custom_dk.sh
+    bash ./105-desktop-bspwm-custom.sh
 }
 
 # Function to install vanilla DWM
 install_vanilla_dwm() {
     echo "Installing vanilla DWM..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_dwm.sh
+    bash ./104-desktop-dwm-vanilla.sh
 }
 
 # Function to install customized DWM
 install_custom_dwm() {
     echo "Installing JUSTAGUYLINUX customized DWM with picom animations..."
-    bash ~/bookworm-scripts/install_scripts/custom_dwm.sh
-}
-
-# Function to install vanilla Fluxbox
-install_vanilla_fluxbox() {
-    echo "Installing vanilla Fluxbox..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_fluxbox.sh
-}
-
-# Function to install customized Fluxbox
-install_custom_fluxbox() {
-    echo "Installing JUSTAGUYLINUX customized Fluxbox..."
-    bash ~/bookworm-scripts/install_scripts/custom_fluxbox.sh
-}
-
-# Function to install vanilla IceWM
-install_vanilla_icewm() {
-    echo "Installing vanilla IceWM..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_icewm.sh
-}
-
-# Function to install customized IceWM
-install_custom_icewm() {
-    echo "Installing JUSTAGUYLINUX customized IceWM..."
-    bash ~/bookworm-scripts/install_scripts/custom_icewm.sh
+    bash ./103-desktop-dwm-custom.sh
 }
 
 # Function to install vanilla i3
 install_vanilla_i3() {
     echo "Installing vanilla i3..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_i3.sh
+    bash ./102-desktop-i3-vanilla.sh
 }
 
 # Function to install customized i3
 install_custom_i3() {
     echo "Installing JUSTAGUYLINUX customized i3..."
-    bash ~/bookworm-scripts/install_scripts/custom_i3.sh
-}
-
-# Function to install vanilla Openbox
-install_vanilla_openbox() {
-    echo "Installing vanilla Openbox..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_openbox.sh
-}
-
-# Function to install customized Openbox
-install_custom_openbox() {
-    echo "Installing JUSTAGUYLINUX customized Openbox..."
-    bash ~/bookworm-scripts/install_scripts/custom_openbox.sh
-}
-
-# Function to install vanilla Qtile
-install_vanilla_qtile() {
-    echo "Installing vanilla Qtile..."
-    bash ~/bookworm-scripts/install_scripts/vanilla_qtile.sh
-}
-
-# Function to install customized Qtile
-install_custom_qtile() {
-    echo "Installing JUSTAGUYLINUX customized Qtile..."
-    bash ~/bookworm-scripts/install_scripts/custom_qtile.sh
+    bash ./101-desktop-i3-custom.sh
 }
 
 # Function to prompt user for installation choice (vanilla or customized)
@@ -151,26 +91,11 @@ prompt_and_store_choice "AwesomeWM"
 # Prompt for BSPWM installation
 prompt_and_store_choice "BSPWM"
 
-# Prompt for DK Window Manager installation
-prompt_and_store_choice "DK Window Manager"
-
 # Prompt for DWM installation
 prompt_and_store_choice "DWM"
 
-# Prompt for Fluxbox installation
-prompt_and_store_choice "Fluxbox"
-
 # Prompt for i3 installation
 prompt_and_store_choice "i3"
-
-# Prompt for IceWM installation
-prompt_and_store_choice "IceWM"
-
-# Prompt for Openbox installation
-prompt_and_store_choice "Openbox"
-
-# Prompt for Qtile installation
-prompt_and_store_choice "Qtile"
 
 # Install based on user choices stored in the array
 for wm_name in "${!choices[@]}"; do

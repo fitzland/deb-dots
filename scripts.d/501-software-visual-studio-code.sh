@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade
 
 # Install required packages
-sudo apt install dirmngr ca-certificates software-properties-common apt-transport-https curl -y
+sudo nala install dirmngr ca-certificates software-properties-common apt-transport-https curl -y
 
 # Import Microsoft GPG Key
 curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee /usr/share/keyrings/vscode.gpg >/dev/null
@@ -16,6 +16,6 @@ echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.
 sudo apt update
 
 # Install Visual Studio Code
-sudo apt install code -y
+sudo nala install code -y
 
 echo "Microsoft Visual Studio Code has been Installed!"

@@ -43,32 +43,33 @@ echo "
 # chmod +x setup.sh packages.sh
 
 # Run the setup script
-bash ~/bookworm-scripts/install_scripts/setup.sh
+bash ~/git/fitzland/deb-dots/script.d/000-setup.sh
 
 clear
 
 # Run the extra packages
-bash ~/bookworm-scripts/install_scripts/packages.sh
+bash ~/git/fitzland/deb-dots/script.d/packages.sh
 
 clear
 
 echo "Make sure a Display Manager is installed"
 
 # make sure lightdm is installed
-bash ~/bookworm-scripts/install_scripts/lightdm.sh
+bash ~/git/fitzland/deb-dots/script.d/lightdm.sh
 
 clear
 
 # add bashrc question
-bash ~/bookworm-scripts/install_scripts/add_bashrc.sh
+bash ~/git/fitzland/deb-dots/script.d/add_bashrc.sh
 
 clear 
 
-bash ~/bookworm-scripts/install_scripts/printers.sh
+bash ~/git/fitzland/deb-dots/script.d/printers.sh
 
 clear 
 
-bash ~/bookworm-scripts/install_scripts/bluetooth.sh
+bash ~/git/fitzland/deb-dots/script.d/bluetooth.sh
+
 sudo apt autoremove
 
 clear

@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade
 
 # Install required packages
-sudo apt install ca-certificates software-properties-common apt-transport-https curl -y
+sudo nala install ca-certificates software-properties-common apt-transport-https curl -y
 
 # Import Microsoft GPG Key
 wget -q https://packages.mozilla.org/apt/repo-signing-key.gpg -O- | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
@@ -23,6 +23,6 @@ Pin-Priority: 1000
 sudo apt update
 
 # Install Visual Studio Code
-sudo apt install firefox-devedition -y
+sudo nala install firefox-devedition -y
 
 echo "Mozilla Firefox Developer Edition has been Installed!"

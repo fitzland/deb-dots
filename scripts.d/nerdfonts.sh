@@ -21,7 +21,6 @@ fonts=(
     "Inconsolata"
     "IosevkaTerm"
     "JetBrainsMono" 
-    "Mononoki" 
     "RobotoMono" 
     "SourceCodePro" 
     "UbuntuMono"

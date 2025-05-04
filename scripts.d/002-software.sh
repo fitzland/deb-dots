@@ -1,33 +1,33 @@
 #!/bin/bash
 
-# Function to install vanilla AwesomeWM
-install_vanilla_awesome() {
-    echo "Installing vanilla AwesomeWM..."
-    bash ./108-desktop-awesome-vanilla.sh
+# Function to install visual studio code
+install_vsc() {
+    echo "Installing Microsfot Visual Studio Code..."
+    bash ./501-software-visual-studio-code.sh
 }
 
-# Function to install customized AwesomeWM
-install_custom_awesome() {
-    echo "Installing JUSTAGUYLINUX customized AwesomeWM..."
-    bash ./107-desktop-awesome-vanilla.sh
+# Function to install firefox developer edition
+install_ffde() {
+    echo "Installing Mozilla Firefox Developer Edition..."
+    bash ./502-software-firefox-devedition.sh
 }
 
-# Function to install vanilla BSPWM
-install_vanilla_bspwm() {
-    echo "Installing vanilla BSPWM..."
-    bash ./106-desktop-bspwm-vanilla.sh
+# Function to install microsoft edge
+install_mse() {
+    echo "Installing Microsoft Edge..."
+    bash ./503-software-ms-edge.sh
 }
 
-# Function to install customized BSPWM
-install_custom_bspwm() {
-    echo "Installing JUSTAGUYLINUX customized BSPWM..."
-    bash ./105-desktop-bspwm-custom.sh
+# Function to install google chrome
+install_gchr() {
+    echo "Installing Google Chrome..."
+    bash ./504-software-google-chrome.sh
 }
 
-# Function to install vanilla DWM
-install_vanilla_dwm() {
-    echo "Installing vanilla DWM..."
-    bash ./104-desktop-dwm-vanilla.sh
+# Function to install spotify
+install_spotify() {
+    echo "Installing Spotify..."
+    bash ./506-software-spotify.sh
 }
 
 # Function to install customized DWM

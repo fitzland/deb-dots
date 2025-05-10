@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update your system
-sudo apt update && sudo apt upgrade
+sudo nala update && sudo nala upgrade
 
 # Install required packages
 sudo nala install ca-certificates software-properties-common apt-transport-https curl -y
@@ -20,7 +20,7 @@ Pin-Priority: 1000
 ' | sudo tee /etc/apt/preferences.d/mozilla
 
 # Update APT Cache
-sudo apt update
+sudo nala update
 
 # Install Visual Studio Code
 sudo nala install firefox-devedition -y

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update your system
-sudo apt update && sudo apt upgrade
+sudo nala update && sudo nala upgrade
 
 # Install required packages
 sudo nala install dirmngr ca-certificates software-properties-common apt-transport-https curl -y
@@ -13,7 +13,7 @@ curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | s
 echo deb [arch=amd64 signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main | sudo tee /etc/apt/sources.list.d/vscode.list
 
 # Update APT Cache
-sudo apt update
+sudo nala update
 
 # Install Visual Studio Code
 sudo nala install code -y

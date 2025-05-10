@@ -1,0 +1,124 @@
+@import "colors.rasi"
+
+  * {
+        background-color: @background;
+    }
+
+    configuration {
+	    show-icons: true;
+	    icon-theme: "Papirus";
+	    location: 0;
+	    font: "JetBrainsMono Nerd Font 12";	
+	    display-drun: "Launch:";
+    }
+
+    window { 
+	    width: 45%;
+	    transparency: "real";
+	    orientation: vertical;
+	    border-color: @highlight;
+        border-radius: 10px;
+    }
+
+    mainbox {
+	    children: [inputbar, listview];
+    }
+
+
+    // ELEMENT
+    // -----------------------------------
+
+    element {
+	    padding: 4 12;
+	    text-color: @background;
+        border-radius: 5px;
+    }
+
+    element selected {
+	    text-color: @foreground;
+	    background-color: @background;
+    }
+
+    element-text {
+	    background-color: inherit;
+	    text-color: inherit;
+    }
+
+    element-icon {
+	    size: 16 px;
+	    background-color: inherit;
+	    padding: 0 6 0 0;
+	    alignment: vertical;
+    }
+
+	element.selected.active {
+		background-color: @background;
+		text-color: @foreground;
+	}
+ 
+	element.alternate.normal {
+		background-color: @background;
+		text-color: @foreground;
+	}
+
+ 
+	element.alternate.active {
+		background-color: @selected;
+		text-color: @foreground;
+	}
+
+	element.selected.normal {
+		background-color: @selected;
+		text-color: @background;
+	}
+ 
+
+	element.normal.active {
+		background-color: @background;
+		text-color: @foreground;
+	}
+ 
+
+	element.normal.normal {
+		background-color: @background;
+		text-color: @foreground;
+	}
+ 
+	element.normal.urgent {
+		background-color: @urgent;
+		text-color: @background;
+	}
+
+	
+
+    listview {
+	    columns: 2;
+	    lines: 9;
+	    padding: 8 0;
+	    fixed-height: true;
+	    fixed-columns: true;
+	    fixed-lines: true;
+	    border: 0 10 6 10;
+    }
+
+    // INPUT BAR 
+    //------------------------------------------------
+
+    entry {
+	    text-color: @off;
+	    padding: 10 10 0 0;
+	    margin: 0 -2 0 0;
+    }
+
+    inputbar {
+	    padding: 10 0 0;
+	    margin: 0 0 0 0;
+    } 
+
+    prompt {
+	    text-color: @selected;
+	    padding: 10 6 0 10;
+	    margin: 0 -2 0 0;
+    }
+
+

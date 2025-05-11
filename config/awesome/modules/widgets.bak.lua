@@ -331,8 +331,8 @@ local window_title = wibox.widget {
         right = 8,
         widget = wibox.container.margin
     },
-    -- bg = beautiful.bg_minimize .. config.bg_opacity,
-    -- shape = rounded_shape,
+    bg = beautiful.bg_minimize .. config.bg_opacity,
+    shape = rounded_shape,
     widget = wibox.container.background
 }
 
@@ -376,12 +376,12 @@ function widgets.create_layoutbox(s)
             layoutbox,
             left = 8,
             right = 8,
-            top = 4,
-            bottom = 4,
+            top = 2,
+            bottom = 2,
             widget = wibox.container.margin
         },
-        -- bg = beautiful.bg_minimize .. config.bg_opacity,
-        -- shape = rounded_shape,
+        bg = beautiful.bg_minimize .. config.bg_opacity,
+        shape = rounded_shape,
         widget = wibox.container.background
     }
     
@@ -426,8 +426,8 @@ function widgets.create_taglist(s)
                 },
                 left = 8,
                 right = 8,
-                top = 4,
-                bottom = 4,
+                top = 2,
+                bottom = 2,
                 widget = wibox.container.margin
             },
             id = 'background_role',

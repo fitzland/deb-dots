@@ -5,6 +5,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local widgets = require("modules.widgets")
+local gears = require("gears") -- ensure gears is available
 
 -- Create wibar table
 local wibar = {}
@@ -32,14 +33,20 @@ local function setup_wibar(s)
         widget = wibox.widget.textbox
     }
     
+    -- Calculate the background color with opacity
+    -- Use the base color from the theme or a fallback color
+    local base_color = beautiful.bg_normal or "#000000" -- fallback
+    local alpha_hex = string.format("%02x", math.floor((config.opacity or 1.0) * 255))
+
     -- Create the wibar
     s.mywibar = awful.wibar({
         position = config.position,
         screen = s,
         height = config.height,
-        bg = beautiful.bg_normal .. string.format("%x", math.floor(config.opacity * 255)),
+        bg = base_color .. alpha_hex,
+        -- bg = wibar_bg_color,
     })
-    
+
     -- Construct a list of right widgets
     local right_widgets = {
         layout = wibox.layout.fixed.horizontal, -- Align widgets to the right 
@@ -47,28 +54,27 @@ local function setup_wibar(s)
         -- widgets will be added here
     }
     
-    -- Conditionally add widgets based on screen
-    if s.index == 1 then
-        -- Add volume_widget to screen 1
-        if widgets.volume_widget then table.insert(right_widgets, widgets.volume_widget) end
-        -- Add clock_widget to screen 1
-        if widgets.clock_widget then table.insert(right_widgets, widgets.clock_widget) end
-        -- Add systray to screen 1
-        if widgets.systray then table.insert(right_widgets, {
-                widgets.systray,
-                top = 2, bottom = 2, left = 8, right = 8,
-                widget = wibox.container.margin
-            })
-        end
+    -- Add systray (always present for all screens)
+    table.insert(right_widgets, {
+        widgets.systray,
+        top = 2,    -- Add top margin for vertical centering
+        bottom = 2, -- Add bottom margin for vertical centering
+        left = 8,   -- Add left padding
+        right = 8,  -- Add right padding
+        widget = wibox.container.margin
+    })
 
-    else -- s.index == 2 (or more)
-        -- Add CPU and memory widgets to screen 2
-        if widgets.cpu_widget then table.insert(right_widgets, widgets.cpu_widget) end
-        if widgets.mem_widget then table.insert(right_widgets, widgets.mem_widget) end
-        -- Add clock_widget to screen 2
-        if widgets.clock_widget then
-            table.insert(right_widgets, widgets.clock_widget)
-        end
+    -- Condtionally add widgets based on screen
+    if s.index == 1 then
+        -- Add widgets for the first screen
+        if widget.volume_widget then table.insert(right_widgets, widgets.volume_widget) end
+        if widget.clock_widget then table.insert(right_widgets, widgets.clock_widget) end
+        -- Add more widgets as needed
+    else
+        -- Add widgets for the second screen
+        if widget.cpu_widget then table.insert(right_widgets, widgets.cpu_widget) end
+        if widget.mem_widget then table.insert(right_widgets, widgets.mem_widget) end
+        -- Add more widgets as needed
     end
 
     -- Add widgets to the wibar
@@ -83,12 +89,14 @@ local function setup_wibar(s)
         },
         { -- Middle widget
             layout = wibox.layout.align.horizontal,
-            expand = "none",
-            nil,
+            expand = "none",  -- This makes the nil widgets expand
+            nil,  -- Left expanding spacer
             widgets.window_title,
-            nil,
+            nil,  -- Right expanding spacer
         },
-        right_widgets, -- Right widgets
+        -- right_widgets already contains its own layout 
+        -- so we pass the table we built:
+        right_widgets,
     }
 end
 

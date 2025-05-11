@@ -66,7 +66,10 @@ local function setup_screen(s)
     else
         local secondary_tags = {variables.tags[6], variables.tags[7], variables.tags[8], 
                                variables.tags[9], variables.tags[10]}
-        awful.tag(secondary_tags, s, variables.default_layout)
+        local secondary_layouts = {variables.default_layout, variables.default_layout, 
+                                   variables.default_layout, variables.default_layout, 
+                                   awful.layout.suit.magnifier}
+        awful.tag(secondary_tags, s, secondary_layouts)
     end
 end
 

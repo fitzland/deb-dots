@@ -129,6 +129,11 @@ function keybindings.init()
                   {description = "increase client height", group = "layout"}),
         awful.key({ modkey, "Control" }, "Up", function() awful.client.incwfact(-0.05) end,
                   {description = "decrease client height", group = "layout"}),
+
+        -- Layout cycle
+        awful.key({ modkey }, "space", function() awful.layout.inc(1) end,
+                  {description = "select next layout", group = "layout"}),
+
         
 -- Focus control
 awful.key({ modkey }, "Left", function() awful.client.focus.byidx(1) end,
@@ -298,7 +303,7 @@ globalkeys = gears.table.join(globalkeys,
     awful.key({ variables.modkey }, "Return", function() launch_on_tag(awful.spawn(variables.terminal), 1, 1) end,
                 {description = "open kitty", group = "launcher"}),
                 
-    awful.key({ modkey }, "space", function() awful.spawn("rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons -theme ~/.config/awesome/rofi/config.rasi") end,
+    awful.key({ modkey }, "slash", function() awful.spawn("rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons -theme ~/.config/awesome/rofi/config.rasi") end,
                 {description = "rofi menu", group = "launcher"}),
 
     -- Removed default Print binding as it's now defined below

@@ -123,6 +123,29 @@ theme.titlebar_maximized_button_focus_active      = themes_path.."default/titleb
 -- Uncomment and set the path to use your custom wallpaper:
 -- theme.wallpaper = "~/.config/backgrounds/your_wallpaper.png"
 
+-- Define paths to your wallpapers.
+-- It's good practice to expand the tilde (~) to the full home directory path.
+local home_dir = os.getenv("HOME")
+local screen_wallpapers = {
+    home_dir .. "/.config/awesome/wallpaper/ac-dwm-07.png", -- For screen 1 (s.index == 1)
+    home_dir .. "/.config/awesome/wallpaper/ac-dwm-06.png", -- For screen 2 (s.index == 2)
+    -- Add more paths if you have more screens
+}
+local default_wallpaper = home_dir .. "/.config/awesome/wallpaper/ac-dwm-05.png" -- Fallback
+
+theme.wallpaper = function(s)
+    -- s is the screen object.
+    -- s.index is usually the 1-based index of the screen.
+    -- Check if s and s.index are valid and if a wallpaper exists for that index.
+    if s and s.index and screen_wallpapers[s.index] then
+        return screen_wallpapers[s.index]
+    else
+        -- Fallback to a default wallpaper if no specific one is found for the screen
+        -- or if s or s.index is nil (which shouldn't happen in normal set_wallpaper calls)
+        return default_wallpaper
+    end
+end
+
 --------------------------------------------------------------------------------
 -- Layout Icons
 --------------------------------------------------------------------------------

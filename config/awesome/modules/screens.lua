@@ -10,9 +10,6 @@ local screens = {}
 
 -- Detailed screen debugging
 -- This will show the screen index, geometry, and work area for each screen
--- This is useful for understanding how your screens are set up
--- and can help with debugging layout issues
--- You can remove this section if you don't need it
 for s in screen do
     local primary = s == screen.primary and " (PRIMARY)" or ""
     local geo = s.geometry
@@ -34,7 +31,7 @@ end
 -- Function to set wallpaper
 local function set_wallpaper(s)
     -- Wallpaper
-    if beautiful.wallpaper then
+    if beautiful.wallpaper then -- check to see that path to wallpaper is valid
         local wallpaper = beautiful.wallpaper
         -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
@@ -60,14 +57,17 @@ local function setup_screen(s)
     if s.index == 1 then
         local primary_tags = {variables.tags[1], variables.tags[2], variables.tags[3], 
                              variables.tags[4], variables.tags[5]}
-        awful.tag(primary_tags, s, variables.default_layout)
+        local primary_layouts = {variables.default_layout, variables.default_layout, 
+                                 variables.default_layout, awful.layout.suit.max, 
+                                 awful.layout.suit.magnifier}
+        awful.tag(primary_tags, s, primary_layouts)
         
     -- Secondary screen - first non-primary screen
     else
         local secondary_tags = {variables.tags[6], variables.tags[7], variables.tags[8], 
                                variables.tags[9], variables.tags[10]}
-        local secondary_layouts = {variables.default_layout, variables.default_layout, 
-                                   variables.default_layout, variables.default_layout, 
+        local secondary_layouts = {awful.layout.suit.max, variables.default_layout, 
+                                   variables.default_layout, awful.layout.suit.max, 
                                    awful.layout.suit.magnifier}
         awful.tag(secondary_tags, s, secondary_layouts)
     end

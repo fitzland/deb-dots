@@ -7,7 +7,7 @@
 picom --config ~/.config/awesome/picom/picom.conf --animations -b &
 
 # wallpaper
-feh --no-xinerama --no-fehbg --bg-scale ~/.config/awesome/wallpaper/otis.png &
+#feh --no-xinerama --no-fehbg --bg-scale ~/.config/awesome/wallpaper/otis.png &
 #~/.fehbg
 
 # num lock activated

@@ -410,7 +410,7 @@ function widgets.create_taglist(s)
             bg_focus = beautiful.gh_bg,  -- Use background for selected tag
             fg_focus = beautiful.gh_green,    -- Dark text (matching clock widget)
             bg_occupied = "transparent",   -- Keep occupied tag background transparent
-            fg_occupied = beautiful.gh_fg, -- Use theme's fg color for occupied tags 
+            fg_occupied = beautiful.gh_magenta, -- Use theme's fg color for occupied tags 
             bg_empty = "transparent",      -- Keep empty tag background transparent
             fg_empty = beautiful.gh_comment .. "80", -- Use theme's dimmed comment color
             shape = function(cr, width, height)

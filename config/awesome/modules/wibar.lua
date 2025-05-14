@@ -75,8 +75,9 @@ local function setup_wibar(s)
     s.mywibar:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
+            mylauncher,
             layout = wibox.layout.fixed.horizontal,
-            spacing = 6,
+            spacing = 4,
             layoutbox,
             separator,
             taglist,

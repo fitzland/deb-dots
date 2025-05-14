@@ -104,7 +104,7 @@ function screens.init()
     -- This will only run once when awesome starts, not on restarts
     -- I'm not sure this is working as intended
     if not awesome.startup_done then
-        gears.timer.start_new(2, function()
+        gears.timer.start_new(5, function()
             awesome.emit_signal("restart")
             awesome.startup_done = true
             return false -- Don't repeat

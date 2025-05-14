@@ -131,8 +131,8 @@ local rules = {
         properties = { screen = 1, tag = find_tag_by_name("grfx"), floating = false, switchtotag = true }
     },
     {
-        rule = { class = "Google-chrome" },
-        properties = { screen = 2, tag = find_tag_by_name("web"), switchtotag = true }
+        rule = { instance = "google-chrome" },
+        properties = { screen = 2, tag = 1, switchtotag = true }
     },
     {
         rule = { instance = "thunar" },
@@ -143,8 +143,8 @@ local rules = {
         properties = { screen = 2, tag = find_tag_by_name("music"), switchtotag = true }
     },
     {
-        rule = { class = "Keepassxc" },
-        properties = { screen = 2, tag = find_tag_by_name("tool"), switchtotag = true }
+        rule = { instance = "keepassxc" },
+        properties = { screen = 2, tag = find_tag_by_name("util"), switchtotag = true }
     },
 
 }

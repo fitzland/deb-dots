@@ -8,25 +8,41 @@ local variables = require("modules.variables")
 
 local screens = {}
 
--- Detailed screen debugging
--- This will show the screen index, geometry, and work area for each screen
-for s in screen do
-    local primary = s == screen.primary and " (PRIMARY)" or ""
-    local geo = s.geometry
-    
-    naughty.notify({ 
-        title = "Screen " .. s.index .. primary,
-        text = string.format(
-            "Resolution: %d x %d\nPosition: %d, %d\nWork area: %d x %d",
-            geo.width, geo.height,
-            geo.x, geo.y,
-            s.workarea.width, s.workarea.height
-        ),
-        timeout = 15
-    })
-end
-
 -- Rest of your screens.lua file...
+
+-- Add this function to both screens.lua and wibar.lua
+local function get_screen_role(s)
+    -- Method 1: By position (leftmost screen is primary)
+    local leftmost_x = math.huge
+    for screen_obj in screen do
+        if screen_obj.geometry.x < leftmost_x then
+            leftmost_x = screen_obj.geometry.x
+        end
+    end
+    
+    if s.geometry.x == leftmost_x then
+        return "primary"
+    else
+        return "secondary"
+    end
+end    
+
+-- Add this to the top of both files
+local function is_primary_screen(s)
+    -- Try multiple methods to reliably identify the primary screen
+    if s == screen.primary then
+        return true
+    end
+    
+    -- Fallback: identify by position (leftmost screen)
+    local leftmost = s
+    for screen_obj in screen do
+        if screen_obj.geometry.x < leftmost.geometry.x then
+            leftmost = screen_obj
+        end
+    end
+    return s == leftmost
+end
 
 -- Function to set wallpaper
 local function set_wallpaper(s)
@@ -43,6 +59,7 @@ end
 
 -- Function to set up each screen
 local function setup_screen(s)
+
     -- Set wallpaper
     set_wallpaper(s)
 
@@ -54,7 +71,8 @@ local function setup_screen(s)
     -- or specific widgets only on certain screens
 
     -- Primary screen gets tags 1-5
-    if s.index == 1 then
+--    if s.index == 1 then
+    if get_screen_role(s) == "primary" then
         local primary_tags = {variables.tags[1], variables.tags[2], variables.tags[3], 
                              variables.tags[4], variables.tags[5]}
         local primary_layouts = {variables.default_layout, variables.default_layout, 
@@ -94,22 +112,16 @@ end
 
 -- Initialize screens
 function screens.init()
-    -- Set up screens
-    awful.screen.connect_for_each_screen(setup_screen)
+    -- Add a small delay to ensure screens are properly detected
+    gears.timer.start_new(0.1, function()
+        awful.screen.connect_for_each_screen(setup_screen)
+        return false
+    end)
     
     -- Re-set wallpaper when a screen's geometry changes
     screen.connect_signal("property::geometry", set_wallpaper)
-
-    -- Add a simple delayed restart on initial startup
-    -- This will only run once when awesome starts, not on restarts
-    -- I'm not sure this is working as intended
-    if not awesome.startup_done then
-        gears.timer.start_new(5, function()
-            awesome.emit_signal("restart")
-            awesome.startup_done = true
-            return false -- Don't repeat
-        end)
-    end
+    
+    -- Remove the problematic auto-restart code entirely
 end
 
 return screens

@@ -17,6 +17,41 @@ local config = {
 }
 
 -- Setup wibar for each screen
+
+-- Add this function to both screens.lua and wibar.lua
+local function get_screen_role(s)
+    -- Method 1: By position (leftmost screen is primary)
+    local leftmost_x = math.huge
+    for screen_obj in screen do
+        if screen_obj.geometry.x < leftmost_x then
+            leftmost_x = screen_obj.geometry.x
+        end
+    end
+    
+    if s.geometry.x == leftmost_x then
+        return "primary"
+    else
+        return "secondary"
+    end
+end
+
+-- Add this to the top of both files
+local function is_primary_screen(s)
+    -- Try multiple methods to reliably identify the primary screen
+    if s == screen.primary then
+        return true
+    end
+    
+    -- Fallback: identify by position (leftmost screen)
+    local leftmost = s
+    for screen_obj in screen do
+        if screen_obj.geometry.x < leftmost.geometry.x then
+            leftmost = screen_obj
+        end
+    end
+    return s == leftmost
+end
+
 local function setup_wibar(s)
     -- Create taglist for this screen
     local taglist = widgets.create_taglist(s)
@@ -48,7 +83,8 @@ local function setup_wibar(s)
     }
     
     -- Conditionally add widgets based on screen
-    if s.index == 1 then
+    -- if s.index == 1 then
+       if get_screen_role(s) == "primary" then
         -- Add volume_widget to screen 1
         if widgets.volume_widget then table.insert(right_widgets, widgets.volume_widget) end
         -- Add clock_widget to screen 1

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-~/.screenlayout/monitor-debian.sh
-
+#get auth work with polkit agent
+#/usr/bin/lxpolkit &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
 ## dunst -config ~/.config/awesome/dunst/dunstrc &
 picom --config ~/.config/awesome/picom/picom.conf --animations -b &
 
@@ -22,5 +23,6 @@ blueman-applet &
 # dropbox 
 ~/.dropbox-dist/dropboxd &
 
-#get auth work with polkit agent
-#/usr/bin/lxpolkit &
+# screenlayout
+sh ~/.screenlayout/monitor-debian.sh &
+

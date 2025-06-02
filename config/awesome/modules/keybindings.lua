@@ -335,25 +335,25 @@ globalkeys = gears.table.join(globalkeys,
                 {description = "disable redshift", group = "system"}),
     
     -- Function keybindings
-    awful.key({ modkey }, "F1", function() launch_on_tag("catfish", 2, 5) end,
+    awful.key({ modkey }, "F1", function() launch_on_tag(awful.spawn("catfish"), 2, 5) end,
                 {description = "open catfish", group = "function keys"}),
 
-    awful.key({ modkey }, "F2", function() launch_on_tag("code", 1, 2) end,
+    awful.key({ modkey }, "F2", function() launch_on_tag(awful.spawn("code"), 1, 2) end,
                 {description = "open visual studio code", group = "function keys"}),
 
     awful.key({ modkey, "Shift" }, "F2", function() launch_on_tag("xed", 1, 2) end,
                 {description = "open visual studio code", group = "function keys"}),
 
-    awful.key({ modkey }, "F3", function() launch_on_tag("lowriter", 1, 3) end,
+    awful.key({ modkey }, "F3", function() launch_on_tag(awful.spawn("lowriter"), 1, 3) end,
                 {description = "open lowriter", group = "function keys"}),
 
-    awful.key({ modkey, "Shift" }, "F3", function() launch_on_tag("localc", 1, 3) end,
+    awful.key({ modkey, "Shift" }, "F3", function() launch_on_tag(awful.spawn("localc"), 1, 3) end,
                 {description = "open localc", group = "function keys"}),
 
-    awful.key({ modkey }, "F4", function() launch_on_tag("inkscape", 1, 4) end,
+    awful.key({ modkey }, "F4", function() launch_on_tag(awful.spawn("inkscape"), 1, 4) end,
                 {description = "open inkscape", group = "function keys"}),
 
-    awful.key({ modkey, "Shift" }, "F4", function() launch_on_tag("gimp", 1, 4) end,
+    awful.key({ modkey, "Shift" }, "F4", function() launch_on_tag(awful.spawn("gimp"), 1, 4) end,
                 {description = "open gimp", group = "function keys"}),
 
     awful.key({ modkey }, "F5", function() launch_on_tag("spotify", 2, 4) end,

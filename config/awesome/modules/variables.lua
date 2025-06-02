@@ -2,7 +2,7 @@
 -- Global variables for AwesomeWM configuration
 
 -- Default applications
-terminal = "kitty"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 browser = "firefox-devedition"

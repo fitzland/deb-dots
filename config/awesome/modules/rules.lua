@@ -132,7 +132,7 @@ local rules = {
     },
     {
         rule = { instance = "google-chrome" },
-        properties = { screen = 2, tag = 1, switchtotag = true }
+        properties = { screen = 2, tag = find_tag_by_name("web"), switchtotag = true }
     },
     {
         rule = { instance = "thunar" },

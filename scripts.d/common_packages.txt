@@ -32,7 +32,7 @@
     fonts-font-awesome
     fonts-terminus 
     papirus-icon-theme
-    exa
+    eza
     scrot
     rofi
     dunst

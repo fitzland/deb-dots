@@ -63,6 +63,7 @@ echo "Autorun script executed at $(date)"
     end
     
     -- You can also add direct application launches here
+
     -- awful.spawn.once("picom")
     -- awful.spawn.once("nm-applet")
 end

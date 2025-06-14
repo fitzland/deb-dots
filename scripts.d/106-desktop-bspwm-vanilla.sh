@@ -7,7 +7,6 @@ packages=(
 	"polybar"
 	"suckless-tools"
 	"rxvt-unicode"
-    "firefox-esr"
 )
 
 # Function to read common packages from a file
@@ -22,7 +21,7 @@ read_base_packages() {
 }
 
 # Read common packages from file
-read_base_packages "$HOME/bookworm-scripts/install_scripts/base_packages.txt"
+read_base_packages "./base_packages.txt"
 
 # Function to install packages if they are not already installed
 install_packages() {

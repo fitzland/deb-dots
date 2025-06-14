@@ -70,18 +70,18 @@ set_style() {
 #    polybar-msg cmd restart
 }
 
-## Use the first for debian and second for arch
+## Use the first for Debian and second for Arch
 chosen="$(echo "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)" 
 #chosen="$(echo -e "$options" | $rofi_command -p "Available themes: " -dmenu -selected-row 0)"
 case $chosen in
     $theme_beach)
-        set_style  'beach' 'Gruvbox' 'Mint-L-Aqua' 'Qogir-manjaro-dark'
+        set_style  'beach' 'Gruvbox' 'Mint-L-Sand' 'Qogir-manjaro-dark'
         ;;
     $theme_blade)
         set_style  'blade' 'Material' 'Mint-L-Red' 'Paper'
         ;;
     $theme_bouquet)
-        set_style  'bouquet' 'Juno-ocean' 'Mint-L-Sand' 'Adwaita'
+        set_style  'bouquet' 'Juno-ocean' 'Mint-Y-Sand' 'Adwaita'
         ;;
     $theme_groot)
         set_style  'groot' 'Matcha-dark-pueril' 'Mint-Y-Yaru' 'Paper'
@@ -99,13 +99,13 @@ case $chosen in
         set_style  'spark' 'Otis' 'Mint-L-Blue' 'Nordic-cursors'
         ;;
     $theme_19)
-        set_style  'tealize' 'Juno-palenight' 'Luv-Folders-Dark' 'Nordic-cursors'
+        set_style  'tealize' 'Juno-palenight' 'Mint-Y-Sand' 'Nordic-cursors'
         ;;
     $theme_20)
-        set_style  'wave' 'Wave' 'Luv-Folders-Dark' 'Nordic-cursors'
+        set_style  'wave' 'Otis-forest' 'Candy' 'Nordic-cursors'
         ;;
     $theme_adapta)
-        set_style  'adapta' 'Matcha-dark-sea' 'Mint-L-Teal' 'Qogir-manjaro-dark'
+        set_style  'adapta' 'Matcha-dark-sea' 'Mint-Y-Purple' 'Qogir-manjaro-dark'
         ;;
     $theme_cubic)
         set_style  'cubic' 'Hash' 'Paper' 'Adwaita'
@@ -114,7 +114,7 @@ case $chosen in
         set_style  'dracula' 'Dracula' 'Dracula' 'Qogir-ubuntu-dark'
         ;;
     $theme_forest)
-        set_style  'forest' 'Otis-forest' 'Nordic-green' 'Qogir-manjaro-dark'
+        set_style  'forest' 'Otis-forest' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'
         ;;
     $theme_otis)
         set_style  'otis' 'Otis' 'Qogir-manjaro-dark' 'Qogir-manjaro-dark'

@@ -1,22 +1,22 @@
 [Configuration]
 LastActiveMode=THUNAR_RENAMER_MODE_BOTH
-LastActiveRenamer=ThunarSbrInsertRenamer
+LastActiveRenamer=ThunarSbrReplaceRenamer
 
 [ThunarSbrNumberRenamer]
 TextMode=THUNAR_SBR_TEXT_MODE_TN
-Text=esther-
+Text=danny-reeves-
 Mode=THUNAR_SBR_NUMBER_MODE_010203
 Start=09
 
-[ThunarSbrReplaceRenamer]
-CaseSensitive=FALSE
-Replacement=-
-Pattern=-beatitudes-
-Regexp=FALSE
-
 [ThunarSbrInsertRenamer]
 Offset=0
-Text=glorious-day-
+Text=.jpg
 Mode=THUNAR_SBR_INSERT_MODE_INSERT
-OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+
+[ThunarSbrReplaceRenamer]
+CaseSensitive=FALSE
+Replacement=.jpg
+Pattern=.jpg.jpg
+Regexp=FALSE
 

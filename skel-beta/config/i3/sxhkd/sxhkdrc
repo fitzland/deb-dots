@@ -1,20 +1,17 @@
-super + b
-	 firefox-esr
-
-super + shift + b
-	firefox-esr -private-window
-
 super + Escape
 	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
 	
-super + space
-   	rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons
-   	
 # help with shortcuts
 super + h
-	alacritty -e ~/.config/i3/keyhelper.sh
+	alacritty -e ~/.config/i3/bin/keyhelper.sh
 
 # application launchers
+
+super + b
+	 firefox-devedition
+
+super + shift + b
+	firefox-devedition -private-window
 
 super + f
 	thunar
@@ -34,12 +31,6 @@ super + g
 super + v
    alacritty -e pulsemixer
 
-super + d
-	Discord
-
-super + o
-	obs
- 
  
 #########
 # Scrot #
@@ -62,29 +53,6 @@ super + alt + r
 	
 super + alt + b
 	~/scripts/redshift-off
-
-#workspaces
-
-super + {1-9,0}
-    i3-msg workspace {1-9,10}
-
-# The 
-super + shift+{1-9,0}
-	i3-msg move container to workspace number {1-9,10}
-
-#movement
-
-#super+{h,j,k,l}
-#    i3-msg focus {left,down,up,right}
-
-#super+{Left,Down,Up,Right}
-#    i3-msg focus {left,down,up,right}
-    
-#super+shift+{h,j,k,l}
-#    i3-msg move {left,down,up,right}
-    
-#super+shift+{Left,Down,Up,Right}
-#    i3-msg move {left,down,up,right}
 
 ## audio
 

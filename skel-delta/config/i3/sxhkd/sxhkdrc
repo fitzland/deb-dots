@@ -1,95 +1,137 @@
-## Copyright (C) 2020-2021 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
+super + b
+	 firefox-esr
 
-##---------- Keybindings for apps ----------##
+super + shift + b
+	firefox-esr -private-window
 
-# Search
-super + F1
-	catfish
+super + Escape
+	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+	
+super + space
+   	rofi -show drun -modi drun -line-padding 4 -hide-scrollbar -show-icons
+   	
+# help with shortcuts
+super + h
+	alacritty -e ~/.config/i3/keyhelper.sh
 
-# Editor
-super + {_,shift} + F2
-	{code,xed}
+# application launchers
 
-# Writer/Calc
-super + {_,shift} + F3
-    {i3-msg 'workspace 3; exec --no-startup-id lowriter', i3-msg 'workspace 3; exec --no-startup-id localc'}
+super + f
+	thunar
 
-# Inkscape/Gimp
-super + {_,shift} + F4
-    {i3-msg 'workspace 4; exec --no-startup-id inkscape', i3-msg 'workspace 4; exec --no-startup-id gimp'}
+super + shift + Return
+	thunar
 
-# Meld
-super + {_,shift} + F5
-    {spotify,quodlibet}
+super + Return
+	alacritty
 
-# GnuCash
-super + {_,shift} + F6
-    {gnucash,ghostwriter}
+super + e 	
+	xed
 
-# KeePassXC
-super + {_,shift} + F7
-    keepassxc {~/Dropbox/journal/home.kdbx,keepassxc ~/Dropbox/journal/work.kdbx}
+super + g
+	gimp
 
-# File Manager
-super + {_,shift} + F8
-    {thunar,alacritty --config-file ~/.config/i3/alacritty/alacritty.yml -e ranger}
+super + v
+   alacritty -e pulsemixer
 
-# Typora
-super + {_,shift} + F9
-    {ghostwriter,typora}
+super + d
+	Discord
 
-# Firefox
-super + {_,shift} + F10
-    {firefox-devedition,firefox-devedition --private-window}
+super + o
+	obs
+ 
+ 
+#########
+# Scrot #
+#########
+super + @Print
+	scrot -s -e 'mv $f ~/Screenshots'; \
+	notify-send 'Scrot' 'Selected image to ~/Screenshots'
 
-#Microsoft Edge
-super + {_,shift} + F11
-    {microsoft-edge-stable --profile-directory='Default',microsoft-edge-stable --profile-directory='Profile 1'}
-
-#Chrome Primary
-super + {_,shift} + F12
-    {google-chrome-stable --profile-directory='Default',google-chrome-stable --profile-directory='Profile 1'}
-
-
-##---------- Rofi Launcher & Menus ----------##
-
-# Rofi App Launcher
-super + slash
-	sh ~/.config/i3/rofi/bin/launcher-app
-
-# Rofi Term Launcher
-super + {_,shift} + backslash
-	sh ~/.config/i3/rofi/bin/{launcher-cmd,windows}
-
-#dmenu
-super + p
-	dmenu_run -b -m 1 -p dmenu:
-
-# Rofi Themes Menu
+@Print
+	scrot -e 'mv $f ~/Screenshots'; \
+	notify-send 'Scrot' 'Image saved to ~/Screenshots'
+	
+## Themes
 ctrl + alt + t
-	sh ~/.config/i3/rofi/bin/themes
+	~/.config/i3/rofi/bin/themes
 
-# Rofi Menus/Applets
-super + {m,x,r,s,n}
-	sh ~/.config/i3/rofi/bin/{mpd,powermenu,asroot,screenshot,network}
+## redshift
+super + alt + r
+	~/scripts/redshift-on
+	
+super + alt + b
+	~/scripts/redshift-off
 
-##---------- Applications ----------##
+#workspaces
 
-# Terminal and File Manager
-#super + {_,shift} + Return
-#	{sh ~/.config/i3/bin/i3term.sh,thunar}
+super + {1-9,0}
+    i3-msg workspace {1-9,10}
 
-# Launch Apps
-super + shift + {f,w,e}
-	{thunar,firefox-devedition,xed}
+# The 
+super + shift+{1-9,0}
+	i3-msg move container to workspace number {1-9,10}
 
-# Terminal Apps
-ctrl + alt + {r,h}
-	alacritty --config-file ~/.config/i3/alacritty/alacritty.yml -e {ranger,htop}
+#movement
 
-# Lockscreen
-ctrl + alt + k
-	sh ~/.config/i3/bin/blur-lock-emf
+#super+{h,j,k,l}
+#    i3-msg focus {left,down,up,right}
 
-##---------- EOF ----------##
+#super+{Left,Down,Up,Right}
+#    i3-msg focus {left,down,up,right}
+    
+#super+shift+{h,j,k,l}
+#    i3-msg move {left,down,up,right}
+    
+#super+shift+{Left,Down,Up,Right}
+#    i3-msg move {left,down,up,right}
+
+## audio
+
+# Change volume, chunky
+super + Insert
+    ~/scripts/changevolume up
+    
+super + Delete
+	~/scripts/changevolume down
+	
+super + m
+	~/scripts/changevolume mute
+	
+# dedicated volume keys
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	pamixer {-i,-d} 2
+
+# dedicated backlight keys
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+	xbacklight {+10,-10}
+
+#i3 Specific Keybindings
+
+super + alt + f
+    i3-msg fullscreen toggle
+
+super + alt + space
+    i3-msg floating toggle
+
+super + control + space
+    i3-msg focus mode_toggle
+
+super + alt + a
+    i3-msg focus parent
+    
+super + shift + q
+     i3-msg exit
+
+super + q
+    i3-msg kill
+
+super + shift + c
+    i3-msg reload
+
+super + shift + r
+    i3-msg restart; notify-send 'i3' 'Restarted'
+
+super + ctrl + {Left,Down,Up,Right}
+    i3-msg resize {grow width 3 px or 3 ppt, shrink height 3 px or 3 ppt, grow height 3 px or 3 ppt, shrink width 3 px or 3 ppt}
+

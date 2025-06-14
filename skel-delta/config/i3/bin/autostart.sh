@@ -1,51 +1,30 @@
-#!/usr/bin/env bash
-
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
-## Autostart Programs
-
-# Set display from arandr saved script
-#sh ~/.screenlayout/monitor.sh &
-
-# Kill already running process
-_ps=(picom dunst lxpolkit mpd)
-for _prs in "${_ps[@]}"; do
-	if [[ `pidof ${_prs}` ]]; then
-		killall -9 ${_prs}
-	fi
-done
+# Autostart applications
 
 # num lock activated
-#exec --no-startup-id numlockx on
+numlockx on &
 
-# Set Compose key
-#setxkbmap -option compose:rctrl &
+#set compose key
+setxkbmap -option compose:rctrl &
 
-# Fix cursor
-#xsetroot -cursor_name left_ptr
+#get auth work with polkit agent
+/usr/bin/lxpolkit &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-# polkit agent
-#if [[ ! `pidof lxpolkit` ]]; then
-#	/usr/bin/lxpolkit &
-#fi
+# bar start
+#~/.config/i3/polybar-i3 &
 
-# Launch keybindings daemon
-#sxhkd -c $HOME/.config/i3/sxhkdrc &
+# wallpaper
+#feh --bg-fill ~/.config/backgrounds/wallhaven-578rw7_3440x1440.png &
+~/.fehbg
 
-# Start dropbox
-#exec dropbox start &
+# compositor and notifications
+picom --animations -b &
 
-# set wallpaper
-#exec --no-startup-id sleep 2 && nitrogen --restore
+# notifications
+dunst &
 
-# Launch colors
-#~/.config/i3/bin/i3colors.sh
+# bluetooth app
+blueman-applet &
 
-# Launch notification daemon
-#~/.config/i3/bin/i3dunst.sh
-
-# Launch polybar
-#~/.config/i3/bin/i3bar.sh
-
-# Launch compositor
-#~/.config/i3/bin/i3comp.sh
+# sxhkd
+sxhkd -c ~/.config/i3/sxhkd/sxhkdrc &

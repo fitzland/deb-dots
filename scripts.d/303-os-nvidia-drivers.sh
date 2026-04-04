@@ -25,4 +25,4 @@ sudo apt update
 # Install Nvidia Drivers
 sudo apt install nvidia-driver cuda nvidia-smi nvidia-settings -y
 
-echo "Nvidia Drivers have been Installed!"
+echo "Nvidia Drivers have been Installed! Yea!"

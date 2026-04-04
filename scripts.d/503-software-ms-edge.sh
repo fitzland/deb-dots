@@ -18,4 +18,4 @@ sudo nala update
 # Install Microsoft Edge Browser
 sudo nala install microsoft-edge-stable -y
 
-echo "Microsoft Edge Browser has been Installed!"
+echo "Microsoft Edge Browser has been Installed! Yea!"

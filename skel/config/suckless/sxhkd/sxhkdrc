@@ -1,0 +1,117 @@
+##---------- Keybindings for apps ----------##
+
+# Search
+super + F1
+	catfish
+
+# IDE/DIFF
+super + {_,shift} + F2
+    {code,meld}
+
+# Writer/Calc
+super + {_,shift} + F3
+    {lowriter, localc}
+
+# Inkscape/Gimp
+super + {_,shift} + F4
+    {inkscape, gimp}
+
+# Audio/Video
+super + {_,shift} + F5
+    {mpv,quodlibet}
+
+# Edit/Markdown
+super + {_,shift} + F6
+    {gedit,ghostwriter}
+
+# KeePassXC
+super + {_,shift} + F7
+    keepassxc {~/Dropbox/journal/home.kdbx,keepassxc ~/Dropbox/journal/work.kdbx}
+
+# File Manager
+super + {_,shift} + F8
+    {thunar,alacritty -e ranger}
+
+# Typora
+super + {_,shift} + F9
+    {ghostwriter,typora}
+
+# Firefox
+super + {_,shift} + F10
+    {firefox-devedition,firefox-devedition --private-window}
+
+#Microsoft Edge
+super + {_,shift} + F11
+    {microsoft-edge-stable --profile-directory="Default",microsoft-edge-stable --profile-directory="Profile 1"} 
+
+#Chrome Primary
+super + {_,shift} + F12
+    {google-chrome-stable --profile-directory='Default',google-chrome-stable --profile-directory='Profile 1'}
+
+##---------- Terminal Launcher --------------##
+
+# Terminal Launcher
+super + {_,ctrl} + Return
+	{alacritty,kitty}
+
+##---------- Rofi Launcher & Menus ----------##
+
+# Rofi App Launcher
+super + {_,shift} + slash
+	~/.config/suckless/scripts/{rofi_launcher,rofi_windows}
+
+# Rofi Term Launcher
+super + {_,shift} + backslash
+	~/.config/suckless/scripts/{rofi_runner,rofi_bluetooth}
+	 
+# help with shortcuts
+super + h
+	~/.config/suckless/scripts/help
+	
+# Reload sxhkd (Hotkey Daemon)
+super + Escape
+	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+    
+# Increase Volume (Custom Script)
+super + Insert
+    ~/.config/suckless/scripts/changevolume up
+
+# Decrease Volume (Custom Script)   
+super + Delete
+	~/.config/suckless/scripts/changevolume down
+	
+# Toggle Mute (Custom Script)
+super + m
+	~/.config/suckless/scripts/changevolume mute
+	
+# Dedicated Key for Volume Up
+XF86AudioRaiseVolume
+	~/.config/suckless/scripts/changevolume up
+	
+# Dedicated Key for Volume Down
+XF86AudioLowerVolume
+	~/.config/suckless/scripts/changevolume down
+	
+# Dedicated Key for Mute
+XF86AudioMute
+	~/.config/suckless/scripts/changevolume mute
+
+# Take a Screenshot (Region Select)
+super + Print
+	flameshot gui --path ~/Screenshots/
+
+# Take a Fullscreen Screenshot
+Print
+	flameshot full --path ~/Screenshots/
+	
+# Take a Screenshot (Region Select)
+super + shift + s
+	flameshot gui --path ~/Screenshots/
+
+# Take a Fullscreen Screenshot
+super + s
+	flameshot full --path ~/Screenshots/
+    
+# Power Off/Reboot
+super + x 
+	~/.config/suckless/scripts/power

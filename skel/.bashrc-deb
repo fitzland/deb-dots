@@ -1,87 +1,238 @@
-# If not running interactively, don't do anything 
-[[ $- != *i* ]] && return 
+### EXPORT ###
+export EDITOR='micro'
+export VISUAL='micro'
+export HISTCONTROL=ignoreboth:erasedups
+export PAGER='most'
+export NETWORK_RANGE=$(ip route | grep 'kernel scope link src' | grep -v '169.254' | awk '{print $1}' | head -n1)
+export GPG_TTY=$(tty)
 
-stty -ixon # Disables ctrl-s and ctrl-q (Used To Pause Term) 
+#Ibus settings if you need them
+#type ibus-setup in terminal to change settings and start the daemon
+#delete the hashtags of the next lines and restart
+#export GTK_IM_MODULE=ibus
+#export XMODIFIERS=@im=dbus
+#export QT_IM_MODULE=ibus
 
-if command -v eza >/dev/null 2>&1; then
-    alias l='eza -gll --color=always --group-directories-first'
-    alias ls='eza -agl --header --icons --group-directories-first'
-elif command -v exa >/dev/null 2>&1; then
-    alias l='exa -ll --color=always --group-directories-first'
-    alias ls='exa -agl --header --icons --group-directories-first'
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+if [ -f ~/.dircolors ]; then
+    eval "$(dircolors -b ~/.dircolors)"
 fi
 
-# Aliases
-alias ..='cd ..' 
-alias ...='cd ../..' 
-alias install='sudo nala install'
-alias update='sudo apt clean && sudo apt update'
-alias upgrade='sudo nala upgrade && sudo apt autoremove --purge'
-alias uplist='nala list --upgradable'
-alias remove='sudo nala autoremove'
+# === Terminal emulator detection for prompt ===
+if [ -z "$TERMINAL_EMU" ]; then
+    ppid=$(ps -o ppid= -p $$ | tr -d '[:space:]')
+    term_name=$(basename "$(readlink -f /proc/$ppid/exe 2>/dev/null)" 2>/dev/null)
+
+    case "$term_name" in
+        alacritty)          TERMINAL_EMU="alc" ;;
+        kitty)              TERMINAL_EMU="kty" ;;
+        st|stterm|9term)    TERMINAL_EMU="st"  ;;
+        foot)               TERMINAL_EMU="ft"  ;;
+        gnome-terminal)     TERMINAL_EMU="gts" ;;
+        *)                  TERMINAL_EMU="${term_name:-?}" ;;
+    esac
+fi
+
+# Color-coded prefix based on terminal
+case "$TERMINAL_EMU" in
+    alc)   term_color="\[\e[90m\]" ;;
+    kty)   term_color="\[\e[32m\]" ;;
+    st)    term_color="\[\e[34m\]" ;;
+    *)     term_color="\[\e[37m\]" ;;
+esac
+
+PS1="${term_color}[${TERMINAL_EMU}]\[\e[0m\] ${PS1:-\\u@\\h:\\w\\$ }"
+
+if [ -d "$HOME/.bin" ]; then
+    PATH="$HOME/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+#ignore upper and lowercase when TAB completion
+bind "set completion-ignore-case on"
+
+### ALIASES ###
+
+#list
+alias ls='ls --color=auto'
+alias l='ls -lhSg --group-directories-first --color=auto --hide=".*"'
+alias lg='ls -lhSg --group-directories-first --color=auto'
+alias la='ls -a'
+alias ll='ls -alFh'
+alias l.="ls -A | egrep '^\.'"
+
+#fix obvious typo's
+alias ..='cd ..'
+alias ...='cd ../..'
+alias cd..='cd ..'
+alias pdw='pwd'
+
+## Colorize the grep command output for ease of use (good for log files) ##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+#readable output
 alias df='df -h'
 alias free='free -h'
-alias myip="hostname -I | awk '{print $1}'; curl -s ifconfig.me && echo ' external ip'"
+
+#keyboard
+alias give-me-qwerty-us="sudo localectl set-x11-keymap us"
+
+#setlocale
+alias setlocale="sudo localectl set-locale LANG=en_US.UTF-8"
+alias setlocales="sudo localectl set-x11-keymap us && sudo localectl set-locale LANG=en_US.UTF-8"
+
+#network aliases
+alias myip="ip -f inet address | grep inet | grep -v 'lo$' | cut -d ' ' -f 6,13 && curl ifconfig.me && echo ' external ip'"
+alias lanip="ip route | grep 'kernel scope link src' | grep -v '169.254' | awk '{print $1}' | head -n1"
 alias x="exit"
 
-# Dotfiles & Files
-alias bs='micro ~/.bashrc'
+# Dotfiles & config
 alias reload='source ~/.bashrc'
-alias v="nvim"
-alias vv="nvim ."
 alias e="micro"
-alias g.="cd ~/.config"
-alias gd="cd ~/Downloads"
-
-# DWM aliases
-alias gdw="cd ~/.config/suckless/dwm"
-alias gds="cd ~/.config/suckless/slstatus"
-alias remake="rm config.h && make && sudo make clean install"
+alias ff="fastfetch"
+alias nb="$EDITOR ~/.bashrc"
+alias nbp="$EDITOR ~/.bashrc-personal"
+alias nz="$EDITOR ~/.zshrc"
+alias nf="$EDITOR ~/.config/fish/config.fish"
+alias nneofetch="$EDITOR ~/.config/neofetch/config.conf"
 
 # Git aliases
 alias gp="git push -u origin main"
 alias gsave="git commit -m 'save'"
 alias gs="git status"
 alias gc="git clone"
+alias grh="git reset --hard"
+alias rmgitcache="rm -r ~/.cache/git"
 
-alias ff="fastfetch"
-alias nf="neofetch"
+#continue download
+alias wget="wget -c"
 
-# Dunst
-alias hi='pgrep -x dunst >/dev/null && notify-send "Hi there!" "Welcome to the jaglinux desktop! " -i ""'
+#userlist
+alias userlist="cut -d: -f1 /etc/passwd | sort"
 
+#merge new settings
+alias merge="xrdb -merge ~/.Xresources"
 
-# Add Color
-alias egrep='grep --color=auto' 
+# Package management (apt)
+alias install='sudo apt install'
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias uplist='apt list --upgradable'
+alias remove='sudo apt autoremove'
+alias cleanup='sudo apt autoclean && sudo apt autoremove'
 
-export PATH="$HOME/scripts:$HOME/.local/bin:/usr/local/go/bin:$PATH"
-export EDITOR=$(command -v nvim || command -v micro || echo nano)
-export VISUAL="$EDITOR"
+#ps
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias hungry="ps -eo pid,ppid,user,%cpu,%mem,stat,comm --sort=-%cpu | head -n 15"
 
-# PS1 Customization
-#PS1="\[\e[32m\]\h\[\e[m\]\[\e[36m\]@\[\e[m\]\[\e[34m\]\u\[\e[m\] \W \$ " 
-# Colour codes
-RED="\\[\\e[1;31m\\]"
-GREEN="\\[\\e[1;32m\\]"
-YELLOW="\\[\\e[1;33m\\]"
-BLUE="\\[\\e[1;34m\\]"
-MAGENTA="\\[\\e[1;35m\\]"
-CYAN="\\[\\e[1;36m\\]"
-WHITE="\\[\\e[1;37m\\]"
-ENDC="\\[\\e[0m\\]"
+#grub update
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias install-grub-efi="sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi"
 
-# Set a two-line prompt. If accessing via ssh include 'ssh-session' message.
-if [[ -n "$SSH_CLIENT" ]]; then ssh_message="-ssh_session"; fi
-PS1="${MAGENTA}\t ${GREEN}\u ${WHITE}at ${YELLOW}\h${RED}${ssh_message} ${WHITE}in ${BLUE}\w \n${CYAN}\$${ENDC} "
+#add new fonts
+alias update-fc='sudo fc-cache -fv'
 
+#switch shell
+alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /bin/fish && echo 'Now log out.'"
 
-### EXPORT ###
-export EDITOR=nano
-export VISUAL=nano
-export HISTCONTROL=ignoreboth:erasedups
-export PAGER=most
+# kill commands
+alias kc='killall conky'
+alias kp='killall polybar'
+alias kpi='killall picom'
 
-alias update="sudo apt update && sudo apt upgrade"
+#audio check pulseaudio or pipewire
+alias audio="pactl info | grep 'Server Name'"
+
+#check vulnerabilities microcode
+alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+
+#vmware services
+alias start-vmware="sudo systemctl enable --now vmtoolsd.service"
+alias vmware-start="sudo systemctl enable --now vmtoolsd.service"
+alias sv="sudo systemctl enable --now vmtoolsd.service"
+
+#youtube download
+alias yta-aac="yt-dlp --extract-audio --audio-format aac "
+alias yta-best="yt-dlp --extract-audio --audio-format best "
+alias yta-flac="yt-dlp --extract-audio --audio-format flac "
+alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "
+alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
+
+#search content with ripgrep
+alias rg="rg --sort path"
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+#config file shortcuts
+alias nlxdm="sudo $EDITOR /etc/lxdm/lxdm.conf"
+alias nlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
+alias ngrub="sudo $EDITOR /etc/default/grub"
+alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
+alias nsddm="sudo $EDITOR /etc/sddm.conf"
+alias nsddmk="sudo $EDITOR /etc/sddm.conf.d/kde_settings.conf"
+alias nfstab="sudo $EDITOR /etc/fstab"
+alias nnsswitch="sudo $EDITOR /etc/nsswitch.conf"
+alias nsamba="sudo $EDITOR /etc/samba/smb.conf"
+alias nhosts="sudo $EDITOR /etc/hosts"
+alias nhostname="sudo $EDITOR /etc/hostname"
+alias nresolv="sudo $EDITOR /etc/resolv.conf"
+alias nplymouth="sudo $EDITOR /etc/plymouth/plymouthd.conf"
+
+#gpg
+alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+alias fix-gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
+alias fix-permissions="sudo chown -R $USER:$USER ~/.config ~/.local"
+
+#systeminfo
 alias probe="sudo -E hw-probe -all -upload"
-alias nenvironment="sudo $EDITOR /etc/environment"
-alias sr="reboot"
+alias sysfailed="systemctl list-units --failed"
+
+#shutdown or reboot
+alias ssn="sudo shutdown now"
+alias sr="sudo reboot"
+
+#give the list of all installed desktops
+alias xd="ls /usr/share/xsessions"
+alias xdw="ls /usr/share/wayland-sessions"
+
+# ex = EXtractor for all kinds of archives
+# usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   tar xf $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+[[ -f ~/.bashrc-personal ]] && . ~/.bashrc-personal
+
+export PATH="$HOME/.npm-global/bin:$PATH"

@@ -1,0 +1,16 @@
+[user]
+	email = f1tzl4nd@hotmail.com
+	name = fitzland
+	signingkey = C8882EE661F5BB0D
+[pull]
+	rebase = false
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout=32000
+[commit]
+	gpgsign = true
+[gpg]
+	program = /usr/bin/gpg
+[init]
+	defaultBranch = main

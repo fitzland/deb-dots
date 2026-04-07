@@ -1,12 +1,6 @@
 [Configuration]
 LastActiveMode=THUNAR_RENAMER_MODE_BOTH
-LastActiveRenamer=ThunarSbrReplaceRenamer
-
-[ThunarSbrInsertRenamer]
-Offset=0
-Text=-jag
-Mode=THUNAR_SBR_INSERT_MODE_INSERT
-OffsetMode=THUNAR_SBR_OFFSET_MODE_RIGHT
+LastActiveRenamer=ThunarSbrInsertRenamer
 
 [ThunarSbrNumberRenamer]
 TextMode=THUNAR_SBR_TEXT_MODE_TN
@@ -19,4 +13,10 @@ CaseSensitive=FALSE
 Replacement=-
 Pattern=-beatitudes-
 Regexp=FALSE
+
+[ThunarSbrInsertRenamer]
+Offset=0
+Text=glorious-day-
+Mode=THUNAR_SBR_INSERT_MODE_INSERT
+OffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
 

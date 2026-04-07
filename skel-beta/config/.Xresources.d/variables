@@ -12,7 +12,7 @@ i3-wm.workspace.08.name: "8:file"
 i3-wm.workspace.09.name: "9:misc"
 i3-wm.workspace.10.name: "10:media"
 
-i3-wm.font Iosevka Nerd Font 12
+i3-wm.font IosevkaTerm Nerd Font 12
 
 !20_rofi
 i3-wm.binding.launcher.app: slash

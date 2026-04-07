@@ -1,0 +1,19 @@
+alias skt='ssh jeff@192.168.1.139'
+alias otp='ssh jeff@192.168.1.108'
+alias edwm='cd ~/.config/suckless/dwm; nano config.h'
+alias mdwm='cd ~/.config/suckless/dwm; sudo make clean install; cd -'
+alias csuck='cd ~/.config/suckless'
+
+alias g.="cd ~/.config"
+alias gtd="cd ~/downloads"
+alias gtw="cd ~/git/fitzland/dwm-desktop"
+alias gto="cd ~/git/fitzland/octo-potato"
+alias gtc="cd ~/git/fitzland/church-docs"
+alias gtr="cd ~/documents/home/finance/retirement"
+alias gtj="cd ~/documents/journal"
+alias gtweb="cd ~/Local\ Sites/fb-cana/app/public"
+
+#connect to server
+alias ionos="ssh a614471@access-5016340004.webspace-host.com"
+
+alias opti-btop='ssh optiplex -t "tmux attach -t monitor || tmux new -s monitor \"btop\""'

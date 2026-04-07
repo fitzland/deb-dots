@@ -1,0 +1,2 @@
+#!/bin/sh
+feh --no-fehbg --bg-fill --no-xinerama '/home/jeff/.config/suckless/wallpaper/wide/dwm.png' 

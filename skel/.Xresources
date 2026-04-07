@@ -12,7 +12,6 @@ XTerm.vt100.foreground: rgb:f8/f8/f2
 XTerm.vt100.background: rgb:28/2a/36
 XTerm.vt100.color0: rgb:3c/3e/4a
 XTerm.vt100.color1: rgb:ff/55/55
-XTerm.vt100.color1: rgb:ff/55/55
 XTerm.vt100.color2: rgb:50/fa/7b
 XTerm.vt100.color3: rgb:f1/fa/8c
 XTerm.vt100.color4: rgb:bd/93/f9

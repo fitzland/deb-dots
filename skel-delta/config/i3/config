@@ -32,6 +32,10 @@ set_from_resource $i3-wm.wallpaper i3-wm.wallpaper ~/images/wallpapers/system/en
 # Uncomment this to disable title bars
 for_window [class=".*"] border pixel 2
 
+gaps inner 4
+gaps outer 2
+
+
 ##############################
 # extra options for windows: #
 ##############################
@@ -40,9 +44,9 @@ for_window [class=".*"] border pixel 2
 floating_modifier $mod
 
 # thin borders
-hide_edge_borders smart
+hide_edge_borders none
 
-default_border normal
+default_border pixel 8
 
 # window title alignment
 title_align center
@@ -110,12 +114,12 @@ bindsym $mod+Shift+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+Shift+v split v;exec notify-send 'tile vertically'
 
 ## enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle; exec notify-send 'fullscreen toggle'
 
 ## change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout stacking; exec notify-send 'container layout stacking'
 bindsym $mod+Shift+t layout tabbed; exec notify-send 'container layout tabbed'
-bindsym $mod+Shift+p layout toggle split
+bindsym $mod+Shift+p layout toggle split; exec notify-send 'container layout toggle split'
 
 workspace_layout tabbed
 
@@ -247,16 +251,16 @@ bindcode $mod+Mod2+90 workspace $ws0
 
 
 ## Navigate // move focused container to workspace // $mod <Shift> 0..9 ##
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0; workspace $ws0
 
 # move focused container to workspace with numpad keys
 bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1; workspace $ws1
@@ -287,13 +291,13 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws0; workspace $ws0
 set_from_resource $i3-wm.binding.ws_next i3-wm.binding.ws_next o
 bindsym $mod+$i3-wm.binding.ws_next workspace next
 
-## Navigate // move focused container workspace next // <Win> <Shift> o ##
-set_from_resource $i3-wm.binding.ws_next_move i3-wm.binding.ws_next_move Shift+o
-bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; workspace next
-
 ## Navigate // Next Workspace // <Win> <Alt> Right ##
 set_from_resource $i3-wm.binding.ws_next2 i3-wm.binding.ws_next2 Right
 bindsym $mod+$alt+$i3-wm.binding.ws_next2 workspace next
+
+## Navigate // move focused container workspace next // <Win> <Shift> o ##
+set_from_resource $i3-wm.binding.ws_next_move i3-wm.binding.ws_next_move Shift+o
+bindsym $mod+$i3-wm.binding.ws_next_move move container to workspace next; workspace next
 
 ## Navigate // move focused container workspace next // <Win> <Ctrl> Right ##
 set_from_resource $i3-wm.binding.ws_next_move2 i3-wm.binding.ws_next_move2 Ctrl+Right
@@ -303,21 +307,21 @@ bindsym $mod+$i3-wm.binding.ws_next_move2 move container to workspace next; work
 set_from_resource $i3-wm.binding.ws_prev i3-wm.binding.ws_prev i
 bindsym $mod+$i3-wm.binding.ws_prev workspace prev
 
-## Navigate // move focused container workspace next // <Win> <Shift> i ##
-set_from_resource $i3-wm.binding.ws_prev_move i3-wm.binding.ws_prev_move Shift+i
-bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; workspace prev
-
 ## Navigate // Previous Workspace // <Win><Alt> Left ##
 set_from_resource $i3-wm.binding.ws_prev2 i3-wm.binding.ws_prev2 Left
 bindsym $mod+$alt+$i3-wm.binding.ws_prev2 workspace prev
 
+## Navigate // move focused container workspace next // <Win> <Shift> i ##
+set_from_resource $i3-wm.binding.ws_prev_move i3-wm.binding.ws_prev_move Shift+i
+bindsym $mod+$i3-wm.binding.ws_prev_move move container to workspace prev; workspace prev
+
 ## Navigate // move focused container workspace prev // <Win> <Ctrl> Left ##
 set_from_resource $i3-wm.binding.ws_prev_move2 i3-wm.binding.ws_prev_move2 Ctrl+Left
-bindsym $mod+$i3-wm.binding.ws_prev_move2 move container to workspace next; workspace next
+bindsym $mod+$i3-wm.binding.ws_prev_move2 move container to workspace prev; workspace prev
 
 ## Navigate // move container output next // <Win> comma ##
-set_from_resource $i3-wm.binding.ws_output_next i3-wm.binding.ws_output_next comma
-bindsym $mod+$i3-wm.binding.ws_output_next move container to output next
+#set_from_resource $i3-wm.binding.ws_output_next i3-wm.binding.ws_output_next comma
+#bindsym $mod+$i3-wm.binding.ws_output_next move container to output next; output next
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -441,11 +445,11 @@ set_from_resource $altcyan i3wm.color14 #8FBCBB
 set_from_resource $altwhite i3wm.color15 #ECEFF4
 
 # class                   border        background      text            indicator       child_border
-client.focused            $green        $green          $background     $yellow         $cyan
-client.focused_inactive   $magenta      $magenta        $background     $yellow         $cyan
-client.unfocused          $blue         $blue           $background     $yellow         $cyan
-client.urgent             $red          $red            $background     $yellow         $cyan
-client.placeholder        $black        $black          $foreground     $yellow         $cyan
+client.focused            $green        $green          $background     $yellow         $green
+client.focused_inactive   $magenta      $magenta        $background     $yellow         $magenta
+client.unfocused          $blue         $blue           $background     $yellow         $blue
+client.urgent             $red          $red            $background     $yellow         $red
+client.placeholder        $black        $black          $foreground     $yellow         $black
 
 client.background         $background
 
@@ -556,7 +560,7 @@ client.background         $background
 exec_always --no-startup-id ~/.config/i3/bin/i3colors.sh
 
 # Launch key daemon
-#exec --no-startup-id sxhkd -c ~/.config/i3/sxhkd/sxhkdrc
+exec --no-startup-id sxhkd -c ~/.config/i3/sxhkd/sxhkdrc
 
 # Launch notification daemon
 #exec --no-startup-id ~/.config/i3/bin/i3dunst.sh

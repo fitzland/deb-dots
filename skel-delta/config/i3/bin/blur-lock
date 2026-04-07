@@ -1,11 +1,22 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-PICTURE=/tmp/i3lock.png
-SCREENSHOT="scrot -z $PICTURE"
+# Script to lock the screen with a blurred screenshot
 
-BLUR="5x4"
+TEMP_DIR="$HOME/.cache/i3lock"
+SCREENSHOT="$TEMP_DIR/screen.png"
+BLURRED="$TEMP_DIR/screen_blurred.png"
 
-$SCREENSHOT
-convert $PICTURE -blur $BLUR $PICTURE
-i3lock -i $PICTURE
-rm $PICTURE
+# Create temporary directory if it doesn't exist
+mkdir -p "$TEMP_DIR"
+
+# Take a screenshot (using scrot, you can also use maim or alternatives)
+scrot "$SCREENSHOT"
+
+# Blur the screenshot using ImageMagick
+convert "$SCREENSHOT" -blur 0x5 "$BLURRED"  # Adjust '0x5' for blur intensity
+
+# Lock the screen with the blurred image
+i3lock -n -i "$BLURRED"
+
+# Remove the temporary files if you want to
+rm "$SCREENSHOT" "$BLURRED"

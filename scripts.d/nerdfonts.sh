@@ -5,6 +5,17 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# Ensure curl is available for version lookup
+if ! command_exists curl; then
+    echo "Installing curl..."
+    sudo nala install curl -y
+fi
+
+# Fetch latest Nerd Fonts release version from GitHub
+VERSION=$(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest \
+    | grep '"tag_name"' | cut -d'"' -f4)
+echo "Installing Nerd Fonts ${VERSION}..."
+
 # Check if unzip is installed; if not, install it
 if ! command_exists unzip; then
     echo "Installing unzip..."
@@ -47,7 +58,7 @@ do
     fi
     
     echo "Installing font: $font"
-    wget -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/$font.zip" -P /tmp
+    wget -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/download/${VERSION}/$font.zip" -P /tmp
     if [ $? -ne 0 ]; then
         echo "Failed to download font: $font"
         continue
